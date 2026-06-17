@@ -1,0 +1,32 @@
+.elimu-flex-row {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+    flex-wrap: wrap; /* Inaruhusu kadi zishuke chini zikizidi upana */
+}
+
+.elimu-card-bordered {
+    flex: 1 1 300px; /* Inazipa kadi upana wa kuanzia 300px kila moja */
+    background: #ffffff;
+    border: 3px solid var(--primary);
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+.elimu-card-bordered:hover {
+    transform: translateY(-10px); /* Kadi inanyanyuka kidogo */
+    border-color: #00ff44; /* Rangi ya kijani inayong'aa zaidi */
+    
+    /* Box shadow inayotengeneza mwanga (Glow effect) */
+    box-shadow: 0 0 20px rgba(40, 167, 69, 0.6), 
+                0 0 40px rgba(40, 167, 69, 0.4);
+}
+
+/* Hiari: Kuongeza mng'ao kidogo kwenye picha pindi unapo-hover */
+.elimu-card-bordered:hover .card-img-box img {
+    filter: brightness(1.1);
+    transform: scale(1.05);
+}

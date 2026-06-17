@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Msaidizi - DAES</title>
+    <!-- Kuunganisha CSS -->
+    <link rel="stylesheet" href="ai.css">
+    <!-- Font Awesome kwa ajili ya Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="ai.css">
+    <style>
+        .api-config {
+            background: #f0f0f0;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            display: none;
+        }
+        .api-config.show {
+            display: block;
+        }
+        .api-config input {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .api-config button {
+            background: #4CAF50;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .api-status {
+            font-size: 12px;
+            margin: 5px 0;
+            padding: 5px;
+            border-radius: 4px;
+        }
+        .api-status.connected {
+            background: #d4edda;
+            color: #155724;
+        }
+        .api-status.disconnected {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        .settings-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #007BFF;
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            z-index: 1000;
+        }
+        .loading {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #007BFF;
+            border-radius: 50%;
+            animation: blink 1.4s infinite;
+            margin-right: 5px;
+        }
+        @keyframes blink {
+            0%, 60%, 100% { opacity: 0.3; }
+            30% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="main-header">
+    <div class="logo-section">
+        <div class="logo-icon"><i class="fas fa-robot"></i></div>
+        <h1 class="logo-text">DIGITAL AGRICULTURE ENHANCEMENT SYSTEM <span>(DAES)</span></h1>
+    </div>
+    
+    <nav class="nav-links">
+        <a href="test-1.html">Nyumbani</a>
+        <a href="elimu.html">Elimu</a>
+        <a href="haliyahewa.html">Hali ya hewa</a>
+        <a href="ai.html">AI Msaidizi</a>
+        <a href="udongo.html">Udongo</a>
+        <a href="soko.html">Soko</a>
+        <a href="#" class="btn-signup">Jisajili</a>
+    </nav>
+</header>
+
+<main class="container">
+    <div class="ai-intro">
+        <h2>Msaidizi wa Kidijitali</h2>
+        <p>Andika swali lako au pakia picha ya zao lililoathirika kupata msaada wa kitaalamu.</p>
+    </div>
+
+    <!-- Eneo la Chat -->
+    <div class="chat-wrapper">
+        <div class="chat-display" id="chatDisplay">
+            <!-- Ujumbe wa AI wa kuanzia -->
+            <div class="msg ai-message">
+                Habari! Mimi ni DAES AI. Una shida gani shambani leo? Unaweza kuniuliza swali lolote kuhusu magonjwa ya mazao au mifugo.
+            </div>
+        </div>
+
+        <div class="chat-input-area">
+            <!-- Kitufe cha kupakia picha -->
+            <label for="imageUpload" class="upload-btn">
+                <i class="fas fa-camera"></i>
+                <input type="file" id="imageUpload" accept="image/*" style="display:none">
+            </label>
+            
+            <input type="text" id="userMessage" placeholder="Andika hapa swali lako...">
+            
+            <button class="send-btn" onclick="processMessage()">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Settings Button -->
+    <button class="settings-btn" onclick="toggleApiConfig()">
+        <i class="fas fa-cog"></i>
+    </button>
+
+    <!-- API Configuration Panel -->
+    <div class="api-config" id="apiConfig">
+        <h3>⚙️ Gemini API Key</h3>
+        
+        <div>
+            <label><strong>Google Gemini API Key</strong></label>
+            <input type="password" id="geminiKey" placeholder="AIza...">
+            <div class="api-status disconnected" id="geminiStatus">❌ Hajaunganishwa</div>
+        </div>
+
+        <button onclick="saveApiKey()">💾 Hifadhi API Key</button>
+        <p style="font-size: 12px; margin-top: 10px; color: #666;">
+            <strong>Kupata API Key:</strong><br>
+            Google Gemini: <a href="https://makersuite.google.com/app/apikey" target="_blank">makersuite.google.com</a>
+        </p>
+    </div>
+</main>
+
+<footer class="main-footer">
+    <p>&copy; 2026 DAES Project. Haki zote zimehifadhiwa.</p>
+</footer>
+
+<script>
+// Gemini API Key Storage
+let geminiKey = localStorage.getItem('gemini_key') || '';
+
+// Load API key on page load
+window.addEventListener('load', function() {
+    document.getElementById('geminiKey').value = geminiKey;
+    updateApiStatus();
+});
+
+// Toggle API Config
+function toggleApiConfig() {
+    const config = document.getElementById('apiConfig');
+    config.classList.toggle('show');
+}
+
+// Save API Key
+function saveApiKey() {
+    geminiKey = document.getElementById('geminiKey').value;
+    localStorage.setItem('gemini_key', geminiKey);
+    updateApiStatus();
+    alert('✅ API Key imehifadhiwa!');
+}
+
+// Update API Status
+function updateApiStatus() {
+    const geminiStatus = document.getElementById('geminiStatus');
+
+    if(geminiKey) {
+        geminiStatus.classList.remove('disconnected');
+        geminiStatus.classList.add('connected');
+        geminiStatus.textContent = '✅ Imeunganisha';
+    } else {
+        geminiStatus.classList.remove('connected');
+        geminiStatus.classList.add('disconnected');
+        geminiStatus.textContent = '❌ Hajaunganishwa';
+    }
+}
+
+// Main AI Processing Function
+async function processMessage() {
+    const input = document.getElementById('userMessage');
+    const display = document.getElementById('chatDisplay');
+    
+    if(input.value.trim() !== "") {
+        if(!geminiKey) {
+            alert('❌ Karibu setup Gemini API key kwanza. Bofya ⚙️');
+            return;
+        }
+
+        // User message
+        display.innerHTML += `<div class="msg user-message">${escapeHtml(input.value)}</div>`;
+        const userText = input.value;
+        input.value = "";
+        
+        // Show loading indicator
+        display.innerHTML += `<div class="msg ai-message"><span class="loading"></span>Ninakuandalia jibu...</div>`;
+        display.scrollTop = display.scrollHeight;
+
+        // Get AI response
+        let response = await getGeminiResponse(userText);
+        
+        // Remove loading indicator and show response
+        const loadingMsg = display.lastChild;
+        if(loadingMsg.textContent.includes('Ninakuandalia')) {
+            loadingMsg.remove();
+        }
+        display.innerHTML += `<div class="msg ai-message">${response}</div>`;
+        display.scrollTop = display.scrollHeight;
+    }
+}
+
+// Google Gemini API Integration
+async function getGeminiResponse(message) {
+    try {
+        const response = await fetch(
+            `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${geminiKey}`,
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    contents: [{
+                        parts: [{
+                            text: `Wewe ni AI msaidizi kwa DAES (Digital Agriculture Enhancement System). Toa majibu ya kina kuhusu kilimo cha kidijitali, mazao, mifugo, udongo, hali ya hewa, na soko. Jibu kwa Kiswahili sahihi. Swali: ${message}`
+                        }]
+                    }]
+                })
+            }
+        );
+
+        const data = await response.json();
+        if(data.candidates && data.candidates[0] && data.candidates[0].content) {
+            return data.candidates[0].content.parts[0].text;
+        }
+        throw new Error('No response from Gemini');
+    } catch(e) {
+        console.error('Gemini Error:', e);
+        return `❌ Hitilafu: ${e.message}. Hakikisha API key ni sahihi.`;
+    }
+}
+
+// HTML Escape function
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
+// Image Upload Handler
+document.getElementById('imageUpload').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if(file) {
+        if(!geminiKey) {
+            alert('❌ Karibu setup Gemini API key kwanza');
+            return;
+        }
+        
+        const reader = new FileReader();
+        reader.onload = function(event) {
+            const base64 = event.target.result;
+            analyzeImageWithGemini(base64);
+        };
+        reader.readAsDataURL(file);
+    }
+});
+
+// Analyze Image with Gemini Vision
+async function analyzeImageWithGemini(base64Image) {
+    const display = document.getElementById('chatDisplay');
+    display.innerHTML += `<div class="msg user-message">📸 Picha ilipakia</div>`;
+    display.innerHTML += `<div class="msg ai-message"><span class="loading"></span>Ninachambuza picha...</div>`;
+    display.scrollTop = display.scrollHeight;
+
+    try {
+        const response = await fetch(
+            `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${geminiKey}`,
+            {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    contents: [{
+                        parts: [
+                            { text: 'Hii ni picha ya zao/shamba. Tafadhali: 1) Tambua aina ya zao, 2) Taja homa/matatizo yanayoonekana, 3) Toa suluhisho au dawa. Jibu kwa Kiswahili sahihi na kwa kina.' },
+                            {
+                                inline_data: {
+                                    mime_type: 'image/jpeg',
+                                    data: base64Image.split(',')[1]
+                                }
+                            }
+                        ]
+                    }]
+                })
+            }
+        );
+
+        const data = await response.json();
+        const loadingMsg = display.lastChild;
+        if(loadingMsg.textContent.includes('Ninachambuza')) {
+            loadingMsg.remove();
+        }
+
+        if(data.candidates && data.candidates[0]) {
+            const result = data.candidates[0].content.parts[0].text;
+            display.innerHTML += `<div class="msg ai-message">${result}</div>`;
+        } else if(data.error) {
+            display.innerHTML += `<div class="msg ai-message">❌ ${data.error.message}</div>`;
+        }
+    } catch(e) {
+        display.innerHTML += `<div class="msg ai-message">❌ Hitilafu: ${e.message}</div>`;
+    }
+    
+    display.scrollTop = display.scrollHeight;
+}
+
+// Enter key support
+document.getElementById('userMessage').addEventListener('keypress', function(e) {
+    if(e.key === 'Enter') {
+        processMessage();
+    }
+});
+</script>
+
+</body>
+</html>

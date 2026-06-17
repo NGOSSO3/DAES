@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kilimo Bora cha Pamba | DAES</title>
+    <style>
+        :root {
+            --primary: #10b981;        /* Kijani ya Kisasa */
+            --secondary: #273c75;      /* Bluu ya DAES */
+            --bg-body: #f8fafc;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-dark);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header (MUUNDO WAKO WA ASILI - HAUJABADILIKA HATA KIDOGO) */
+        .main-header {
+            background:linear-gradient(135deg, #064e3b 0%, #84cc16 100%);
+            padding: 20px 20px;
+            text-align: center;
+            color: var(--white);
+            margin-bottom: -19px;
+        }
+
+        .logo-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--text-dark);
+        }
+
+        .logo-text span {
+            color: var(--secondary);
+            font-style: arial;
+        }
+
+        .nav-links {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            border: #1e293b;
+            border-radius: 2px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color:white;
+            font-weight: 1000;
+            transition: 0.3s;
+            font-size: x-large;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .btn-signup {
+            background: var(--primary);
+            color: white !important;
+            padding: 8px 20px;
+            border-radius: 50px;
+        }
+
+        /* Container Section */
+        .container {
+            flex: 1; 
+            padding: 40px 20px;
+            margin-top: 0px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Mitindo ya Makala Ndani ya Container */
+        .article-card {
+            background: white;
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border: 2px solid var(--primary);
+            line-height: 1.7;
+        }
+
+        .main-title {
+            color: var(--secondary);
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .section-title {
+            color: var(--secondary);
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--primary);
+            padding-left: 10px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        ul {
+            margin-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .image-placeholder-box {
+            background: #f1f5f9;
+            border: 2px solid var(--primary);
+            border-radius: 15px;
+            padding: 0;
+            margin: 25px 0;
+            text-align: center;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .image-placeholder-box img {
+            width: 100%;
+            max-height: 420px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        th {
+            background-color: #f1f5f9;
+            color: var(--secondary);
+        }
+
+        .info-card {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding: 15px;
+            border-radius: 0 10px 10px 0;
+            margin: 20px 0;
+        }
+
+        .danger-card {
+            background: #fef2f2;
+            border-left: 4px solid #ef4444;
+            padding: 15px;
+            border-radius: 0 10px 10px 0;
+            margin: 20px 0;
+        }
+
+        /* STYLE YA VIKOKOTOO (YST EXCLUSIVE) */
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 35px 0;
+        }
+
+        .calculator-section {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border: 2px solid var(--primary);
+            border-radius: 20px;
+            padding: 25px;
+        }
+
+        .calculator-section.profit {
+            background: linear-gradient(135deg, #fef3c7 0%, #fffbeb 100%);
+            border-color: #f59e0b;
+        }
+
+        .calc-title {
+            color: var(--secondary);
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            outline: none;
+        }
+
+        .calc-btn {
+            background: var(--secondary);
+            color: white;
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .calc-btn:hover {
+            background: #1e293b;
+        }
+
+        .results-box {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            border-top: 4px solid var(--primary);
+            display: none;
+        }
+
+        .results-box.profit-res {
+            border-top-color: #f59e0b;
+        }
+
+        .results-box h4 {
+            color: var(--secondary);
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 5px;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .result-item span.value {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* Footer Bar (MUUNDO WAKO WA ASILI - HAUJABADILIKA HATA KIDOGO) */
+        .main-footer {
+            background: #06741b;
+            padding: 35px;
+            text-align: center;
+            color: white;
+            margin-top: auto;
+        }
+
+        @media (max-width: 768px) {
+            .calculator-grid { grid-template-columns: 1fr; }
+            .article-card { padding: 20px; }
+            .main-title { font-size: 1.7rem; }
+            .nav-links { gap: 20px; flex-wrap: wrap; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header ya DAES -->
+    <header class="main-header">
+        <div class="logo-text">DAES<span>.org</span></div>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="mahindi.html">Masomo</a>
+            <a href="#">Services</a>
+            <a href="#" class="btn-signup">Sign Up</a>
+        </nav>
+    </header>
+
+    <!-- Sehemu Kuu ya Maudhui -->
+    <div class="container">
+        <div class="article-card">
+            
+            <h1 class="main-title">Mwongozo Kamili wa Kilimo Bora cha Pamba Kitaalamu</h1>
+
+            <!-- PICHA KUU (IMEVUTWA MOJA KWA MOJA) -->
+            <div class="image-placeholder-box">
+                <img src="https://unsplash.com" alt="Shamba la Pamba Lilikomaa" onerror="this.src='https://unsplash.com'">
+            </div>
+
+            <!-- Idara ya 1 -->
+            <h2 class="section-title">1. Idara ya Maandalizi ya Shamba na Udongo</h2>
+            <p>Pamba ni zao linalohitaji udongo uliotayarishwa vizuri mapema ili mizizi yake mikuu ya kati (*tap roots*) iweze kupenya chini kwa urahisi [1.1].</p>
+            <ul>
+                <li><strong>Hali ya Udongo:</strong> Udongo unaofaa zaidi ni udongo tifutifu mweusi au wa kijivu unaoshika unyevu vizuri (loam to clay loam soils), unaopatikana kwa wingi mikoa ya Kanda ya Ziwa. Udongo usiwe na tabia ya kutuamisha maji kwa muda mrefu. pH bora ni 5.5 hadi 6.5.</li>
+                <li><strong>Ulimaji:</strong> Shamba lilimwe mapema kabla ya mvua kuanza kwa kina cha usawa (cm 15-20) ili kuruhusu udongo kulegea na masalia ya msimu uliopita kuoza ardhini.</li>
+            </ul>
+
+            <!-- Idara ya 2 -->
+            <h2 class="section-title">2. Idara ya Upandaji na Vipimo vya Nafasi</h2>
+            <p>Kutumia nafasi sahihi inasaidia mimea ya pamba kupata hewa na mwanga wa kutosha, jambo linalopunguza magonjwa ya majani na kuchochea utoaji mwingi wa vitumba.</p>
+            
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Aina ya Mbegu</th>
+                            <th>Nafasi Kati ya Mstari na Mstari</th>
+                            <th>Nafasi Kati ya Shimo na Shimo</th>
+                            <th>Idadi ya Mimea kwa Shimo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Mbegu Zilizondolewa Manyoya (Delinted)</strong></td>
+                            <td>90 Sentimita (90 cm)</td>
+                            <td>40 Sentimita (40 cm)</td>
+                            <td>Mche 1 tu (Baada ya kupunguzia)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Mbegu za Kawaida (Fuzzy)</strong></td>
+                            <td>90 Sentimita (90 cm)</td>
+                            <td>50 Sentimita (50 cm)</td>
+                            <td>Mimea 2 kwa kila shimo</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- PICHA YA UPANDAJI (IMEVUTWA MOJA KWA MOJA) -->
+            <div class="image-placeholder-box">
+                <img src="https://unsplash.com" alt="Mimea ya Pamba Ikiwa Shambani">
+            </div>
+
+
+            <!-- ============================================================== -->
+            <!-- SECTION YA VIKOKOTOO VYA PAMBA (YST SMART COMPONENT) -->
+            <!-- ============================================================== -->
+            <div class="calculator-grid">
+                
+                <!-- KIKOKOTOO CHA PEMBEJEO -->
+                <div class="calculator-section">
+                    <div class="calc-title">📊 Kikokotoo cha Pembejeo (Pamba)</div>
+                    <div class="form-group">
+                        <label for="shambaSize">Ukubwa wa Shamba (Ekari):</label>
+                        <input type="number" id="shambaSize" min="0.1" step="0.1" placeholder="Mfano: 1">
+                    </div>
+                    <button class="calc-btn" onclick="pigaHesabuPamba()">Piga Hesabu</button>
+
+                    <div class="results-box" id="calcResults">
+                        <h4>📋 Ripoti ya Mahitaji</h4>
+                        <div class="result-item"><span>Mbegu (Delinted):</span><span class="value" id="resMbegu">0 Kilo</span></div>
+                        <div class="result-item"><span>Mbolea ya DAP (Kupandia):</span><span class="value" id="resDap">0 Kilo</span></div>
+                        <div class="result-item"><span>Idadi ya Awamu za Kupuliza Dawa:</span><span class="value" id="resDawa">0 Awamu (Msimu mzima)</span></div>
+                    </div>
+                </div>
+
+                <!-- KIKOKOTOO CHA FAIDA -->
+                <div class="calculator-section profit">
+                    <div class="calc-title">💰 Kikokotoo cha Faida (Agribusiness)</div>
+                    <div class="form-group">
+                        <label for="ekariProfit">Ukubwa wa Shamba (Ekari):</label>
+                        <input type="number" id="ekariProfit" min="0.1" step="0.1" placeholder="Mfano: 1">
+                    </div>
+                    <button class="calc-btn" style="background: #f59e0b;" onclick="pigaHesabuFaidaPamba()">Kadiria Faida</button>
+
+                    <div class="results-box profit-res" id="profitResults">
+                        <h4>💵 Makadirio ya Kifedha ya Pamba</h4>
+                        <div class="result-item"><span>Gharama za Kilimo:</span><span class="value" id="resGharama" style="color:#ef4444;">0 TZS</span></div>
+                        <div class="result-item"><span>Mavuno Yanayokadiriwa:</span><span class="value" id="resMavuno" style="color:#10b981;">0 Kilo ghafi</span></div>
+                        <div class="result-item" style="border-top:1px dashed #cbd5e1; padding-top:5px;"><span>Faida Safi:</span><span class="value" id="resFaida" style="color:#273c75;">0 TZS</span></div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- ============================================================== -->
+
+
+            <!-- Idara ya 3 -->
+            <h2 class="section-title">3. Idara ya Lishe na Uwekezaji wa Mbolea</h2>
+            <p>Pamba inahitaji urutubishaji mzuri ili kusaidia mmea kutengeneza matawi imara ya pembeni yanayobeba vitumba vingi na vyenye nyuzi ndefu [1.3].</p>
+            
+            <div class="info-card">
+                <h4>Mbolea ya Kupandia (Fosfari)</h4>
+                <p>Weka **kilo 50 za mbolea ya DAP au Minjingu Hyper Phosphate kwa ekari moja** wakati wa kupanda [1.3]. Inasaidia mfumo wa mizizi kuwa imara mapema ili kuhimili vipindi vya ukame wa hapa na pale [1.3].</p>
+            </div>
+
+            <div class="info-card" style="border-left-color: var(--primary); background: #f0fdf4;">
+                <h4>Mbolea ya Kukuzia (Nitrojeni)</h4>
+                <p>Weka **kilo 50 za UREA au CAN kwa ekari moja** wiki ya 5 hadi ya 6 baada ya kuota (wakati mmea unapoanza kutoa tishu za kwanza za maua) [1.3]. Mbolea ifukiwe chini ya udongo ili isipotee hewani [1.3].</p>
+            </div>
+
+            <!-- Idara ya 4 -->
+            <h2 class="section-title">4. Idara ya Mbegu na Kupunguzia Mimea (Thinning)</h2>
+            <p>Usimamizi wa idadi ya mimea shambani una mchango mkubwa sana katika kuamua ubora na uzito wa pamba itakayovunwa.</p>
+            <ul>
+                <li><strong>Mbegu Bora za TARI Ukiriguru:</strong> Tumia aina kama **UKM08** au mbegu za kisasa chotara zilizopendekezwa ambazo zinatoa nyuzi ndefu zenye daraja la kwanza (Daraja A) na zinazovumilia magonjwa ya mnyauko.</li>
+                <li><strong>Kupunguzia Mimea (Thinning):</strong> Panda mbegu 3-5 kwa shimo, kisha wiki 2-3 baada ya kuota, ng'oa mimea iliyochoka na kuacha **mmea 1 tu wenye afya** kwa kila shimo (ikiwa ulipanda mbegu za delinted). Ukifanya hivi unazuia mimea isishindanie chakula na kuzuia magonjwa ya msongamano [1.3].</li>
+            </ul>
+
+            <!-- Idara ya 5 -->
+            <h2 class="section-title">5. Idara ya Ulinzi: Ratiba ya Kupiga Dawa (Spraying Regime)</h2>
+            <p>Pamba ni zao linaloshambuliwa sana na wadudu; usipofuata ratiba sahihi ya kupuliza viuatilifu, unaweza kupoteza zaidi ya asilimia 80 ya mavuno.</p>
+            
+            <h4>Wadudu Wakuu Waharibifu</h4>
+            <p><strong>Kiwavi wa Kitumba (African Bollworm):</strong> Mdudu hatari zaidi anayetoboa na kula kiini cha vitumba vya pamba, akisababisha vitumba vianguke chini kabla ya kufunguka [1.3]. 
+            <br><strong>Chawa wa Pamba (Aphids) & Utitiri:</strong> Wanashambulia majani na kunyonya utomvu. 
+            <br><strong>Ratiba ya Kupuliza Dawa (Spraying Regime):</strong> Inashauriwa kupuliza viuatilifu vilivyosajiliwa mara **4 hadi 6 kwa msimu** [1.3]. Upuliziaji wa kwanza huanza wiki ya 4-5 baada ya kuota (wakati wa kuanza maua) na kurudiwa kila baada ya siku 14 kulingana na muonekano wa wadudu shambani [1.3].</p>
+
+            <div class="danger-card">
+                <h4>Ugonjwa wa Mnyauko wa Fusari (Fusarium Wilt)</h4>
+                <p>Ugonjwa wa fangasi unaofanya mishipa ya mmea kuwa myeusi na majani kunyauka kuanzia chini kwenda juu. **Udhibiti:** Ng'oa na choma moto mimea iliyoathirika na uzingatie mzunguko wa mazao (crop rotation) [1.3].</p>
+            </div>
+
+            <!-- PICHA YA WADUDU (IMEVUTWA MOJA KWA MOJA) -->
+            <div class="image-placeholder-box">
+                <img src="https://infonet-biovision.org" alt="Uharibifu wa Viwavi kwenye Vitumba vya Pamba" onerror="this.src='https://unsplash.com'">
+            </div>
+
+            <!-- Idara ya 6 -->
+            <h2 class="section-title">6. Idara ya Uvunaji Bora na Upangaji wa Madaraja</h2>
+            <p>Ubora wa pamba na bei utakayouza inategemea jinsi ulivyosimamia usafi wakati wa kuvuna.</p>
+            <ul>
+                <li><strong>Mbinu ya Kuvuna:</strong> Vuna pamba kwa mikono pale tu vitumba vinapofunguka kabisa na kuonyesha pamba nyeupe iliyokauka. Usivune kipindi cha umande au kukiwepo na unyevu wa mvua.</li>
+                <li><strong>Upangaji wa Madaraja (Grading):</strong> Tenganisha pamba yako katika madaraja mawili makubwa mara baada ya kuchuma:
+                    <br>1. **Daraja A (Khanga):** Pamba safi kabisa, nyeupe iliyokatika vizuri na isiyo na uchafu wa majani au udongo.
+                    <br>2. **Daraja B (Sufi):** Pamba iliyochafuliwa na udongo, majani, au iliyoshambuliwa na wadudu ghalani.
+                </li>
+                <li><strong>Uhifadhi Salama:</strong> Hifadhi pamba kwenye mifuko safi ya sandarusi au pamba yenyewe. **Ni marufuku kabisa kutumia mifuko ya plastiki (polypropylene bags)** kuhifadhia pamba kwa sababu nyuzi za plastiki zikichanganyika na pamba zinaharibu mashine za viwanda vya nguo na kushusha ubora [1.3].</li>
+            </ul>
+
+            <!-- PICHA YA MAVUNO (IMEVUTWA MOJA KWA MOJA) -->
+            <div class="image-placeholder-box">
+                <img src="https://unsplash.com" alt="Mavuno ya Pamba Safi ya Daraja la Kwanza">
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Footer Bar ya DAES -->
+    <footer class="main-footer">
+        <h3>DAES Footer</h3>
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT LOGIC (YST ENGINE FOR COTTON) -->
+    <script>
+        function pigaHesabuPamba() {
+            let ekari = parseFloat(document.getElementById('shambaSize').value);
+            if (isNaN(ekari) || ekari <= 0) { alert("Tafadhali ingiza ekari sahihi!"); return; }
+            
+            // Kanuni za TARI Ukiriguru kwa Ekari Moja ya Pamba (Delinted Seeds):
+            // 1 Ekari = Kilo 7 za Mbegu bora (Wastani wa kg 6-8)
+            // 1 Ekari = Kilo 50 za DAP
+            // 1 Ekari = Jumla ya awamu 5 za kupiga dawa ya viwavi wa vitumba
+            
+            let mbegu = ekari * 7;
+            let dap = ekari * 50;
+            let dawaAwamu = 5; 
+
+            document.getElementById('resMbegu').innerText = mbegu.toFixed(1) + " Kilo (Delinted)";
+            document.getElementById('resDap').innerText = dap.toFixed(1) + " Kilo";
+            document.getElementById('resDawa').innerText = dawaAwamu + " Awamu za kunyunyizia";
+            document.getElementById('calcResults').style.display = 'block';
+        }
+
+        function pigaHesabuFaidaPamba() {
+            let ekari = parseFloat(document.getElementById('ekariProfit').value);
+            if (isNaN(ekari) || ekari <= 0) { alert("Tafadhali ingiza ekari sahihi!"); return; }
+
+            // Gharama za uendeshaji pamba kwa ekari 1 (kununua mbegu, viuatilifu vya awamu 5, vibarua wa kuchuma) = 550,000 TZS
+            // Mavuno ya wastani ya kitaalamu kwa ekari 1 ya mbegu bora na usimamizi mzuri = Kilo 1,000 za pamba ghafi
+            // Bei ya kuuzia kwa kilo moja ya pamba ghafi (kadirio la soko thabiti) = 1,100 TZS
+            
+            let gharamaJumla = ekari * 550000;
+            let kiloMavuno = ekari * 1000; 
+            let mauzoJumla = kiloMavuno * 1100;
+            let faidaSafi = mauzoJumla - gharamaJumla;
+
+            document.getElementById('resGharama').innerText = gharamaJumla.toLocaleString() + " TZS";
+            document.getElementById('resMavuno').innerText = kiloMavuno.toLocaleString() + " Kilo ghafi";
+            document.getElementById('resFaida').innerText = faidaSafi.toLocaleString() + " TZS";
+            document.getElementById('profitResults').style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,172 @@
+:root {
+    --primary: #10b981;        /* Kijani ya Kisasa */
+    --secondary: #273c75;      /* Bluu ya DAES */
+    --bg-body: #f8fafc;
+    --text-dark: #1e293b;
+    --text-light: #64748b;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-body);
+    color: var(--text-dark);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Header */
+.main-header {
+     background:linear-gradient(135deg, #064e3b 0%, #84cc16 100%);
+    padding: 20px 20px;
+    text-align: center;
+    color: var(--white);
+    margin-bottom: -19px;
+    
+
+}
+
+.logo-icon {
+    font-size: 2.5rem;
+    color: var(--primary);
+    margin-bottom: 10px;
+}
+
+.logo-text {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--text-dark);
+}
+
+.logo-text span {
+    color: var(--secondary);
+    font-style: arial;
+}
+
+.nav-links {
+    margin-top: 20px;
+    background-color: ;
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    border: #1e293b;
+    border-radius: 2px;
+    
+}
+
+.nav-links a {
+    text-decoration: none;
+    color:white;
+    font-weight: 1000;
+    transition: 0.3s;
+    font-size: x-large;
+}
+
+.nav-links a:hover, .nav-links a.active {
+    color: var(--primary);
+}
+
+.btn-signup {
+    background: var(--primary);
+    color: white !important;
+    padding: 8px 20px;
+    border-radius: 50px;
+}
+.elimu-header{
+    padding-top:35px ;
+    text-align: center;
+}
+/* Layout ya Ufuatano (Horizontal) */
+.elimu-flex-row {
+    display: flex;
+    justify-content: center;
+    gap: 25px; /* Nafasi kati ya container */
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+    
+}
+
+/* Container yenye Border */
+.elimu-card-bordered {
+    flex: 1; /* Inazifanya ziwe na ukubwa sawa */
+    background: #ffffff;
+    border: 3px solid var(--primary-green); /* Border ya kijani kufuata theme */
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+/* Inapoguswa na Mouse */
+.elimu-card-bordered:hover {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    transform: translateY(-5px);
+    border-color: var(--accent-green);
+}
+
+/* Sehemu ya Picha */
+.card-img-box {
+    height: 220px;
+    border-bottom: 2px solid #eee;
+}
+
+.card-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Sehemu ya Maandishi */
+.card-body {
+    padding: 25px;
+    text-align: left;
+}
+
+.icon-label {
+    font-size: 1.5rem;
+    color: var(--primary-green);
+    margin-bottom: 10px;
+}
+
+/* Heading Link */
+.card-body h3 a {
+    text-decoration: none;
+    color: var(--primary-green);
+    font-size: 1.8rem;
+    font-weight: 800;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.card-body h3 a:hover {
+    color: var(--accent-green);
+    text-decoration: underline;
+}
+
+.card-body p {
+    color: #475569;
+    line-height: 1.6;
+    font-size: 1.05rem;
+}
+
+/* Responsive kwa ajili ya Simu */
+@media (max-width: 768px) {
+    .elimu-flex-row {
+        flex-direction: column;
+        padding: 0 30px;
+    }
+}
+.main-footer{
+    background: #06741b;
+    padding: 35px;
+    text-align: center;
+    color: white;
+    margin-top: auto;
+
+}

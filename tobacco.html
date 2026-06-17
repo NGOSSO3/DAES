@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kilimo Bora cha Tumbaku | DAES</title>
+    <style>
+        :root {
+            --primary: #10b981;        /* Kijani ya Kisasa */
+            --secondary: #273c75;      /* Bluu ya DAES */
+            --bg-body: #f8fafc;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-dark);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header (MUUNDO WAKO WA ASILI - HAUJABADILIKA HATA KIDOGO) */
+        .main-header {
+            background:linear-gradient(135deg, #064e3b 0%, #84cc16 100%);
+            padding: 20px 20px;
+            text-align: center;
+            color: var(--white);
+            margin-bottom: -19px;
+        }
+
+        .logo-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--text-dark);
+        }
+
+        .logo-text span {
+            color: var(--secondary);
+            font-style: arial;
+        }
+
+        .nav-links {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            border: #1e293b;
+            border-radius: 2px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color:white;
+            font-weight: 1000;
+            transition: 0.3s;
+            font-size: x-large;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .btn-signup {
+            background: var(--primary);
+            color: white !important;
+            padding: 8px 20px;
+            border-radius: 50px;
+        }
+
+        /* Container Section */
+        .container {
+            flex: 1; 
+            padding: 40px 20px;
+            margin-top: 0px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Mitindo ya Makala Ndani ya Container */
+        .article-card {
+            background: white;
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border: 2px solid var(--primary);
+            line-height: 1.7;
+        }
+
+        .main-title {
+            color: var(--secondary);
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .section-title {
+            color: var(--secondary);
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--primary);
+            padding-left: 10px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        ul {
+            margin-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .image-placeholder-box {
+            background: #f1f5f9;
+            border: 2px solid var(--primary);
+            border-radius: 15px;
+            padding: 0;
+            margin: 25px 0;
+            text-align: center;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .image-placeholder-box img {
+            width: 100%;
+            max-height: 420px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        th {
+            background-color: #f1f5f9;
+            color: var(--secondary);
+        }
+
+        .info-card {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding: 15px;
+            border-radius: 0 10px 10px 0;
+            margin: 20px 0;
+        }
+
+        .danger-card {
+            background: #fef2f2;
+            border-left: 4px solid #ef4444;
+            padding: 15px;
+            border-radius: 0 10px 10px 0;
+            margin: 20px 0;
+        }
+
+        /* STYLE YA VIKOKOTOO (YST EXCLUSIVE) */
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 35px 0;
+        }
+
+        .calculator-section {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border: 2px solid var(--primary);
+            border-radius: 20px;
+            padding: 25px;
+        }
+
+        .calculator-section.profit {
+            background: linear-gradient(135deg, #fef3c7 0%, #fffbeb 100%);
+            border-color: #f59e0b;
+        }
+
+        .calc-title {
+            color: var(--secondary);
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            outline: none;
+        }
+
+        .calc-btn {
+            background: var(--secondary);
+            color: white;
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .calc-btn:hover {
+            background: #1e293b;
+        }
+
+        .results-box {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            border-top: 4px solid var(--primary);
+            display: none;
+        }
+
+        .results-box.profit-res {
+            border-top-color: #f59e0b;
+        }
+
+        .results-box h4 {
+            color: var(--secondary);
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 5px;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .result-item span.value {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* Footer Bar (MUUNDO WAKO WA ASILI - HAUJABADILIKA HATA KIDOGO) */
+        .main-footer {
+            background: #06741b;
+            padding: 35px;
+            text-align: center;
+            color: white;
+            margin-top: auto;
+        }
+
+        @media (max-width: 768px) {
+            .calculator-grid { grid-template-columns: 1fr; }
+            .article-card { padding: 20px; }
+            .main-title { font-size: 1.7rem; }
+            .nav-links { gap: 20px; flex-wrap: wrap; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header ya DAES -->
+    <header class="main-header">
+        <div class="logo-text">DAES<span>.org</span></div>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="mahindi.html">Masomo</a>
+            <a href="#">Services</a>
+            <a href="#" class="btn-signup">Sign Up</a>
+        </nav>
+    </header>
+
+    <!-- Sehemu Kuu ya Maudhui -->
+    <div class="container">
+        <div class="article-card">
+            
+            <h1 class="main-title">Mwongozo Kamili wa Kilimo Bora cha Tumbaku Kitaalamu</h1>
+
+            <!-- PICHA KUU (IMEVUTWA MOJA KWA MOJA) -->
+            <div class="image-placeholder-box">
+                <img src="https://unsplash.com" alt="Mmea wa Tumbaku wenye Majani Makubwa" onerror="this.src='https://unsplash.com'">
+            </div>
+
+            <!-- Idara ya 1 -->
+            <h2 class="section-title">1. Idara ya Maandalizi ya Kitalu na Shamba</h2>
+            <p>Tumbaku ni zao laini linalohitaji uandaji wa kitalu cha kisasa (nursery bed) kwa siku **45 hadi 50** kabla ya kuhamishiwa shambani [1.1].</p>
+            <ul>
+                <li><strong>Usimamizi wa Kitalu:</strong> Mbegu za tumbaku ni ndogo mno kama mchanga. Sia kitaluni kwa kuchanganya mbegu na majivu au mchanga laini ili zisongane. Mwagilia kwa uangalifu mkubwa asubuhi na jioni kwa kutumia watering can yenye matundu madogo [1.3].</li>
+                <li><strong>Udongo wa Shamba Kuu:</strong> Tumbaku inapenda udongo tifutifu wa kichanga (sandy loam) wenye mifereji mizuri sana ya kupitisha maji na usiotuamisha maji kabisa. Udongo ukiwemo mgumu au wenye maji mengi, mizizi inaoza na majani yanapoteza ubora wake wa kibiashara.</li>
+            </ul>
+
+            <!-- Idara ya 2 -->
+            <h2 class="section-title">2. Idara ya Upandaji na Vipimo vya Nafasi</h2>
+            <p>Upandaji wa miche ya tumbaku lazima ufanyike juu ya matuta makubwa yaliyoinuliwa (ridges) ili kulinda mifumo ya mizizi na kurahisisha urutubishaji.</p>
+            
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Aina ya Tumbaku</th>
+                            <th>Nafasi Kati ya Matuta (Mistari)</th>
+                            <th>Nafasi Kati ya Mche na Mche</th>
+                            <th>Kina cha Kupandikiza</th>
+                            <th>Miche kwa Ekari (Kadirio)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Flue-Cured (Kavu ya Moshi)</strong></td>
+                            <td>120 Sentimita (1.2 m)</td>
+                            <td>50 Sentimita (50 cm)</td>
+                            <td>5 cm hadi 7 Sentimita</td>
+                            <td>Miche 6,500 hadi 6,800</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- PICHA YA SHAMBA (IMEVUTWA MOJA KWA MOJA) -->
+            <div class="image-placeholder-box">
+                <img src="https://unsplash.com" alt="Mimea ya Tumbaku Iliyopandwa Kwenye Matuta">
+            </div>
+
+
+            <!-- ============================================================== -->
+            <!-- SECTION YA VIKOKOTOO VYA TUMBAKU (YST SMART COMPONENT) -->
+            <!-- ============================================================== -->
+            <div class="calculator-grid">
+                
+                <!-- KIKOKOTOO CHA PEMBEJEO -->
+                <div class="calculator-section">
+                    <div class="calc-title">📊 Kikokotoo cha Pembejeo (Tumbaku)</div>
+                    <div class="form-group">
+                        <label for="shambaSize">Ukubwa wa Shamba (Ekari):</label>
+                        <input type="number" id="shambaSize" min="0.1" step="0.1" placeholder="Mfano: 1">
+                    </div>
+                    <button class="calc-btn" onclick="pigaHesabuTumbaku()">Piga Hesabu</button>
+
+                    <div class="results-box" id="calcResults">
+                        <h4>📋 Ripoti ya Mahitaji (Kitalu & Shamba)</h4>
+                        <div class="result-item"><span>Mbegu za Kitaluni (Wastani):</span><span class="value" id="resMbegu">0 Gramu</span></div>
+                        <div class="result-item"><span>Mbolea ya NPK (Kupandia):</span><span class="value" id="resNpk">0 Kilo</span></div>
+                        <div class="result-item"><span>Mbolea ya Calcium Nitrate (Kukuzia):</span><span class="value" id="resNitrate">0 Kilo</span></div>
+                    </div>
+                </div>
+
+                <!-- KIKOKOTOO CHA FAIDA -->
+                <div class="calculator-section profit">
+                    <div class="calc-title">💰 Kikokotoo cha Faida (Agribusiness)</div>
+                    <div class="form-group">
+                        <label for="ekariProfit">Ukubwa wa Shamba (Ekari):</label>
+                        <input type="number" id="ekariProfit" min="0.1" step="0.1" placeholder="Mfano: 1">
+                    </div>
+                    <button class="calc-btn" style="background: #f59e0b;" onclick="pigaHesabuFaidaTumbaku()">Kadiria Faida</button>
+
+                    <div class="results-box profit-res" id="profitResults">
+                        <h4>💵 Makadirio ya Kifedha ya Tumbaku</h4>
+                        <div class="result-item"><span>Gharama za Kilimo na Kukausha:</span><span class="value" id="resGharama" style="color:#ef4444;">0 TZS</span></div>
+                        <div class="result-item"><span>Mavuno ya Majani Makavu:</span><span class="value" id="resMavuno" style="color:#10b981;">0 Kilo kavu</span></div>
+                        <div class="result-item" style="border-top:1px dashed #cbd5e1; padding-top:5px;"><span>Faida Safi:</span><span class="value" id="resFaida" style="color:#273c75;">0 TZS</span></div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- ============================================================== -->
+
+
+            <!-- Idara ya 3 -->
+            <h2 class="section-title">3. Idara ya Lishe na Uwekezaji wa Mbolea</h2>
+            <p>Tumbaku ni zao linalohitaji fomula maalum ya mbolea ili kuzuia kiwango cha klorini kisizidi ardhini, jambo linaloweza kuharibu uwezo wa jani kuwaka moto (*burnability*) [1.3].</p>
+            
+            <div class="info-card">
+                <h4>Mbolea ya Kupandia (NPK Maalum ya Tumbaku)</h4>
+                <p>Weka **kilo 100 za mbolea ya NPK (fomula maalum ya tumbaku) kwa ekari moja** wakati wa kupandikiza [1.3]. Mbolea hii huwekwa kwenye mashimo na kufukiwa vizuri na udongo kabla ya mche kuwekwa [1.3].</p>
+            </div>
+
+            <div class="info-card" style="border-left-color: var(--primary); background: #f0fdf4;">
+                <h4>Mbolea ya Kukuzia (Calcium Nitrate / CAN)</h4>
+                <p>Weka **kilo 50 za Calcium Nitrate au CAN kwa ekari moja** wiki ya 3 hadi ya 4 baada ya kuhamisha miche [1.3]. Calcium ni muhimu sana kwa kuimarisha tishu za seli za jani na kuzifanya kuwa nene na nzito [1.3].</p>
+            </div>
+
+            <!-- Idara ya 4 -->
+            <h2 class="section-title">4. Idara ya Kukata Vilele (Topping) na Machipukizi (Desuckering)</h2>
+            <p>Hii ndio hatua muhimu zaidi ya kiufundi inayotofautisha kilimo cha tumbaku na mazao mengine ya kawaida ya majani.</p>
+            <ul>
+                <li><strong>Kukata Vilele (Topping):</strong> Wakati mmea wa tumbaku unapoanza kutoa ncha ya maua juu, kilele kile kinakatwa kwa mkono. Hii inalazimisha nishati yote ya mmea isipotelee kwenye maua na mbegu, bali ielekezwe yote kwenye kuongeza ukubwa, unene, na uzito wa majani makuu ya biashara chini [1.3].</li>
+                <li><strong>Kudhibiti Machipukizi (Desuckering):</strong> Baada ya kukata kilele, mmea utajaribu kutoa machipukizi mapya madogo (*suckers*) katikati ya majani. Ni lazima yapunguzwe au yapunzwe kila wiki kwa mikono au kwa kupiga mafuta maalum ya kemikali (*suckericides*) [1.3].</li>
+            </ul>
+
+            <!-- Idara ya 5 -->
+            <h2 class="section-title">5. Idara ya Ulinzi: Kudhibiti Magonjwa na Nematodes</h2>
+            <p>Tumbaku inashambuliwa sana na minyoo fundo ya udongo (*root-knot nematodes*) na magonjwa ya ukungu.</p>
+            <div class="danger-card">
+                <h4>Magonjwa na Nematodes</h4>
+                <p><strong>Minyoo Fundo (Nematodes):</strong> Wanashambulia mizizi chini ya ardhi na kutengeneza vifundo vinavyozuia mmea kufyonza chakula, na kusababisha mmea kudumaa na kunyauka [1.3]. **Udhibiti:** Zingatia mzunguko wa mazao (crop rotation) na panda miche kwenye matuta makubwa yaliyoinuliwa vizuri.
+                <br><strong>Ugonjwa wa Shina Jeusi (Black Shank):</strong> Ugonjwa wa fangasi unaofanya shina la chini karibu na udongo kuwa lyeusi na kuoza [1.3]. Udhibiti unafanyika kwa kupanda mbegu bora za TORITA na kupiga viuatilifu [1.3].</p>
+            </div>
+
+            <!-- PICHA YA MAJANI (IMEVUTWA MOJA KWA MOJA) -->
+            <div class="image-placeholder-box">
+                <img src="https://unsplash.com" alt="Uvunaji wa Majani ya Tumbaku">
+            </div>
+
+            <!-- Idara ya 6 -->
+            <h2 class="section-title">6. Idara ya Uvunaji na Kukausha (Curing Process)</h2>
+            <p>Uvunaji wa tumbaku hufanyika kwa awamu kuanzia chini kwenda juu majani yanapogeuka rangi kutoka kijani kuwa manjano [1.3].</p>
+            <ul>
+                <li><strong>Kuvuna kwa Awamu (Priming):</strong> Chuma majani 2 hadi 3 yaliyoiva vizuri kwa kila awamu kila baada ya wiki moja. Usichume majani mabichi ya kijani giza kwani hayatabadilika kuwa ya dhahabu wakati wa kukausha [1.3].</li>
+                <li><strong>Mchakato wa Kukausha (Curing):</strong> Majani yaliyochumwa yanafungwa kwenye vijiti maalum na kuning'inizwa ndani ya ghalani/tanuru la kukaushia (*barn*). Tumbaku ya moshi (*Flue-cured*) hukaushwa kwa kupitisha hewa ya moto kupitia mabomba ya chuma ndani ya tanuru kwa siku 4 hadi 6 [1.3].
+                <br><strong>Tahadhari ya Mazingira (YST Point):</strong> Mchakato wa kukausha unahitaji kuni nyingi za miti [1.3]. Ili kulinda mazingira na kushinda mashindano, **TORITA inashauri wakulima kutengeneza majiko sanifu ya kisasa ya kukaushia (Improved Barns)** yanayookoa kuni kwa zaidi ya asilimia 50 ukilinganisha na majiko ya kienyeji [1.3].</li>
+            </ul>
+
+            <!-- PICHA YA KUKAUSHIA (IMEVUTWA MOJA KWA MOJA) -->
+            <div class="image-placeholder-box">
+                <img src="https://unsplash.com" alt="Kukausha Tumbaku Ndani ya Tanuru">
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Footer Bar ya DAES -->
+    <footer class="main-footer">
+        <h3>DAES Footer</h3>
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT LOGIC (YST ENGINE FOR TOBACCO) -->
+    <script>
+        function pigaHesabuTumbaku() {
+            let ekari = parseFloat(document.getElementById('shambaSize').value);
+            if (isNaN(ekari) || ekari <= 0) { alert("Tafadhali ingiza ekari sahihi!"); return; }
+            
+            // Kanuni za TORITA kwa Ekari Moja ya Tumbaku:
+            // 1 Ekari = Gramu 35 za Mbegu bora kitaluni
+            // 1 Ekari = Kilo 100 za NPK ya tumbaku (Mifuko 2 ya kg 50)
+            // 1 Ekari = Kilo 50 za Calcium Nitrate
+            
+            let mbegu = ekari * 35;
+            let npk = ekari * 100;
+            let nitrate = ekari * 50;
+
+            document.getElementById('resMbegu').innerText = mbegu.toFixed(0) + " Gramu kitaluni";
+            document.getElementById('resNpk').innerText = npk.toFixed(1) + " Kilo za NPK";
+            document.getElementById('resNitrate').innerText = nitrate.toFixed(1) + " Kilo za Calcium Nitrate";
+            document.getElementById('calcResults').style.display = 'block';
+        }
+
+        function pigaHesabuFaidaTumbaku() {
+            let ekari = parseFloat(document.getElementById('ekariProfit').value);
+            if (isNaN(ekari) || ekari <= 0) { alert("Tafadhali ingiza ekari sahihi!"); return; }
+
+            // Gharama za uendeshaji kila mwaka kwa ekari 1 (Ujenzi wa kitalu, mbolea nyingi za NPK, ununuzi wa kuni/mafuta ya tanuru, vibarua) = 1,100,000 TZS
+            // Mavuno ya wastani ya kitaalamu kwa ekari 1 ya majani makavu yaliyokaushwa thabiti = Kilo 950
+            // Bei ya kuuzia makampuni ya tumbaku kwa kilo moja ya majani makavu (Daraja la kati) = 3,200 TZS
+            
+            let gharamaJumla = ekari * 1100000;
+            let kiloMavuno = ekari * 950; 
+            let mauzoJumla = kiloMavuno * 3200;
+            let faidaSafi = mauzoJumla - gharamaJumla;
+
+            document.getElementById('resGharama').innerText = gharamaJumla.toLocaleString() + " TZS";
+            document.getElementById('resMavuno').innerText = kiloMavuno.toLocaleString() + " Kilo kavu";
+            document.getElementById('resFaida').innerText = faidaSafi.toLocaleString() + " TZS";
+            document.getElementById('profitResults').style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>

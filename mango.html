@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kilimo Bora cha Maembe | DAES</title>
+    <style>
+        :root {
+            --primary: #10b981;        /* Kijani ya Kisasa */
+            --secondary: #273c75;      /* Bluu ya DAES */
+            --bg-body: #f8fafc;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-dark);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header (MUUNDO WAKO WA ASILI - HAUJABADILIKA HATA KIDOGO) */
+        .main-header {
+            background:linear-gradient(135deg, #064e3b 0%, #84cc16 100%);
+            padding: 20px 20px;
+            text-align: center;
+            color: var(--white);
+            margin-bottom: -19px;
+        }
+
+        .logo-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--text-dark);
+        }
+
+        .logo-text span {
+            color: var(--secondary);
+            font-style: arial;
+        }
+
+        .nav-links {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            border: #1e293b;
+            border-radius: 2px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color:white;
+            font-weight: 1000;
+            transition: 0.3s;
+            font-size: x-large;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .btn-signup {
+            background: var(--primary);
+            color: white !important;
+            padding: 8px 20px;
+            border-radius: 50px;
+        }
+
+        /* Container Section */
+        .container {
+            flex: 1; 
+            padding: 40px 20px;
+            margin-top: 0px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Mitindo ya Makala Ndani ya Container */
+        .article-card {
+            background: white;
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border: 2px solid var(--primary);
+            line-height: 1.7;
+        }
+
+        .main-title {
+            color: var(--secondary);
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .section-title {
+            color: var(--secondary);
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--primary);
+            padding-left: 10px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        ul {
+            margin-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .image-placeholder-box {
+            background: #f1f5f9;
+            border: 2px solid var(--primary);
+            border-radius: 15px;
+            padding: 0;
+            margin: 25px 0;
+            text-align: center;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .image-placeholder-box img {
+            width: 100%;
+            max-height: 420px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        th {
+            background-color: #f1f5f9;
+            color: var(--secondary);
+        }
+
+        .info-card {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding: 15px;
+            border-radius: 0 10px 10px 0;
+            margin: 20px 0;
+        }
+
+        .danger-card {
+            background: #fef2f2;
+            border-left: 4px solid #ef4444;
+            padding: 15px;
+            border-radius: 0 10px 10px 0;
+            margin: 20px 0;
+        }
+
+        /* STYLE YA VIKOKOTOO (YST EXCLUSIVE) */
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 35px 0;
+        }
+
+        .calculator-section {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border: 2px solid var(--primary);
+            border-radius: 20px;
+            padding: 25px;
+        }
+
+        .calculator-section.profit {
+            background: linear-gradient(135deg, #fef3c7 0%, #fffbeb 100%);
+            border-color: #f59e0b;
+        }
+
+        .calc-title {
+            color: var(--secondary);
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            outline: none;
+        }
+
+        .calc-btn {
+            background: var(--secondary);
+            color: white;
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .calc-btn:hover {
+            background: #1e293b;
+        }
+
+        .results-box {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            border-top: 4px solid var(--primary);
+            display: none;
+        }
+
+        .results-box.profit-res {
+            border-top-color: #f59e0b;
+        }
+
+        .results-box h4 {
+            color: var(--secondary);
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 5px;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .result-item span.value {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* Footer Bar (MUUNDO WAKO WA ASILI - HAUJABADILIKA HATA KIDOGO) */
+        .main-footer {
+            background: #06741b;
+            padding: 35px;
+            text-align: center;
+            color: white;
+            margin-top: auto;
+        }
+
+        @media (max-width: 768px) {
+            .calculator-grid { grid-template-columns: 1fr; }
+            .article-card { padding: 20px; }
+            .main-title { font-size: 1.7rem; }
+            .nav-links { gap: 20px; flex-wrap: wrap; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header ya DAES -->
+    <header class="main-header">
+        <div class="logo-text">DAES<span>.org</span></div>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="mahindi.html">Masomo</a>
+            <a href="#">Services</a>
+            <a href="#" class="btn-signup">Sign Up</a>
+        </nav>
+    </header>
+
+    <!-- Sehemu Kuu ya Maudhui -->
+    <div class="container">
+        <div class="article-card">
+            
+            <h1 class="main-title">Mwongozo Kamili wa Kilimo Bora cha Maembe Kitaalamu</h1>
+
+            <!-- PICHA KUU (IMEVUTWA MOJA KWA MOJA) -->
+            <div class="image-placeholder-box">
+                <img src="https://unsplash.com" alt="Maembe Mabichi na Yaliyoiva Kwenye Mti" onerror="this.src='https://unsplash.com'">
+            </div>
+
+            <!-- Idara ya 1 -->
+            <h2 class="section-title">1. Idara ya Maandalizi ya Shamba na Udongo</h2>
+            <p>Mwembe ni mti wa kudumu unaoweza kuishi na kuzalisha kwa miongo kadhaa, hivyo uchaguzi wa eneo na uandaji wa ardhi unajenga msingi wa tija ya baadae.</p>
+            <ul>
+                <li><strong>Hali ya Udongo:</strong> Maembe yanapenda udongo tifutifu wenye mchanganyiko wa kichanga (sandy loam) au mwekundu wa volkano wenye kina kirefu na mfumo mzuri wa kupitisha maji. Udongo ukiwa mgumu au unaotuamisha maji, mizizi inakosa hewa na mmea unadumaa. pH bora ni 5.5 hadi 7.0.</li>
+                <li><strong>Uchimbo wa Mashimo:</strong> Chimba mashimo ya upana wa cm 60, urefu wa cm 60 na kina cha cm 60. Udongo wa juu uliotolewa uchanganywe na ndoo 1-2 za samadi iliyoiva vizuri pamoja na gramu 200 za mbolea ya fosfari (DAP/TSP) kabla ya kurudishwa ghorofani kwenye shimo.</li>
+            </ul>
+
+            <!-- Idara ya 2 -->
+            <h2 class="section-title">2. Idara ya Upandaji na Vipimo vya Nafasi</h2>
+            <p>Nafasi ya upandaji inategemea nguvu ya ukuaji wa aina ya embe uliyochagua ili kuzuia taji za miti isisongane na kukosa mwanga wa jua.</p>
+            
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Aina ya Maembe</th>
+                            <th>Umbali Kati ya Mstari na Mstari</th>
+                            <th>Umbali Kati ya Mti na Mti</th>
+                            <th>Idadi ya Miti kwa Ekari (Wastani)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Aina Kubwa (Mbeu za kienyeji/Boribo)</strong></td>
+                            <td>9 Mita hadi 10 Mita</td>
+                            <td>9 Mita hadi 10 Mita</td>
+                            <td>Miti 40 hadi 50</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Aina fupi za Kisasa (Kent, Keitt, Tommy)</strong></td>
+                            <td>6 Mita (6 m)</td>
+                            <td>6 Mita (6 m)</td>
+                            <td>Miti 100 hadi 110</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- PICHA YA UPANDAJI (IMEVUTWA MOJA KWA MOJA) -->
+            <div class="image-placeholder-box">
+                <img src="https://unsplash.com" alt="Miche ya Kisasa ya Maembe Shambani">
+            </div>
+
+
+            <!-- ============================================================== -->
+            <!-- SECTION YA VIKOKOTOO VYA MAEMBE (YST SMART COMPONENT) -->
+            <!-- ============================================================== -->
+            <div class="calculator-grid">
+                
+                <!-- KIKOKOTOO CHA PEMBEJEO -->
+                <div class="calculator-section">
+                    <div class="calc-title">📊 Kikokotoo cha Pembejeo (Maembe)</div>
+                    <div class="form-group">
+                        <label for="shambaSize">Ukubwa wa Shamba (Ekari):</label>
+                        <input type="number" id="shambaSize" min="0.1" step="0.1" placeholder="Mfano: 1">
+                    </div>
+                    <button class="calc-btn" onclick="pigaHesabuMaembe()">Piga Hesabu</button>
+
+                    <div class="results-box" id="calcResults">
+                        <h4>📋 Ripoti ya Mahitaji (Aina za Kisasa)</h4>
+                        <div class="result-item"><span>Miche ya Vikonyo Inayohitajika:</span><span class="value" id="resMiche">0 Miche</span></div>
+                        <div class="result-item"><span>Mbolea ya Kupandia (DAP/TSP):</span><span class="value" id="resDap">0 Kilo</span></div>
+                        <div class="result-item"><span>Mitego ya Nzi wa Matunda (Msimu):</span><span class="value" id="resMitego">0 Mitego</span></div>
+                    </div>
+                </div>
+
+                <!-- KIKOKOTOO CHA FAIDA -->
+                <div class="calculator-section profit">
+                    <div class="calc-title">💰 Kikokotoo cha Faida (Kuanzia Mwaka wa 3)</div>
+                    <div class="form-group">
+                        <label for="ekariProfit">Ukubwa wa Shamba (Ekari):</label>
+                        <input type="number" id="ekariProfit" min="0.1" step="0.1" placeholder="Mfano: 1">
+                    </div>
+                    <button class="calc-btn" style="background: #f59e0b;" onclick="pigaHesabuFaidaMaembe()">Kadiria Faida</button>
+
+                    <div class="results-box profit-res" id="profitResults">
+                        <h4>💵 Makadirio ya Kifedha ya Maembe</h4>
+                        <div class="result-item"><span>Gharama za Kila Mwaka:</span><span class="value" id="resGharama" style="color:#ef4444;">0 TZS</span></div>
+                        <div class="result-item"><span>Mavuno Yanayokadiriwa (Idadi):</span><span class="value" id="resMavuno" style="color:#10b981;">0 Matunda</span></div>
+                        <div class="result-item" style="border-top:1px dashed #cbd5e1; padding-top:5px;"><span>Makadirio ya Faida Safi:</span><span class="value" id="resFaida" style="color:#273c75;">0 TZS</span></div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- ============================================================== -->
+
+
+            <!-- Idara ya 3 -->
+            <h2 class="section-title">3. Idara ya Mbegu, Grafting na Pruning</h2>
+            <p>Uzalishaji bora unategemea miche ya kisasa iliyofanyiwa ubadilishaji wa vikonyo na upogoleaji sahihi.</p>
+            <ul>
+                <li><strong>Miche ya Vikonyo (Grafted Seedlings):</strong> Inashauriwa sana kutumia miche iliyofanyiwa grafting kutoka vituo vya **TARI**. Miche hii inawahi kuzaa (mwaka wa 3 badala ya miaka 7 ya miche ya mbegu ya asili), miti inakuwa mifupi inayorahisisha uvunaji, na inazaa matunda makubwa yasiyokuwa na nyuzi (*fibers*) [1.3].</li>
+                <li><strong>Aina Maarufu za Kisasa:</strong> **Kent** na **Keitt** (zina rangi ya kijani na nyekundu, zina nyama nene na hazina nyuzi), pamoja na **Tommy Atkins** na **Apple Mango**.</li>
+                <li><strong>Upogoleaji (Pruning):</strong> Kila baada ya msimu wa mavuno kuisha, kata matawi ya chini yaliyochoka, matawi ya ndani yaliyosongana yasiyopata mwanga, na machipukizi yasiyozaa. Hii inaruhusu jua kupenya ndani ya taji, jambo linalochochea utoaji mwingi wa maua msimu unaofuata.</li>
+            </ul>
+
+            <!-- Idara ya 4 -->
+            <h2 class="section-title">4. Idara ya Ulinzi: Kudhibiti Nzi wa Matunda na Ukungu</h2>
+            <p>Magonjwa na wadudu wanaweza kuharibu zaidi ya asilimia 70 ya ubora wa matunda yasipodhibitiwa mapema.</p>
+            <div class="danger-card">
+                <h4>Adui Mkuu: Nzi wa Matunda (Fruit Flies)</h4>
+                <p><strong>Uharibifu:</strong> Nzi hawa wanatoboa na kutaga mayai ndani ya embe changa inayokaribia kuiva. Mayai yanakuwa viwavi vidogo vinavyokula nyama ya embe kwa ndani na kusababisha embe kuoza na kudondoka chini [1.3]. 
+                <br><strong>Udhibiti wa Kisayansi (YST Key Point):</strong> Badala ya kupiga madawa ya kemikali mengi yanayoacha sumu kwenye matunda, **TARI inashauri kutumia Mitego ya Harufu (Pheromone Traps)** [1.3]. Mitego hii inavutia na kunasa nzi dume na kuzuia uzazi wao, ikiwa ni mbinu salama na ya gharama nafuu [1.3].</p>
+            </div>
+
+            <p><strong>Ugonjwa wa Baka Jeusi / Ukungu (Anthracnose):</strong> Fangasi wanaosababisha madoa meusi kwenye majani, maua na matunda ya embe, na kufanya maua yanyauke na kudondoka yote. Udhibiti unafanyika kwa kupiga dawa za fangasi (*fungicides*) mapema msimu wa kutoa maua.</p>
+
+            <!-- PICHA YA WADUDU (IMEVUTWA MOJA KWA MOJA) -->
+            <div class="image-placeholder-box">
+                <img src="https://infonet-biovision.org" alt="Magonjwa na Uharibifu Kwenye Majani ya Mwembe" onerror="this.src='https://unsplash.com'">
+            </div>
+
+            <!-- Idara ya 5 -->
+            <h2 class="section-title">5. Idara ya Uvunaji na Uhifadhi Salama</h2>
+            <p>Njia ya uvunaji huamua kama embe zitafika sokoni zikiwa safi au zikiwa zimeharibika kwa michubuko.</p>
+            <ul>
+                <li><strong>Mbinu ya Kuvuna:</strong> Vuna embe zikiwa zimekomaa kikamilifu (rangi inabadilika kutoka kijani giza kwenda kijani hafifu au manjano). Kata kwa kutumia kisu kirefu au kifaa maalum chenye mfuko wa wavu (*fruit picker*), ukiacha kikonyo cha urefu wa cm 5-10. **Usidondoshe embe chini**, kwani michubuko inasababisha embe kuoza haraka ndani ya siku mbili.</li>
+                <li><strong>Kuzuia Kimiminika cha Kikonyo (Sap Injury):</strong> Baada ya kukata embe, ziweke zikiwa zimeangalia chini kwa masaa machache ili kile kimiminika chenye asidi (*sap*) kutoka kwenye kikonyo kisimwagike juu ya ngozi ya embe, kwani kinasababisha mabaka meusi yanayoshusha thamani ya tunda sokoni.</li>
+                <li><strong>Uhifadhi:</strong> Panga maembe kwenye makasha ya plastiki yaliyowekwa matandazo ya karatasi laini. Hifadhi mahali pa baridi na unyevu wa kutosha ili kulinda maisha ya tunda kabla ya kuuzwa au kusindikwa viwandani [1.3].</li>
+            </ul>
+
+            <!-- PICHA YA MAVUNO (IMEVUTWA MOJA KWA MOJA) -->
+            <div class="image-placeholder-box">
+                <img src="https://unsplash.com" alt="Mavuno ya Maembe Safi Chotara">
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Footer Bar ya DAES -->
+    <footer class="main-footer">
+        <h3>DAES Footer</h3>
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT LOGIC (YST ENGINE FOR MANGO) -->
+    <script>
+        function pigaHesabuMaembe() {
+            let ekari = parseFloat(document.getElementById('shambaSize').value);
+            if (isNaN(ekari) || ekari <= 0) { alert("Tafadhali ingiza ekari sahihi!"); return; }
+            
+            // Kanuni za TARI kwa Ekari Moja ya Maembe (Mfumo wa mita 6x6 kwa miche fupi ya kisasa):
+            // 1 Ekari = Takriban miche 100 ya kisasa
+            // Mbolea ya kupandia = kilo 50 (Grama 500 ya DAP/TSP kwa kila shimo)
+            // Mitego ya nzi wa matunda inayohitajika kwa msimu = Mitego 4 kwa kila ekari
+            
+            let miche = ekari * 100;
+            let mbolea = ekari * 50;
+            let mitego = Math.ceil(ekari * 4);
+
+            document.getElementById('resMiche').innerText = Math.ceil(miche) + " Miche ya Vikonyo (Grafted)";
+            document.getElementById('resDap').innerText = mbolea.toFixed(1) + " Kilo za DAP/TSP";
+            document.getElementById('resMitego').innerText = mitego + " Mitego ya Pheromone";
+            document.getElementById('calcResults').style.display = 'block';
+        }
+
+        function pigaHesabuFaidaMaembe() {
+            let ekari = parseFloat(document.getElementById('ekariProfit').value);
+            if (isNaN(ekari) || ekari <= 0) { alert("Tafadhali ingiza ekari sahihi!"); return; }
+
+            // Gharama za kila mwaka kwa ekari 1 baada ya mwaka wa 3 (Upogoleaji, mitego ya nzi, vibarua, mbolea) = 500,000 TZS
+            // Mavuno ya wastani kitaalamu kwa kila mti uliotunzwa vizuri = Matunda 160 kwa mti kwa mwaka
+            // Jumla ya matunda kwa ekari moja = 100 * 160 = 16,000 Matunda
+            // Bei ya kuuzia tunda moja shambani kwa jumla = 150 TZS
+            
+            let gharamaJumla = ekari * 500000;
+            let matundaMavuno = ekari * 16000; 
+            let mauzoJumla = matundaMavuno * 150;
+            let faidaSafi = mauzoJumla - gharamaJumla;
+
+            document.getElementById('resGharama').innerText = gharamaJumla.toLocaleString() + " TZS";
+            document.getElementById('resMavuno').innerText = matundaMavuno.toLocaleString() + " Matunda";
+            document.getElementById('resFaida').innerText = faidaSafi.toLocaleString() + " TZS";
+            document.getElementById('profitResults').style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>

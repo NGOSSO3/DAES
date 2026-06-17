@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pima Udongo - DAES Project</title>
+    <link rel="stylesheet" href="elimu.css">
+    <link rel="stylesheet" href="style-weather.css"> <!-- Tunatumia css hizi kwa mpangilio -->
+    <link rel="stylesheet" href="https://cloudflare.com">
+    <style>
+        .soil-container { max-width: 800px; margin: 40px auto; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 0 15px; }
+        .soil-card { background: white; padding: 25px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; font-weight: 600; color: #273c75; }
+        select { width: 100%; padding: 12px; border-radius: 10px; border: 2px solid #e2e8f0; outline: none; }
+        .btn-test { width: 100%; padding: 15px; background: #10b981; color: white; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .btn-test:hover { background: #059669; }
+        .result-box { display: none; }
+        .ph-circle { width: 100px; height: 100px; border-radius: 50%; border: 8px solid #10b981; display: flex; align-items: center; justify-content: center; margin: 20px auto; font-size: 1.5rem; font-weight: 800; color: #273c75; }
+        @media (max-width: 768px) { .soil-container { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+    <!-- Header imebaki vilevile -->
+    <header class="main-header">
+        <div class="logo-section">
+            <div class="logo-icon"><i class="fas fa-leaf"></i></div>
+            <h1 class="logo-text">DIGITAL AGRICULTURE ENHANCEMENT SYSTEM <span>(DAES)</span></h1>
+        </div>
+        <nav class="nav-links">
+            <a href="test-1.html">Nyumbani</a>
+            <a href="elimu.html">Elimu</a>
+            <a href="hali-ya-hewa.html">Hali ya hewa</a>
+            <a href="ai.html">AI Msaidizi</a>
+            <a href="#" class="active">Udongo</a>
+            <a href="#">Soko</a>
+            <a href="#" class="btn-signup">Jisajili</a>
+        </nav>
+    </header>
+
+    <main class="soil-container">
+        <!-- Upande wa Fomu -->
+        <section class="soil-card">
+            <h3 style="margin-bottom: 15px;"><i class="fas fa-microscope"></i> Upimaji wa Udongo</h3>
+            <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 20px;">Chagua sifa za udongo wako kupata makadirio ya pH.</p>
+            
+            <div class="form-group">
+                <label>Rangi ya Udongo:</label>
+                <select id="soilColor">
+                    <option value="mweusi">Mweusi / Kahawia</option>
+                    <option value="mwekundu">Mwekundu / Manjano</option>
+                    <option value="mweupe">Mweupe / Kijivu</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Aina ya Udongo:</label>
+                <select id="soilType">
+                    <option value="tifutifu">Udongo wa Tifutifu</option>
+                    <option value="mfinyanzi">Udongo wa Mfinyanzi</option>
+                    <option value="kichanga">Udongo wa Kichanga</option>
+                </select>
+            </div>
+
+            <button class="btn-test" onclick="analyzeSoil()">Anza Uchambuzi</button>
+        </section>
+
+        <!-- Upande wa Matokeo -->
+        <section class="soil-card result-box" id="resultBox">
+            <h3 style="text-align: center; color: #273c75;">Matokeo ya pH</h3>
+            <div class="ph-circle" id="phValue">7.0</div>
+            <div id="soilStatus" style="text-align: center; font-weight: bold; margin-bottom: 15px;">Kawaida (Neutral)</div>
+            <hr>
+            <div style="margin-top: 15px;">
+                <h4 style="color: #10b981;"><i class="fas fa-check-circle"></i> Ushauri:</h4>
+                <p id="soilAdvice" style="font-size: 0.9rem; line-height: 1.6; color: #334155;"></p>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        function analyzeSoil() {
+            const color = document.getElementById('soilColor').value;
+            const type = document.getElementById('soilType').value;
+            const resultBox = document.getElementById('resultBox');
+            const phCircle = document.getElementById('phValue');
+            const status = document.getElementById('soilStatus');
+            const advice = document.getElementById('soilAdvice');
+
+            resultBox.style.display = "block";
+            let ph = 7.0;
+            let msg = "";
+            let stat = "";
+
+            if (color === "mwekundu") {
+                ph = type === "kichanga" ? "4.5 - 5.5" : "5.5 - 6.0";
+                stat = "Tindikali (Acidic)";
+                msg = "Udongo huu una asili ya tindikali. Inashauriwa kutumia mbolea za asili (samadi) au chokaa kidogo ili kupunguza ukali. Mazao yanayoweza kuhimili ni kama mananasi na viazi mviringo.";
+                phCircle.style.borderColor = "#ef4444";
+            } 
+            else if (color === "mweusi") {
+                ph = type === "tifutifu" ? "6.5 - 7.5" : "6.0 - 7.0";
+                stat = "Kawaida (Neutral)";
+                msg = "Hongera! Udongo huu ni bora zaidi kwa kilimo. Una rutuba ya kutosha na pH iliyotulia. Unaweza kupanda mazao karibu yote kama mahindi, maharage, na mbogamboga.";
+                phCircle.style.borderColor = "#10b981";
+            } 
+            else if (color === "mweupe") {
+                ph = type === "mfinyanzi" ? "8.0 - 9.0" : "7.5 - 8.5";
+                stat = "Nyongo (Alkaline)";
+                msg = "Udongo huu una asili ya chumvi au nyongo. Inashauriwa kuongeza mbolea ya kijani na kuepuka mbolea zenye kemikali zinazozidisha chumvi. Mazao kama pamba au ngano yanaweza kufanya vizuri.";
+                phCircle.style.borderColor = "#3b82f6";
+            }
+
+            phCircle.innerText = ph;
+            status.innerText = stat;
+            advice.innerText = msg;
+        }
+    </script>
+
+    <footer class="main-footer">
+        <p>&copy; 2026 DAES Project. Haki zote zimehifadhiwa.</p>
+    </footer>
+</body>
+</html>

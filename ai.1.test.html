@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DAES AI - Msaidizi wa Kilimo</title>
+    <link rel="stylesheet" href="https://cloudflare.com">
+    <style>
+        :root {
+            --primary-green: #147605;
+            --light-green: #d8f3dc;
+            --bg-light: #f1f5f9;
+            --white: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
+        body { background-color: var(--bg-light); display: flex; flex-direction: column; min-height: 100vh; }
+        .main-header { background: linear-gradient(135deg, #064e3b 0%, #84cc16 100%); padding: 20px; text-align: center; color: white; }
+        .container { flex: 1; width: 100%; max-width: 900px; margin: 0 auto; padding: 20px; }
+        .ai-intro { text-align: center; margin-bottom: 20px; }
+        .ai-intro h2 { color: var(--primary-green); margin-bottom: 5px; }
+        
+        .chat-wrapper { background: var(--white); border: 2px solid var(--primary-green); border-radius: 20px; height: 450px; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .chat-display { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; background: #fafafa; }
+        
+        .msg { max-width: 80%; padding: 12px 15px; border-radius: 15px; font-size: 1rem; line-height: 1.4; }
+        .ai-message { background-color: var(--light-green); color: var(--primary-green); align-self: flex-start; }
+        .user-message { background-color: var(--primary-green); color: white; align-self: flex-end; }
+        .error-message { background-color: #f8d7da; color: #721c24; align-self: center; text-align: center; border: 1px solid #f5c6cb; font-weight: bold; width: 90%; margin: 10px 0; }
+        
+        .chat-input-area { padding: 15px; background: white; border-top: 1px solid #eee; display: flex; gap: 10px; }
+        .chat-input-area input { flex: 1; padding: 12px; border: 1px solid #ddd; border-radius: 10px; outline: none; }
+        .send-btn { background: var(--primary-green); color: white; border: none; width: 45px; height: 45px; border-radius: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+        
+        .loading { display: inline-block; width: 6px; height: 6px; background: #147605; border-radius: 50%; animation: blink 1.4s infinite; margin-right: 3px; }
+        @keyframes blink { 0%, 60%, 100% { opacity: 0.3; } 30% { opacity: 1; } }
+    </style>
+</head>
+<body>
+
+<header class="main-header">
+    <h1>DIGITAL AGRICULTURE ENHANCEMENT SYSTEM (DAES)</h1>
+</header>
+
+<main class="container">
+    <div class="ai-intro">
+        <h2>Msaidizi wa Kidijitali (Njia ya Uhakika)</h2>
+        <p>Code hizi mpya zinarun moja kwa moja kwenye Chrome bila kuhitaji seva yoyote ya ziada.</p>
+    </div>
+
+    <div class="chat-wrapper">
+        <div class="chat-display" id="chatDisplay">
+            <div class="msg ai-message">
+                Habari! Mimi ni DAES AI. Mtandao upo tayari. Niulize swali lolote la kilimo nikupe majibu sasa hivi!
+            </div>
+        </div>
+
+        <div class="chat-input-area">
+            <input type="text" id="userMessage" placeholder="Andika swali la kilimo hapa..." onkeydown="if(event.key === 'Enter') processMessage()">
+            <button class="send-btn" onclick="processMessage()">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+</main>
+
+<script>
+// =======================================================
+// ⚠️ WEKA API KEY YAKO HALISI YA GEMINI HAPA CHINI
+// =======================================================
+const GOOGLE_GEMINI_KEY = "AIzaSyCYDTxjYeShljXt2Vfl8onG71Ts0booBIY"; 
+
+function escapeHtml(text) {
+    return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+}
+
+function cleanMarkdown(text) {
+    return text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\*(.*?)\*/g, '<em>$1</em>').replace(/\n/g, '<br>');
+}
+
+async function processMessage() {
+    const input = document.getElementById('userMessage');
+    const display = document.getElementById('chatDisplay');
+    const userText = input.value.trim();
+    
+    if(userText !== "") {
+        if(GOOGLE_GEMINI_KEY.includes("WEKA_API_KEY") || GOOGLE_GEMINI_KEY === "") {
+            alert("❌ Hitilafu: Hujaweka API Key yako halisi kwenye kodi! Fungua file hili kwa Notepad na ubadilishe mstari wa 62.");
+            return;
+        }
+
+        // 1. Onyesha ujumbe wa mtumiaji kwenye kioo
+        display.innerHTML += `<div class="msg user-message">${escapeHtml(userText)}</div>`;
+        input.value = "";
+        display.scrollTop = display.scrollHeight;
+        
+        // 2. Weka alama ya Loading
+        const loadingId = "loading_" + Date.now();
+        display.innerHTML += `
+            <div class="msg ai-message" id="${loadingId}">
+                <span class="loading"></span><span class="loading"></span><span class="loading"></span>
+                <i>Inatafuta majibu ya kilimo...</i>
+            </div>
+        `;
+        display.scrollTop = display.scrollHeight;
+
+        // 3. Tuma data Google kwa kutumia Fetch ya Kawaida (Mbinu inayoruhusiwa na Chrome kila mahali)
+        try {
+            const url = `https://googleapis.com{GOOGLE_GEMINI_KEY}`;
+            
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    contents: [{
+                        parts: [{
+                            text: "Wewe ni mtaalamu wa kilimo cha kisasa msaidie mkulima. Jibu kwa Kiswahili kifupi na fasaha: " + userText
+                        }]
+                    }]
+                })
+            });
+
+            // Ondoa Loading
+            const loadingElement = document.getElementById(loadingId);
+            if(loadingElement) { loadingElement.remove(); }
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                const kosa = data.error ? data.error.message : "Hitilafu isiyojulikana";
+                display.innerHTML += `<div class="msg error-message">❌ Google Imekataa (Kosa ${response.status}):<br>${kosa}</div>`;
+            } else if (data.candidates && data.candidates[0].content.parts[0].text) {
+                let jibu = data.candidates[0].content.parts[0].text;
+                display.innerHTML += `<div class="msg ai-message">${cleanMarkdown(jibu)}</div>`;
+            } else {
+                display.innerHTML += `<div class="msg error-message">⚠️ Google haijarudisha jibu la kawaida.</div>`;
+            }
+
+        } catch (error) {
+            // Ondoa Loading kama intaneti imekata
+            const loadingElement = document.getElementById(loadingId);
+            if(loadingElement) { loadingElement.remove(); }
+            
+            display.innerHTML += `<div class="msg error-message">❌ Shida ya Mtandao:<br>Hakikisha kompyuta yako ina intaneti inayofanya kazi sasa hivi.</div>`;
+        }
+        
+        display.scrollTop = display.scrollHeight;
+    }
+}
+</script>
+</body>
+</html>

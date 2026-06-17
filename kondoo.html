@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ufugaji Bora wa Kondoo Kitaalamu | DAES</title>
+    <style>
+        :root {
+            --primary: #10b981;        /* Kijani ya Kisasa */
+            --secondary: #273c75;      /* Bluu ya DAES */
+            --bg-body: #f8fafc;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-dark);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header (MUUNDO WAKO WA ASILI) */
+        .main-header {
+            background: linear-gradient(135deg, #064e3b 0%, #84cc16 100%);
+            padding: 20px 20px;
+            text-align: center;
+            color: white;
+            margin-bottom: 0px;
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--text-dark);
+        }
+
+        .logo-text span {
+            color: var(--secondary);
+            font-style: arial;
+        }
+
+        .nav-links {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-weight: 1000;
+            transition: 0.3s;
+            font-size: x-large;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .btn-signup {
+            background: var(--primary);
+            color: white !important;
+            padding: 8px 20px;
+            border-radius: 50px;
+        }
+
+        /* Container Section */
+        .container {
+            flex: 1; 
+            padding: 40px 20px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Mitindo ya Makala */
+        .article-card {
+            background: white;
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border: 2px solid var(--primary);
+            line-height: 1.7;
+        }
+
+        .main-title {
+            color: var(--secondary);
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .section-title {
+            color: var(--secondary);
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--primary);
+            padding-left: 10px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        ul {
+            margin-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .image-placeholder-box {
+            background: #f1f5f9;
+            border: 2px solid var(--primary);
+            border-radius: 15px;
+            padding: 0;
+            margin: 25px 0;
+            text-align: center;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .image-placeholder-box img {
+            width: 100%;
+            max-height: 420px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        th {
+            background-color: #f1f5f9;
+            color: var(--secondary);
+        }
+
+        .info-card {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding: 15px;
+            border-radius: 0 10px 10px 0;
+            margin: 20px 0;
+        }
+
+        .danger-card {
+            background: #fef2f2;
+            border-left: 4px solid #ef4444;
+            padding: 15px;
+            border-radius: 0 10px 10px 0;
+            margin: 20px 0;
+        }
+
+        /* STYLE YA VIKOKOTOO */
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 35px 0;
+        }
+
+        .calculator-section {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border: 2px solid var(--primary);
+            border-radius: 20px;
+            padding: 25px;
+        }
+
+        .calculator-section.profit {
+            background: linear-gradient(135deg, #fef3c7 0%, #fffbeb 100%);
+            border-color: #f59e0b;
+        }
+
+        .calc-title {
+            color: var(--secondary);
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            outline: none;
+        }
+
+        .calc-btn {
+            background: var(--secondary);
+            color: white;
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .calc-btn:hover {
+            background: #1e293b;
+        }
+
+        .results-box {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            border-top: 4px solid var(--primary);
+            display: none;
+        }
+
+        .results-box.profit-res {
+            border-top-color: #f59e0b;
+        }
+
+        .results-box h4 {
+            color: var(--secondary);
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 5px;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .result-item span.value {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* Footer Bar */
+        .main-footer {
+            background: #06741b;
+            padding: 35px;
+            text-align: center;
+            color: white;
+            margin-top: auto;
+        }
+
+        @media (max-width: 768px) {
+            .calculator-grid { grid-template-columns: 1fr; }
+            .article-card { padding: 20px; }
+            .main-title { font-size: 1.7rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header ya DAES -->
+    <header class="main-header">
+        <div class="logo-text">DAES<span>.org</span></div>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="mahindi.html">Masomo</a>
+            <a href="#">Services</a>
+            <a href="#" class="btn-signup">Sign Up</a>
+        </nav>
+    </header>
+
+    <!-- Sehemu Kuu ya Maudhui -->
+    <div class="container">
+        <div class="article-card">
+            
+            <h1 class="main-title">Mwongozo Kamili wa Ufugaji Bora wa Kondoo Kitaalamu</h1>
+
+            <!-- PICHA KUU -->
+            <div class="image-placeholder-box">
+                <img src="https://unsplash.com" alt="Ufugaji wa Kondoo Kisasa" onerror="this.src='https://unsplash.com'">
+            </div>
+
+            <!-- Idara ya 1 -->
+            <h2 class="section-title">1. Idara ya Ujenzi wa Banda na Makazi Bora</h2>
+            <p>Kondoo ni wanyama wenye sufu nzito inayoweza kuhifadhi unyevu na kuvutia bakteria wa ngozi iwapo watakaa kwenye banda chafu au lenye unyevu kupita kiasi.</p>
+            <ul>
+                <li><strong>Muundo wa Banda (Semi-intensive):</strong> Banda lijengwe katika eneo kavu na lililoinuliwa ili kuzuia maji ya mvua yasiingie chini. Matandazo ya randa au nyasi kavu yawekwe nchi 2-3 na yabadilishwe mara yanapolowana. **Nafasi ya kitaalamu:** Kondoo mmoja mkubwa anahitaji nafasi ya mita za mraba 1.2 hadi 1.5 ardhini [1.3].</li>
+                <li><strong>Mifereji ya Kulishia:</strong> Hakikisha mifereji ya chakula imeinuliwa cm 30-40 kutoka chini ili kuzuia kondoo wasikanyage au kukojolea chakula chao, jambo linaloweza kueneza vimelea vya minyoo.</li>
+            </ul>
+
+            <!-- Idara ya 2 -->
+            <h2 class="section-title">2. Idara ya Uzazi na Utunzaji wa Ndama (Lamb Management)</h2>
+            <p>Kondoo jike hubeba mimba kwa muda wa siku **145 hadi 150** (miezi 5) na wana uwezo mkubwa wa kutoa ndama wenye afya bora usimamizi ukizingatiwa.</p>
+            <div class="info-card">
+                <h4>Ufundi wa Utunzaji wa Ndama (Lambs)</h4>
+                <p>1. **Kusafisha na Kunyonya:** Ndama akizaliwa, hakikisha ananyonya maziwa ya kwanza ya mama (*colostrum*) ndani ya masaa 2 ya kwanza ili kupata kingamwili imara dhidi ya magonjwa ya mazingira [1.3].</p>
+                <p>2. **Ukandaji wa Kitovu:** Tibu kitovu cha ndama kwa kutumia madini ya Iondini (*Tincture of Iodine*) mara baada ya kuzaliwa ili kuzuia bakteria wasiingie mwilini na kusababisha ugonjwa wa kuvimba viungo (*joint ill*)[1.3].</p>
+            </div>
+
+            <!-- Idara ya 3 -->
+            <h2 class="section-title">3. Idara ya Lishe na Tabia ya Ulaji (Grazing Habits)</h2>
+            <p>Kondoo ni wanyama wanaoamua kula nyasi fupi kabisa zilizopo karibu na uso wa ardhi (*close grazers*), tofauti na mbuzi wanaopenda kula majani ya juu ya miti (*browsers*). Tabia hii inawafanya kuwa katika hatari kubwa ya kuambukizwa mayai ya minyoo yaliyopo chini kwenye udongo [1.3].</p>
+            
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Aina ya Chakula</th>
+                            <th>Kundi la Kondoo</th>
+                            <th>Mchango Mkuu wa Lishe</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Nyasi za Malisho (Rhodes/Cenchrus)</strong></td>
+                            <td>Kondoo wote</td>
+                            <td>Kutoa nishati na nyuzinyuzi kwa ajili ya mmeng'enyo sahihi wa chakula</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Majani ya Mikunde (Lucerne/Desmodium)</strong></td>
+                            <td>Majike wajawazito na wanaonyosha</td>
+                            <td>Kutoa protini nyingi kwa ajili ya kujenga misuli na maziwa ya ndama</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Pumba mchanganyiko (Concentrates)</strong></td>
+                            <td>Kondoo wa kunenepesha (Mutton)</td>
+                            <td>Kuharakisha unene wa misuli na kuongeza mafuta laini ya nyama [1.3]</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Madini ya Chumvi (Mineral Blocks)</strong></td>
+                            <td>Kondoo wote masaa 24</td>
+                            <td>Kuimarisha mifupa na kuzuia tabia ya kula udongo ghalani [1.3]</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- ============================================================== -->
+            <!-- SECTION YA VIKOKOTOO VYA KONDOO (YST SMART COMPONENT) -->
+            <!-- ============================================================== -->
+            <div class="calculator-grid">
+                
+                <!-- KIKOKOTOO CHA PEMBEJEO -->
+                <div class="calculator-section">
+                    <div class="calc-title">📊 Kikokotoo cha Mahitaji (Sheep)</div>
+                    <div class="form-group">
+                        <label for="sheepCount">Idadi ya Kondoo:</label>
+                        <input type="number" id="sheepCount" min="1" placeholder="Mfano: 50">
+                    </div>
+                    <button class="calc-btn" onclick="pigaHesabuKondoo()">Piga Hesabu</button>
+
+                    <div class="results-box" id="calcResults">
+                        <h4>📋 Ripoti ya Mahitaji</h4>
+                        <div class="result-item"><span>Ukubwa wa Banda Unaohitajika:</span><span class="value" id="resBanda">0 m²</span></div>
+                        <div class="result-item"><span>Majani Ghafi kwa Siku (Jumla):</span><span class="value" id="resMajani">0 Kilo</span></div>
+                        <div class="result-item"><span>Maji ya Kunywa ya Kila Siku:</span><span class="value" id="resMaji">0 Lita</span></div>
+                    </div>
+                </div>
+
+                <!-- KIKOKOTOO CHA FAIDA -->
+                <div class="calculator-section profit">
+                    <div class="calc-title">💰 Kikokotoo cha Faida (Mutton Agribusiness)</div>
+                    <div class="form-group">
+                        <label for="sheepCountProfit">Idadi ya Kondoo wa Kuuza:</label>
+                        <input type="number" id="sheepCountProfit" min="1" placeholder="Mfano: 50">
+                    </div>
+                    <button class="calc-btn" style="background: #f59e0b;" onclick="pigaHesabuFaidaKondoo()">Kadiria Faida</button>
+
+                    <div class="results-box profit-res" id="profitResults">
+                        <h4>💵 Makadirio ya Kifedha ya Kunenepesha</h4>
+                        <div class="result-item"><span>Gharama za Kulisha + Tiba (Siku 90):</span><span class="value" id="resGharama" style="color:#ef4444;">0 TZS</span></div>
+                        <div class="result-item"><span>Makadirio ya Mauzo ya Nyama:</span><span class="value" id="resMauzo" style="color:#10b981;">0 TZS</span></div>
+                        <div class="result-item" style="border-top:1px dashed #cbd5e1; padding-top:5px;"><span>Kadirio la Faida Safi:</span><span class="value" id="resFaida" style="color:#273c75;">0 TZS</span></div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- ============================================================== -->
+
+
+            <!-- Idara ya 4 -->
+            <h2 class="section-title">4. Idara ya Kinga, De-worming na Magonjwa Sugu</h2>
+            <p>Kutokana na tabia yao ya kula chini kabisa, usimamizi wa kuzuia minyoo ndio ufunguo mkuu wa kudumisha uzito wa kondoo.</p>
+            <div class="danger-card">
+                <h4>Adui Mkuu: Minyoo ya Tumbo na Mapafu (Helminthiasis)</h4>
+                <p><strong>Uharibifu:</strong> Minyoo (kama *Haemonchus contortus*) inanyonya damu kwenye kuta za tumbo. Kondoo wanapoteza uzito haraka, wanakuwa na upungufu mkubwa wa damu (ngozi ya macho inakuwa nyeupe), na wanapata baka la maji chini ya taya (*bottle jaw*)[1.3].</p>
+                <p><strong>Udhibiti wa Kisayansi (Ratiba ya De-worming):</strong> Wape kondoo wote dawa za minyoo (*Anthelmintics*) kila baada ya miezi **2 hadi 3** bila kukosa, ukibadilisha aina ya dawa ili kuzuia minyoo wasijenge usugu (*drug resistance*) [1.3].</p>
+            </div>
+
+            <!-- Idara ya 5 -->
+            <h2 class="section-title">5. Idara ya Uvunaji, Mbegu bora na Soko la Nyama (Mutton)</h2>
+            <ul>
+                <li><strong>Mbegu Bora za Nyama:</strong> **Blackhead Persian** (Kondoo wa kale mwenye kichwa cheusi na mwili mweupe, anastahimili sana ukame na magonjwa ya Afrika), na **Dorper** (mbegu chotara inayokua haraka sana na kutoa nyama nene ya daraja la kwanza bila kuwa na sufu nyingi inayohitaji kunyolewa).</li>
+                <li><strong>Umri wa Soko na Uvunaji:</strong> Kondoo wa nyama (Dorper crosses) wanakuwa tayari kwa soko wakiwa na umri wa miezi **8 hadi 10** wakiwa na uzito wa kilo **35 hadi 45** hai. Nyama ya kondoo mchanga inaitwa *Lamb* na ina bei kubwa sana kwenye mahoteli, wakati kondoo aliyekomaa hutoa nyama nzito inayoitwa *Mutton*.</li>
+            </ul>
+
+        </div>
+    </div>
+
+    <!-- Footer Bar ya DAES -->
+    <footer class="main-footer">
+        <h3>DAES Footer</h3>
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT LOGIC -->
+    <script>
+        function pigaHesabuKondoo() {
+            let kondoo = parseFloat(document.getElementById('sheepCount').value);
+            if (isNaN(kondoo) || kondoo <= 0) { alert("Tafadhali ingiza idadi sahihi!"); return; }
+            
+            // Kanuni za kitaalamu za kondoo (SUA):
+            // Banda = mita za mraba 1.3 kwa kila kondoo mkubwa
+            // Majani ghafi = kilo 5 kwa kila kondoo kwa siku
+            // Maji = Lita 4 kwa kila mnyama kwa siku
+            
+            let banda = kondoo * 1.3;
+            let majani = kondoo * 5;
+            let maji = kondoo * 4;
+
+            document.getElementById('resBanda').innerText = banda.toFixed(1) + " m²";
+            document.getElementById('resMajani').innerText = majani.toLocaleString() + " Kg/Siku";
+            document.getElementById('resMaji').innerText = maji.toLocaleString() + " Lita/Siku";
+            document.getElementById('calcResults').style.display = 'block';
+        }
+
+        function pigaHesabuFaidaKondoo() {
+            let kondoo = parseFloat(document.getElementById('sheepCountProfit').value);
+            if (isNaN(kondoo) || kondoo <= 0) { alert("Tafadhali ingiza idadi sahihi!"); return; }
+
+            // Programu ya siku 90 ya kunenepesha kondoo wa nyama:
+            // Mtaji wa kununua kondoo aliyekonda shambani = 90,000, Gharama ya chakula cha ziada na dawa siku 90 = 40,000. Mtaji wa mmoja = 130,000 TZS
+            // Bei ya kumuuza kondoo aliyenenepa vizuri wakati wa msimu au sikukuu = 210,000 TZS
+            
+            let gharamaJumla = kondoo * 130000;
+            let mauzoJumla = kondoo * 210000;
+            let faidaSafi = mauzoJumla - gharamaJumla;
+
+            document.getElementById('resGharama').innerText = gharamaJumla.toLocaleString() + " TZS";
+            document.getElementById('resMauzo').innerText = mauzoJumla.toLocaleString() + " TZS";
+            document.getElementById('resFaida').innerText = faidaSafi.toLocaleString() + " TZS";
+            document.getElementById('profitResults').style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>

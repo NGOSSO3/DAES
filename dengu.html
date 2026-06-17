@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kilimo Bora cha Dengu | DAES</title>
+    <style>
+        :root {
+            --primary: #10b981;        /* Kijani ya Kisasa */
+            --secondary: #273c75;      /* Bluu ya DAES */
+            --bg-body: #f8fafc;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-dark);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header (MUUNDO WAKO WA ASILI - HAUJABADILIKA HATA KIDOGO) */
+        .main-header {
+            background:linear-gradient(135deg, #064e3b 0%, #84cc16 100%);
+            padding: 20px 20px;
+            text-align: center;
+            color: var(--white);
+            margin-bottom: -19px;
+        }
+
+        .logo-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--text-dark);
+        }
+
+        .logo-text span {
+            color: var(--secondary);
+            font-style: arial;
+        }
+
+        .nav-links {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            border: #1e293b;
+            border-radius: 2px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color:white;
+            font-weight: 1000;
+            transition: 0.3s;
+            font-size: x-large;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .btn-signup {
+            background: var(--primary);
+            color: white !important;
+            padding: 8px 20px;
+            border-radius: 50px;
+        }
+
+        /* Container Section */
+        .container {
+            flex: 1; 
+            padding: 40px 20px;
+            margin-top: 0px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Mitindo ya Makala Ndani ya Container */
+        .article-card {
+            background: white;
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border: 2px solid var(--primary);
+            line-height: 1.7;
+        }
+
+        .main-title {
+            color: var(--secondary);
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .section-title {
+            color: var(--secondary);
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--primary);
+            padding-left: 10px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        ul {
+            margin-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .image-placeholder-box {
+            background: #f1f5f9;
+            border: 2px solid var(--primary);
+            border-radius: 15px;
+            padding: 0;
+            margin: 25px 0;
+            text-align: center;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .image-placeholder-box img {
+            width: 100%;
+            max-height: 420px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        th {
+            background-color: #f1f5f9;
+            color: var(--secondary);
+        }
+
+        .info-card {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding: 15px;
+            border-radius: 0 10px 10px 0;
+            margin: 20px 0;
+        }
+
+        .danger-card {
+            background: #fef2f2;
+            border-left: 4px solid #ef4444;
+            padding: 15px;
+            border-radius: 0 10px 10px 0;
+            margin: 20px 0;
+        }
+
+        /* STYLE YA VIKOKOTOO (YST EXCLUSIVE) */
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 35px 0;
+        }
+
+        .calculator-section {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border: 2px solid var(--primary);
+            border-radius: 20px;
+            padding: 25px;
+        }
+
+        .calculator-section.profit {
+            background: linear-gradient(135deg, #fef3c7 0%, #fffbeb 100%);
+            border-color: #f59e0b;
+        }
+
+        .calc-title {
+            color: var(--secondary);
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            outline: none;
+        }
+
+        .calc-btn {
+            background: var(--secondary);
+            color: white;
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .calc-btn:hover {
+            background: #1e293b;
+        }
+
+        .results-box {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            border-top: 4px solid var(--primary);
+            display: none;
+        }
+
+        .results-box.profit-res {
+            border-top-color: #f59e0b;
+        }
+
+        .results-box h4 {
+            color: var(--secondary);
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 5px;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .result-item span.value {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* Footer Bar (MUUNDO WAKO WA ASILI - HAUJABADILIKA HATA KIDOGO) */
+        .main-footer {
+            background: #06741b;
+            padding: 35px;
+            text-align: center;
+            color: white;
+            margin-top: auto;
+        }
+
+        @media (max-width: 768px) {
+            .calculator-grid { grid-template-columns: 1fr; }
+            .article-card { padding: 20px; }
+            .main-title { font-size: 1.7rem; }
+            .nav-links { gap: 20px; flex-wrap: wrap; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header ya DAES -->
+    <header class="main-header">
+        <div class="logo-text">DAES<span>.org</span></div>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="mahindi.html">Masomo</a>
+            <a href="#">Services</a>
+            <a href="#" class="btn-signup">Sign Up</a>
+        </nav>
+    </header>
+
+    <!-- Sehemu Kuu ya Maudhui -->
+    <div class="container">
+        <div class="article-card">
+            
+            <h1 class="main-title">Mwongozo Kamili wa Kilimo Bora cha Dengu Kitaalamu</h1>
+
+            <!-- PICHA KUU (IMEVUTWA MOJA KWA MOJA) -->
+            <div class="image-placeholder-box">
+                <img src="dengu.jpg" alt="Kilimo cha Dengu Tanzania" onerror="this.src='https://unsplash.com'">
+            </div>
+
+            <!-- Idara ya 1 -->
+            <h2 class="section-title">1. Idara ya Maandalizi ya Shamba na Udongo</h2>
+            <p>Dengu hupandwa mara baada ya msimu wa mvua za vuli au masika kuisha, zikitumia unyevu uliosalia ardhini.</p>
+            <ul>
+                <li><strong>Hali ya Udongo:</strong> Dengu hukua vizuri kwenye udongo mzito wa mfinyanzi (black cotton soil / clay loam) uliopo mabondeni kwa sababu una uwezo mkubwa wa kuhifadhi unyevu kwa muda mrefu wa kiangazi. Udongo uwe na mifereji mizuri ili kuzuia maji kutuama wakati wa mvua za mwisho.</li>
+                <li><strong>Ulimaji:</strong> Shamba lilimwe mapema kabla udongo haujakauka na kuwa mgumu sana ili kutengeneza mazingira laini ya mbegu kuota kirahisi.</li>
+            </ul>
+
+            <!-- Idara ya 2 -->
+            <h2 class="section-title">2. Idara ya Upandaji na Vipimo vya Nafasi</h2>
+            <p>Upandaji wa dengu unahitaji nafasi ya karibu zaidi ukilinganisha na maharagwe ya kawaida ili mimea ifunike udongo haraka na kuzuia unyevu usipotee hewani [1.3].</p>
+            
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Aina ya Dengu</th>
+                            <th>Nafasi Kati ya Mstari na Mstari</th>
+                            <th>Nafasi Kati ya Shimo na Shimo</th>
+                            <th>Kina cha Kupanda</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Aina Ndogo (Desi Type)</strong></td>
+                            <td>30 Sentimita hadi 35 cm</td>
+                            <td>10 Sentimita (10 cm)</td>
+                            <td>4 cm hadi 5 cm (Mbegu 1 kwa shimo)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Aina Kubwa (Kabuli Type)</strong></td>
+                            <td>40 Sentimita (40 cm)</td>
+                            <td>10 Sentimita (10 cm)</td>
+                            <td>4 cm hadi 5 cm</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- PICHA YA UPANDAJI (IMEVUTWA MOJA KWA MOJA) -->
+            <div class="image-placeholder-box">
+                <img src="nafasi.dengu.jpg" alt="Mimea ya Dengu Shambani">
+            </div>
+
+
+            <!-- ============================================================== -->
+            <!-- SECTION YA VIKOKOTOO VYA DENGU (YST SMART COMPONENT) -->
+            <!-- ============================================================== -->
+            <div class="calculator-grid">
+                
+                <!-- KIKOKOTOO CHA PEMBEJEO -->
+                <div class="calculator-section">
+                    <div class="calc-title">📊 Kikokotoo cha Pembejeo (Dengu)</div>
+                    <div class="form-group">
+                        <label for="shambaSize">Ukubwa wa Shamba (Ekari):</label>
+                        <input type="number" id="shambaSize" min="0.1" step="0.1" placeholder="Mfano: 1">
+                    </div>
+                    <button class="calc-btn" onclick="pigaHesabuDengu()">Piga Hesabu</button>
+
+                    <div class="results-box" id="calcResults">
+                        <h4>📋 Ripoti ya Mahitaji</h4>
+                        <div class="result-item"><span>Mbegu Zinazohitajika:</span><span class="value" id="resMbegu">0 Kilo</span></div>
+                        <div class="result-item"><span>Mbolea ya DAP (Kupandia):</span><span class="value" id="resDap">0 Kilo</span></div>
+                        <div class="result-item"><span>Viuatilifu (Kuzuia Viwavi):</span><span class="value" id="resDawa">0 Lita</span></div>
+                    </div>
+                </div>
+
+                <!-- KIKOKOTOO CHA FAIDA -->
+                <div class="calculator-section profit">
+                    <div class="calc-title">💰 Kikokotoo cha Faida (Agribusiness)</div>
+                    <div class="form-group">
+                        <label for="ekariProfit">Ukubwa wa Shamba (Ekari):</label>
+                        <input type="number" id="ekariProfit" min="0.1" step="0.1" placeholder="Mfano: 1">
+                    </div>
+                    <button class="calc-btn" style="background: #f59e0b;" onclick="pigaHesabuFaidaDengu()">Kadiria Faida</button>
+
+                    <div class="results-box profit-res" id="profitResults">
+                        <h4>💵 Makadirio ya Kifedha ya Dengu</h4>
+                        <div class="result-item"><span>Gharama za Kilimo:</span><span class="value" id="resGharama" style="color:#ef4444;">0 TZS</span></div>
+                        <div class="result-item"><span>Mavuno (Magunia ya kilo 100):</span><span class="value" id="resMavuno" style="color:#10b981;">0 Gunia</span></div>
+                        <div class="result-item" style="border-top:1px dashed #cbd5e1; padding-top:5px;"><span>Faida Safi:</span><span class="value" id="resFaida" style="color:#273c75;">0 TZS</span></div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- ============================================================== -->
+
+
+            <!-- Idara ya 3 -->
+            <h2 class="section-title">3. Idara ya Lishe na Uwekezaji wa Mbolea</h2>
+            <p>Dengu hufanya mchakato wa *Biological Nitrogen Fixation* (kujitengenezea Nitrojeni kutoka hewani kupitia mizizi), hivyo haihitaji mbolea za kukuzia [1.3].</p>
+            
+            <div class="info-card">
+                <h4>Mbolea ya Kupandia (Fosfari)</h4>
+                <p>Weka **kilo 50 za DAP kwa ekari moja** wakati wa kupanda ili kusaidia mizizi kukua kwa kasi na kufikia unyevu wa chini ardhini haraka [1.3]. Mbolea isigusane moja kwa moja na mbegu ili kuzuia kuungua kwa kimea.</p>
+            </div>
+
+            <!-- Idara ya 4 -->
+            <h2 class="section-title">4. Idara ya Mbegu: Aina za Mbegu Bora Tanzania</h2>
+            <p>Taasisi ya **TARI** imesajili mbegu bora za dengu zinazofaa kwa mazingira yetu na soko la kimataifa:</p>
+            <ul>
+                <li><strong>Desi Type (Dengu Ndogo):</strong> Zina rangi ya kahawia au kijani giza. Zinafaa sana kwa soko la ndani na zinastahimili magonjwa kirahisi. Zinakomaa ndani ya siku 90-100.</li>
+                <li><strong>Kabuli Type (Dengu Kubwa):</strong> Zina rangi ya cream au nyeupe na punje zake ni kubwa sana. Zina soko kubwa sana la nje (export) na bei yake ni ya juu sana ukilinganisha na aina nyingine.</li>
+                <li><strong>Mwangaza:</strong> Moja ya mbegu zilizoboreshwa na TARI yenye uwezo wa kutoa mavuno mengi hata kukiwepo na unyevu kidogo ardhini.</li>
+            </ul>
+
+            <!-- Idara ya 5 -->
+            <h2 class="section-title">5. Idara ya Ulinzi: Kudhibiti Magugu na Viwavi</h2>
+            <p>Dengu ni zao fupi linaloweza kuzidiwa nguvu na magugu mapema wiki za kwanza baada ya kuota.</p>
+            
+            <h4>Kudhibiti Wadudu (Changamoto Kuu)</h4>
+            <p><strong>Kiwavi wa Maganda (Pod Borer - Helicoverpa armigera):</strong> Huyu ndiye adui namba moja wa dengu. Anashambulia maua na kutoboa maganda machanga kula punje ndani [1.3]. <strong>Udhibiti:</strong> Nyunyizia viuatilifu ( insecticides) zilizopendekezwa kitaalamu mara mbili; kwanza wakati mmea unapoanza kutoa maua, na pili wakati maganda yanapoanza kutengenezwa [1.3].</p>
+
+            <div class="danger-card">
+                <h4>Magonjwa ya Mnyauko</h4>
+                <p><strong>Mnyauko wa Ukungu (Fusarium Wilt):</strong> Unasababisha mmea kunyauka na kukauka ghafla ukiwa shambani kwa sababu ukungu unaziba mishipa ya maji kwenye mizizi. <strong>Udhibiti:</strong> Panda mbegu bora zilizosajiliwa na uepuke kupanda dengu kwenye shamba lilelile kila mwaka (Zingatia crop rotation) [1.3].</p>
+            </div>
+
+            <!-- PICHA YA WADUDU (IMEVUTWA MOJA KWA MOJA) -->
+            <div class="image-placeholder-box">
+                <img src="ugonjwa.dengu.jpg" alt="Uharibifu wa Viwavi kwenye Maganda ya Dengu" onerror="this.src='https://unsplash.com'">
+            </div>
+
+            <!-- Idara ya 6 -->
+            <h2 class="section-title">6. Idara ya Uvunaji na Uhifadhi</h2>
+            <p>Vuna dengu pale ambapo asilimia 80-90 ya majani na maganda yamekauka kabisa na kugeuka rangi ya manjano au kahawia.</p>
+            <ul>
+                <li><strong>Kuvuna na Kupura:</strong> Ng'oa mimea na uianike kwenye maturubai kwa siku 3-4. Pura kwa kupiga kwa fimbo laini kisha upepete vizuri kupata dengu safi.</li>
+                <li><strong>Uhifadhi Salama:</strong> Kausha vizuri hadi unyevu ufikie chini ya **12%**. Hifadhi kwenye mifuko ya kisasa (Hermetic bags kama PICS) ili kuzuia wadudu wa ghalani wasiharibu dengu yako bila kulazimika kuweka madawa ya unga [1.3].</li>
+            </ul>
+
+            <!-- PICHA YA MAVUNO (IMEVUTWA MOJA KWA MOJA) -->
+            <div class="image-placeholder-box">
+                <img src="mavuno.dengu.jpg" alt="Mavuno ya Dengu Bora Safi">
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Footer Bar ya DAES -->
+    <footer class="main-footer">
+        <h3>DAES Footer</h3>
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT LOGIC (YST ENGINE FOR CHICKPEAS) -->
+    <script>
+        function pigaHesabuDengu() {
+            let ekari = parseFloat(document.getElementById('shambaSize').value);
+            if (isNaN(ekari) || ekari <= 0) { alert("Tafadhali ingiza ekari sahihi!"); return; }
+            
+            // Kanuni za TARI kwa Ekari Moja ya Dengu:
+            // 1 Ekari = Kilo 27 za Mbegu (Wastani wa kg 25-30)
+            // 1 Ekari = Kilo 50 za DAP
+            // 1 Ekari = Lita 1 ya dawa ya kuzuia viwavi wa maganda
+            
+            let mbegu = ekari * 27;
+            let dap = ekari * 50;
+            let dawa = ekari * 1;
+
+            document.getElementById('resMbegu').innerText = mbegu.toFixed(1) + " Kilo";
+            document.getElementById('resDap').innerText = dap.toFixed(1) + " Kilo";
+            document.getElementById('resDawa').innerText = dawa.toFixed(1) + " Lita";
+            document.getElementById('calcResults').style.display = 'block';
+        }
+
+        function pigaHesabuFaidaDengu() {
+            let ekari = parseFloat(document.getElementById('ekariProfit').value);
+            if (isNaN(ekari) || ekari <= 0) { alert("Tafadhali ingiza ekari sahihi!"); return; }
+
+            // Gharama za uendeshaji dengu kwa ekari 1 (kununua mbegu, kupanda, kupiga dawa ya viwavi, kupura) = 400,000 TZS
+            // Mavuno ya wastani ya kitaalamu kwa ekari 1 ya mbegu bora = Magunia 7 ya kilo 100
+            // Bei ya kuuzia gunia moja sokoni/kwa wasafirishaji = 190,000 TZS
+            
+            let gharamaJumla = ekari * 400000;
+            let maguniaMavuno = ekari * 7; 
+            let mauzoJumla = maguniaMavuno * 190000;
+            let faidaSafi = mauzoJumla - gharamaJumla;
+
+            document.getElementById('resGharama').innerText = gharamaJumla.toLocaleString() + " TZS";
+            document.getElementById('resMavuno').innerText = maguniaMavuno.toFixed(0) + " Magunia";
+            document.getElementById('resFaida').innerText = faidaSafi.toLocaleString() + " TZS";
+            document.getElementById('profitResults').style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>

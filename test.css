@@ -1,0 +1,47 @@
+/* Gallery Layout */
+.image-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 12px;
+    margin: 15px 0;
+}
+
+.gallery-item {
+    width: 100%;
+    height: 120px;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid #f1f5f9;
+    transition: all 0.3s ease;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.gallery-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    border-color: #84cc16;
+}
+
+/* Boresha picha kuu */
+.feature-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+.footer{
+     background: #797880;
+    padding: 20px;
+    text-align: center;
+    border-top: 1px solid #e2e8f0;
+    color: var(--text-light);
+    font-size: 0.9rem;
+}

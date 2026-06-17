@@ -1,0 +1,174 @@
+/* Rangi tulizotumia awali */
+:root {
+    --primary-green: #147605;
+    --light-green: #d8f3dc;
+    --bg-light: #f1f5f9;
+    --white: #ffffff;
+    --text-dark:#1e293b;
+    --text-light:#64748b;
+    
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-light);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Header */
+.main-header {
+    background:linear-gradient(135deg, #064e3b 0%, #84cc16 100%);
+    padding: 20px 20px;
+    text-align: center;
+    color: var(--white);
+    margin-bottom: -19px;
+}
+
+.logo-text{
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--text-dark);
+}
+
+
+.logo-text span {
+    color: var(--secondary);
+    font-style: arial;
+}
+
+.nav-links {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    border: #1e293b;
+    border-radius: 2px;
+
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 1000;
+    transition: 0.3s;
+    font-size: x-large;
+}
+
+
+
+/* AI Page Content */
+.ai-intro {
+    text-align: center;
+    margin: 40px 0 20px;
+}
+
+.ai-intro h2 {
+    color: var(--primary-green);
+    font-size: 2.2rem;
+}
+
+/* Chat Box Design */
+.chat-wrapper {
+    max-width: 900px;
+    margin: 0 auto 50px;
+    background: var(--white);
+    border: 2px solid var(--primary-green);
+    border-radius: 25px;
+    height: 425px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+
+.chat-display {
+    flex: 1;
+    padding: 25px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background-color: #fafafa;
+}
+
+.msg {
+    max-width: 75%;
+    padding: 15px 20px;
+    border-radius: 20px;
+    font-size: 1.05rem;
+    line-height: 1.5;
+}
+
+.ai-message {
+    background-color: var(--light-green);
+    color: var(--primary-green);
+    align-self: flex-start;
+    border-bottom-left-radius: 2px;
+}
+
+.user-message {
+    background-color: var(--primary-green);
+    color: white;
+    align-self: flex-end;
+    border-bottom-right-radius: 2px;
+}
+
+/* Input Area */
+.chat-input-area {
+    padding: 20px;
+    background: white;
+    border-top: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.chat-input-area input {
+    flex: 1;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    outline: none;
+    font-size: 1rem;
+}
+
+.upload-btn {
+    font-size: 1.5rem;
+    color: var(--primary-green);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.send-btn {
+    background: var(--primary-green);
+    color: white;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.send-btn:hover {
+    background: #03702d;
+    transform: scale(1.05);
+}
+
+/* Footer */
+.main-footer {
+    background: #06741b;
+    padding: 35px;
+    text-align: center;
+    color: white;
+    margin-top: -35px;
+    
+}

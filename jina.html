@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DAES project</title>
+    <!-- Kuunganisha CSS File -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome kwa ajili ya Icons -->
+    <link rel="stylesheet" href="https://cloudflare.com">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="logo-section">
+            <div class="logo-icon"><i class="fas fa-leaf"></i></div>
+            <div class="logo-text">Digital Agricultural Enhancement System <span>(DAES)</span></div><br>
+        </div>
+        </header>
+        <header>
+        <nav class="nav-links">
+            <a href="#">Elimu</a>
+            <a href="#">AI msaidizi</a>
+            <a href="#">Udongo</a>
+            <a href="#">Hali ya hewa</a>
+            <a href="#">Soko</a>
+            <a href="#">jisajili</a>
+        </nav>
+        <button class="btn-login">Ingia</button>
+    </header>
+
+    <main class="container">
+        <!-- Upande wa Kushoto -->
+        <aside class="sidebar">
+            <div class="card weather-card">
+                <h3>Hali ya Hewa</h3>
+                <div style="font-size: 3rem; margin: 15px 0;">29°C</div>
+                <p>Misungwi, Tanzania</p>
+                <p style="opacity: 0.7; font-size: 0.9rem; margin-top: 10px;">Mvua inatarajiwa kesho</p>
+            </div>
+            
+            <div class="card" style="margin-top: 20px;">
+                <h4 style="color: #7c3aed;"><i class="fas fa-robot"></i> AI Msaidizi</h4>
+                <p style="font-size: 0.8rem; margin: 10px 0; color: #64748b;">Uliza chochote kuhusu magonjwa ya mazao...</p>
+                <input type="text" placeholder="Andika hapa..." style="background: #f8fafc;">
+            </div>
+        </aside>
+
+        <!-- Upande wa Kulia -->
+        <section class="main-content">
+            <div class="card">
+                <h3 style="margin-bottom: 20px;"><i class="fas fa-flask"></i> Vipimo vya Udongo</h3>
+                <form>
+                    <div class="form-group">
+                        <label>Jina la Mkulima</label>
+                        <input type="text" placeholder="Mf: Juma Hamisi">
+                    </div>
+                    <div class="grid-form" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div class="form-group">
+                            <label>Kiwango cha pH</label>
+                            <input type="number" step="0.1" placeholder="6.5">
+                        </div>
+                        <div class="form-group">
+                            <label>Rangi ya Udongo</label>
+                            <select>
+                                <option>Mwekundu</option>
+                                <option>Mweusi/Tifutifu</option>
+                                <option>Kichanga</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-submit">Chambua na Hifadhi</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>

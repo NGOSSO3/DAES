@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Msaidizi - DAES</title>
+    <!-- Kuunganisha CSS -->
+    <link rel="stylesheet" href="ai.css">
+    <!-- Font Awesome kwa ajili ya Icons -->
+    <link rel="stylesheet" href="https://cloudflare.com">
+    <style>
+        /* Loading animation style */
+        .loading {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #147605;
+            border-radius: 50%;
+            animation: blink 1.4s infinite;
+            margin-right: 5px;
+        }
+        @keyframes blink {
+            0%, 60%, 100% { opacity: 0.3; }
+            30% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="main-header">
+    <div class="logo-section">
+        <div class="logo-icon" style="font-size: 2rem; margin-bottom: 5px;"><i class="fas fa-robot"></i></div>
+        <h1 class="logo-text">DIGITAL AGRICULTURE ENHANCEMENT SYSTEM <span style="color: #84cc16;">(DAES)</span></h1>
+    </div>
+    
+    <nav class="nav-links">
+        <a href="test-1.html">Nyumbani</a>
+        <a href="elimu.html">Elimu</a>
+        <a href="haliyahewa.html">Hali ya hewa</a>
+        <a href="ai.html">AI Msaidizi</a>
+        <a href="udongo.html">Udongo</a>
+        <a href="soko.html">Soko</a>
+        <a href="#" class="btn-signup" style="background: #147605; padding: 5px 15px; border-radius: 8px;">Jisajili</a>
+    </nav>
+</header>
+
+<main class="container">
+    <div class="ai-intro">
+        <h2>Msaidizi wa Kidijitali</h2>
+        <p>Andika swali lako hapa chini kupata msaada wa kitaalamu kuhusu masuala ya kilimo papo hapo.</p>
+    </div>
+
+    <!-- Eneo la Chat -->
+    <div class="chat-wrapper">
+        <div class="chat-display" id="chatDisplay">
+            <!-- Ujumbe wa AI wa kuanzia -->
+            <div class="msg ai-message">
+                Habari! Mimi ni DAES AI. Una shida gani shambani leo? Unaweza kuniuliza swali lolote kuhusu kilimo, magonjwa ya mazao, udongo, au mifugo.
+            </div>
+        </div>
+
+        <div class="chat-input-area">
+            <!-- Kitufe cha kupakia picha (kwa matumizi ya baadae) -->
+            <label for="imageUpload" class="upload-btn">
+                <i class="fas fa-camera"></i>
+                <input type="file" id="imageUpload" accept="image/*" style="display:none">
+            </label>
+            
+            <input type="text" id="userMessage" placeholder="Andika hapa swali lako..." onkeydown="if(event.key === 'Enter') processMessage()">
+            
+            <button class="send-btn" onclick="processMessage()">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+</main>
+
+<footer class="main-footer">
+    <p>&copy; 2026 DAES Project. Haki zote zimehifadhiwa.</p>
+</footer>
+
+<script>
+// Kinga dhidi ya usalama wa maandishi (XSS Protection)
+function escapeHtml(text) {
+    return text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
+// Safisha na kuweka herufi za bold toka kwenye majibu ya Gemini
+function cleanMarkdown(text) {
+    return text
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') // Inabadilisha **text** kuwa bold
+        .replace(/\*(.*?)\*/g, '<em>$1</em>') // Italic
+        .replace(/\n/g, '<br>'); // Mistari mipya
+}
+
+// Shughulikia utumaji wa ujumbe
+async function processMessage() {
+    const input = document.getElementById('userMessage');
+    const display = document.getElementById('chatDisplay');
+    const userText = input.value.trim();
+    
+    if(userText !== "") {
+        // Onyesha ujumbe wa mtumiaji kwenye kioo
+        display.innerHTML += `<div class="msg user-message">${escapeHtml(userText)}</div>`;
+        input.value = "";
+        display.scrollTop = display.scrollHeight;
+        
+        // Tengeneza eneo la loading ya AI
+        const loadingId = "loading_" + Date.now();
+        display.innerHTML += `
+            <div class="msg ai-message" id="${loadingId}">
+                <span class="loading"></span><span class="loading"></span><span class="loading"></span>
+                <i>Mtaalamu anakuandalia majibu...</i>
+            </div>
+        `;
+        display.scrollTop = display.scrollHeight;
+
+        // Omba majibu kutoka kwenye faili letu la PHP la Proxy salama
+        let aiResponse = await getGeminiResponse(userText);
+        
+        // Ondoa alama ya loading
+        const loadingElement = document.getElementById(loadingId);
+        if(loadingElement) {
+            loadingElement.remove();
+        }
+        
+        // Onyesha jibu la AI
+        display.innerHTML += `<div class="msg ai-message">${cleanMarkdown(aiResponse)}</div>`;
+        display.scrollTop = display.scrollHeight;
+    }
+}
+
+// Mawasiliano na Seva ya Nyuma (PHP Proxy)
+async function getGeminiResponse(message) {
+    try {
+        const response = await fetch('gemini-proxy.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                message: message
+            })
+        });
+
+        const data = await response.json();
+        
+        if(data.error) {
+            return `❌ Hitilafu: ${data.error.message}`;
+        }
+        
+        if(data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts) {
+            return data.candidates[0].content.parts[0].text;
+        } else {
+            return "Samahani, mifumo yetu ina shughuli nyingi. Tafadhali jaribu tena baada ya muda mfupi.";
+        }
+    } catch (error) {
+        console.error("Error fetching proxy:", error);
+        return "❌ Imeshindwa kuunganisha kwenye seva ya DAES. Tafadhali kagua mtandao wako.";
+    }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ufugaji Bora wa Nguruwe Kitaalamu | DAES</title>
+    <style>
+        :root {
+            --primary: #10b981;        /* Kijani ya Kisasa */
+            --secondary: #273c75;      /* Bluu ya DAES */
+            --bg-body: #f8fafc;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-dark);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header (MUUNDO WAKO WA ASILI) */
+        .main-header {
+            background: linear-gradient(135deg, #064e3b 0%, #84cc16 100%);
+            padding: 20px 20px;
+            text-align: center;
+            color: white;
+            margin-bottom: 0px;
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--text-dark);
+        }
+
+        .logo-text span {
+            color: var(--secondary);
+            font-style: arial;
+        }
+
+        .nav-links {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-weight: 1000;
+            transition: 0.3s;
+            font-size: x-large;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .btn-signup {
+            background: var(--primary);
+            color: white !important;
+            padding: 8px 20px;
+            border-radius: 50px;
+        }
+
+        /* Container Section */
+        .container {
+            flex: 1; 
+            padding: 40px 20px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Mitindo ya Makala */
+        .article-card {
+            background: white;
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border: 2px solid var(--primary);
+            line-height: 1.7;
+        }
+
+        .main-title {
+            color: var(--secondary);
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .section-title {
+            color: var(--secondary);
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--primary);
+            padding-left: 10px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        ul {
+            margin-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .image-placeholder-box {
+            background: #f1f5f9;
+            border: 2px solid var(--primary);
+            border-radius: 15px;
+            padding: 0;
+            margin: 25px 0;
+            text-align: center;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .image-placeholder-box img {
+            width: 100%;
+            max-height: 420px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        th {
+            background-color: #f1f5f9;
+            color: var(--secondary);
+        }
+
+        .info-card {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding: 15px;
+            border-radius: 0 10px 10px 0;
+            margin: 20px 0;
+        }
+
+        .danger-card {
+            background: #fef2f2;
+            border-left: 4px solid #ef4444;
+            padding: 15px;
+            border-radius: 0 10px 10px 0;
+            margin: 20px 0;
+        }
+
+        /* STYLE YA VIKOKOTOO */
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 35px 0;
+        }
+
+        .calculator-section {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border: 2px solid var(--primary);
+            border-radius: 20px;
+            padding: 25px;
+        }
+
+        .calculator-section.profit {
+            background: linear-gradient(135deg, #fef3c7 0%, #fffbeb 100%);
+            border-color: #f59e0b;
+        }
+
+        .calc-title {
+            color: var(--secondary);
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            outline: none;
+        }
+
+        .calc-btn {
+            background: var(--secondary);
+            color: white;
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .calc-btn:hover {
+            background: #1e293b;
+        }
+
+        .results-box {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            border-top: 4px solid var(--primary);
+            display: none;
+        }
+
+        .results-box.profit-res {
+            border-top-color: #f59e0b;
+        }
+
+        .results-box h4 {
+            color: var(--secondary);
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 5px;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .result-item span.value {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* Footer Bar */
+        .main-footer {
+            background: #06741b;
+            padding: 35px;
+            text-align: center;
+            color: white;
+            margin-top: auto;
+        }
+
+        @media (max-width: 768px) {
+            .calculator-grid { grid-template-columns: 1fr; }
+            .article-card { padding: 20px; }
+            .main-title { font-size: 1.7rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header ya DAES -->
+    <header class="main-header">
+        <div class="logo-text">DAES<span>.org</span></div>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="mahindi.html">Masomo</a>
+            <a href="#">Services</a>
+            <a href="#" class="btn-signup">Sign Up</a>
+        </nav>
+    </header>
+
+    <!-- Sehemu Kuu ya Maudhui -->
+    <div class="container">
+        <div class="article-card">
+            
+            <h1 class="main-title">Mwongozo Kamili wa Ufugaji Bora wa Nguruwe Kitaalamu</h1>
+
+            <!-- PICHA KUU -->
+            <div class="image-placeholder-box">
+                <img src="https://unsplash.com" alt="Ufugaji wa Nguruwe Banda la Kisasa" onerror="this.src='https://unsplash.com'">
+            </div>
+
+            <!-- Idara ya 1 -->
+            <h2 class="section-title">1. Idara ya Ujenzi na Usalama wa Banda (Biosecurity)</h2>
+            <p>Nguruwe wanahitaji banda lenye sakafu ngumu na mifereji thabiti ili kuruhusu usafishaji wa kila siku kwa kutumia maji mengi [1.3]. Usafi wa banda ni ngao kuu ya kuzuia magonjwa.</p>
+            <ul>
+                <li><strong>Vipimo vya Vyumba (Pens):</strong> 
+                    <br>1. **Chumba cha Jike anayenyonyesha:** Mita za mraba 6 hadi 7, kikiwa na vizuizi vya fesi (*farrowing crates*) ili kuzuia jike asiwakandamize vifaranga vyake kwa uzito wake [1.3].
+                    <br>2. **Nguruwe wa Nyama (Growers/Finishers):** Mita ya mraba 1 hadi 1.5 kwa kila mnyama mmoja [1.3].
+                </li>
+                <li><strong>Muundo wa Ghorofa/Sakafu:</strong> Sakafu ijengwe kwa zege imara mchanganyiko wa saruji nyingi ili kuzuia nguruwe wasichimbe chini kwa mapua yao. Sakafu iwe na mwinuko (incline 3%) unaoelekea kwenye chemba ya mkojo na samadi.</li>
+                <li><strong>Ulinzi wa Kingabiolojia (Biosecurity):</strong> YST Key Point. Jenga fensi imara kuzunguka banda na uweke kilinge cha dawa ya kukanyaga miguu (*footbath*) mlangoni [1.3]. Kuzuia wageni wasiingie bandani ni ulinzi namba moja dhidi ya maambukizi ya nje [1.3].</li>
+            </ul>
+
+            <!-- Idara ya 2 -->
+            <h2 class="section-title">2. Idara ya Uzazi na Utunzaji wa Vifaranga (Farrowing Management)</h2>
+            <p>Nguruwe ana uwezo mkubwa wa kuzaa vifaranga vingi kwa msimu mmoja (vifaranga 10 hadi 14), jambo linalofanya usimamizi wa hatua hii uwe wa faida kubwa.</p>
+            <div class="info-card">
+                <h4>Usimamizi wa Vifaranga Baada ya Kuzaliwa</h4>
+                <p>1. **Kukausha na Joto:** Vifaranga vikizaliwa vikaushe taratibu na uviweke chini ya chanzo cha joto (balbu ya umeme au chombo cha mkaa) kwa sababu havina mafuta ya kutosha mwilini [1.3].</p>
+                <p>2. **Kukata Meno na Mikia:** Siku ya 1 hadi ya 3, kata meno 8 ya ncha kali (*needle teeth*) kwa kutumia pakacha maalum ili kuzuia wasimng'ate mama wakati wa kunyonya, na kata theluthi mbili ya mkia kuzuia tabia ya kung'atana mikia (*tail biting*) [1.3].</p>
+                <p>3. **Dawa ya Chuma (Iron Injection):** Siku ya 3 mpe kila kifaranga sindano ya madini ya Chuma (Iron Dextran) kwenye paja ili kuzuia ugonjwa wa upungufu wa damu (*anemia*) kwa sababu maziwa ya mama hayana madini haya [1.3].</p>
+            </div>
+
+            <!-- Idara ya 3 -->
+            <h2 class="section-title">3. Idara ya Lishe na Awamu za Chakula (Phase Feeding)</h2>
+            <p>Nguruwe ana mfumo wa mmeng'enyo wa chakula unaofanana na wa binadamu (*monogastric*), hivyo chakula chake kinapaswa kuwa na nishati na protini sahihi kulingana na awamu ya ukuaji:</p>
+            
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Aina ya Chakula</th>
+                            <th>Umri / Awamu ya Mnyama</th>
+                            <th>Kiwango cha Protini</th>
+                            <th>Lengo Kuu la Lishe</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Creep Feed (Laini sana)</strong></td>
+                            <td>Wiki 1 hadi 8 (Vifaranga wanaonyonya)</td>
+                            <td>20% - 22%</td>
+                            <td>Kuzoesha mfumo wa chakula kabla ya kuachishwa kunyonya</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Pig Grower</strong></td>
+                            <td>Uzito wa kilo 20 hadi 55 (Makuzi)</td>
+                            <td>16% - 18%</td>
+                            <td>Kujenga nyama ya misuli na kurefusha umbo la mifupa</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Pig Finisher</strong></td>
+                            <td>Uzito wa kilo 55 hadi soko (Unene)</td>
+                            <td>14% - 15%</td>
+                            <td>Kuweka uzito wa haraka bila kutengeneza mafuta mengi</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Sow & Boar Meal</strong></td>
+                            <td>Majike wajawazito / Madume</td>
+                            <td>13% - 14%</td>
+                            <td>Dudumisha afya ya uzazi na viungo vya ndama wa ndani [1.3]</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- PICHA YA ULISHAJI -->
+            <div class="image-placeholder-box">
+                <img src="https://unsplash.com" alt="Nguruwe Wakila Kwenye Chumba Safi">
+            </div>
+
+
+            <!-- ============================================================== -->
+            <!-- SECTION YA VIKOKOTOO VYA NGURUWE (YST SMART COMPONENT) -->
+            <!-- ============================================================== -->
+            <div class="calculator-grid">
+                
+                <!-- KIKOKOTOO CHA PEMBEJEO -->
+                <div class="calculator-section">
+                    <div class="calc-title">📊 Kikokotoo cha Mahitaji (Swine)</div>
+                    <div class="form-group">
+                        <label for="pigsCount">Idadi ya Nguruwe wa Nyama (Growers):</label>
+                        <input type="number" id="pigsCount" min="1" placeholder="Mfano: 20">
+                    </div>
+                    <button class="calc-btn" onclick="pigaHesabuNguruwe()">Piga Hesabu</button>
+
+                    <div class="results-box" id="calcResults">
+                        <h4>📋 Ripoti ya Mahitaji (Hadi Soko - Miezi 6)</h4>
+                        <div class="result-item"><span>Ukubwa wa Banda Unaohitajika:</span><span class="value" id="resBanda">0 m²</span></div>
+                        <div class="result-item"><span>Chakula Jumla (Mifuko ya kg 50):</span><span class="value" id="resMifuko">0 Mifuko</span></div>
+                        <div class="result-item"><span>Maji ya Kunywa (Kila Siku):</span><span class="value" id="resMaji">0 Lita</span></div>
+                    </div>
+                </div>
+
+                <!-- KIKOKOTOO CHA FAIDA -->
+                <div class="calculator-section profit">
+                    <div class="calc-title">💰 Kikokotoo cha Faida (Agribusiness)</div>
+                    <div class="form-group">
+                        <label for="pigsCountProfit">Idadi ya Nguruwe wa Kuuza:</label>
+                        <input type="number" id="pigsCountProfit" min="1" placeholder="Mfano: 20">
+                    </div>
+                    <button class="calc-btn" style="background: #f59e0b;" onclick="pigaHesabuFaidaNguruwe()">Kadiria Faida</button>
+
+                    <div class="results-box profit-res" id="profitResults">
+                        <h4>💵 Makadirio ya Kifedha ya Swine Production</h4>
+                        <div class="result-item"><span>Gharama za Chakula + Matibabu:</span><span class="value" id="resGharama" style="color:#ef4444;">0 TZS</span></div>
+                        <div class="result-item"><span>Makadirio ya Mauzo ya Nyama:</span><span class="value" id="resMauzo" style="color:#10b981;">0 TZS</span></div>
+                        <div class="result-item" style="border-top:1px dashed #cbd5e1; padding-top:5px;"><span>Kadirio la Faida Safi:</span><span class="value" id="resFaida" style="color:#273c75;">0 TZS</span></div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- ============================================================== -->
+
+
+            <!-- Idara ya 4 -->
+            <h2 class="section-title">4. Idara ya Kinga na Magonjwa Sugu Sio na Tiba</h2>
+            <div class="danger-card">
+                <h4>Tishio Namba Moja Duniani: African Swine Fever (ASF)</h4>
+                <p><strong>Uharibifu:</strong> Homa ya Nguruwe ya Afrika ni ugonjwa hatari wa virusi unaoua hadi **100%** ya nguruwe bandani ndani ya siku chache [1.3]. Dalili: Homa kali, masikio na tumbo kuwa na baka la rangi ya bluu/nyekundu, kuhara damu, na vifo vya ghafla.</p>
+                <p><strong>Udhibiti wa Kisayansi (YST Key Point):</strong> **Ugonjwa huu hauna chanjo wala tiba yoyote!** [1.3] Kinga pekee ni kudhibiti watu au zana zinazoingia bandani, kuzuia nguruwe wasizulule nje, kutumia dawa ya kuua vijidudu (*disinfectants*) kusafisha banda, na kuzuia ulishaji wa mabaki ya nyama ya nguruwe kutoka hotelini (*swill feeding*) [1.3].</p>
+            </div>
+
+            <!-- Idara ya 5 -->
+            <h2 class="section-title">5. Idara ya Uvunaji na Soko la Nyama (Pork Market)</h2>
+            <p>Uvunaji wa nguruwe lazima uzingatie uwiano sahihi wa unene wa nyama na kupunguza kiwango cha mafuta ya ganda la nje (*backfat thickness*).</p>
+            <ul>
+                <li><strong>Umri wa Soko:</strong> Nguruwe wa nyama wanakuwa tayari kwa soko wakiwa na umri wa miezi **6 hadi 7** [1.3]. Katika umri huu, chini ya ulishaji mzuri, wanapaswa kuwa na uzito wa kilo **70 hadi 90** hai.</li>
+                <li><strong>Uvunaji Safi:</strong> Osha nguruwe kwa maji safi masaa 12 kabla ya kusafirishwa kwenda machinjioni. **Zuia kuwapa chakula masaa 12 hadi 18 kabla ya kuchinja** (wape maji safi tu) [1.3]. Hii inasaidia kupunguza wingi wa kinyesi tumboni, jambo linalozuia kuchafuliwa kwa nyama (*carcass contamination*) wakati wa kutoa utumbo machinjioni [1.3].</li>
+            </ul>
+
+        </div>
+    </div>
+
+    <!-- Footer Bar ya DAES -->
+    <footer class="main-footer">
+        <h3>DAES Footer</h3>
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT LOGIC -->
+    <script>
+        function pigaHesabuNguruwe() {
+            let nguruwe = parseFloat(document.getElementById('pigsCount').value);
+            if (isNaN(nguruwe) || nguruwe <= 0) { alert("Tafadhali ingiza idadi sahihi!"); return; }
+            
+            // Kanuni za Kitaalamu za SUA nguruwe wa nyama (Hadi miezi 6):
+            // Banda = mita za mraba 1.2 kwa kila nguruwe
+            // Chakula = Kilo 280 za chakula jumla kwa kila nguruwe hadi kufikia mwezi wa 6 (Mifuko ya kg 50)
+            // Maji = Lita 10 kwa kila nguruwe kwa siku
+            
+            let banda = nguruwe * 1.2;
+            let chakulaKilo = nguruwe * 280;
+            let mifuko = chakulaKilo / 50;
+            let maji = nguruwe * 10;
+
+            document.getElementById('resBanda').innerText = banda.toFixed(1) + " m²";
+            document.getElementById('resMifuko').innerText = Math.ceil(mifuko) + " Mifuko (kg 50)";
+            document.getElementById('resMaji').innerText = maji.toLocaleString() + " Lita";
+            document.getElementById('calcResults').style.display = 'block';
+        }
+
+        function pigaHesabuFaidaNguruwe() {
+            let nguruwe = parseFloat(document.getElementById('pigsCountProfit').value);
+            if (isNaN(nguruwe) || nguruwe <= 0) { alert("Tafadhali ingiza idadi sahihi!"); return; }
+
+            // Gharama za mzunguko wa miezi 6 kwa nguruwe 1 (Kununua kifaranga kimeachishwa kunyonya = 50,000, Chakula = 280,000, Dawa = 20,000) = 350,000 TZS
+            // Uzito wa nyama safi baada ya kuchinja (Carcass - 75% ya uzito hai) = Kilo 60 za nyama safi.
+            // Bei ya kuuzia kilo moja ya nyama ya nguruwe ghafi kwa sasa Tanzania = 9,000 TZS. Mauzo ya mmoja = 60 * 9,000 = 540,000 TZS
+            
+            let gharamaJumla = nguruwe * 350000;
+            let mauzoJumla = nguruwe * 540000;
+            let faidaSafi = mauzoJumla - gharamaJumla;
+
+            document.getElementById('resGharama').innerText = gharamaJumla.toLocaleString() + " TZS";
+            document.getElementById('resMauzo').innerText = mauzoJumla.toLocaleString() + " TZS";
+            document.getElementById('resFaida').innerText = faidaSafi.toLocaleString() + " TZS";
+            document.getElementById('profitResults').style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>

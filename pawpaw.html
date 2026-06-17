@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kilimo Bora cha Papai | DAES</title>
+    <style>
+        :root {
+            --primary: #10b981;        /* Kijani ya Kisasa */
+            --secondary: #273c75;      /* Bluu ya DAES */
+            --bg-body: #f8fafc;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-dark);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header (MUUNDO WAKO WA ASILI - HAUJABADILIKA HATA KIDOGO) */
+        .main-header {
+            background:linear-gradient(135deg, #064e3b 0%, #84cc16 100%);
+            padding: 20px 20px;
+            text-align: center;
+            color: var(--white);
+            margin-bottom: -19px;
+        }
+
+        .logo-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--text-dark);
+        }
+
+        .logo-text span {
+            color: var(--secondary);
+            font-style: arial;
+        }
+
+        .nav-links {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            border: #1e293b;
+            border-radius: 2px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color:white;
+            font-weight: 1000;
+            transition: 0.3s;
+            font-size: x-large;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .btn-signup {
+            background: var(--primary);
+            color: white !important;
+            padding: 8px 20px;
+            border-radius: 50px;
+        }
+
+        /* Container Section */
+        .container {
+            flex: 1; 
+            padding: 40px 20px;
+            margin-top: 0px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Mitindo ya Makala Ndani ya Container */
+        .article-card {
+            background: white;
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border: 2px solid var(--primary);
+            line-height: 1.7;
+        }
+
+        .main-title {
+            color: var(--secondary);
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .section-title {
+            color: var(--secondary);
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--primary);
+            padding-left: 10px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        ul {
+            margin-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .image-placeholder-box {
+            background: #f1f5f9;
+            border: 2px solid var(--primary);
+            border-radius: 15px;
+            padding: 0;
+            margin: 25px 0;
+            text-align: center;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .image-placeholder-box img {
+            width: 100%;
+            max-height: 420px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        th {
+            background-color: #f1f5f9;
+            color: var(--secondary);
+        }
+
+        .info-card {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding: 15px;
+            border-radius: 0 10px 10px 0;
+            margin: 20px 0;
+        }
+
+        .danger-card {
+            background: #fef2f2;
+            border-left: 4px solid #ef4444;
+            padding: 15px;
+            border-radius: 0 10px 10px 0;
+            margin: 20px 0;
+        }
+
+        /* STYLE YA VIKOKOTOO (YST EXCLUSIVE) */
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 35px 0;
+        }
+
+        .calculator-section {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border: 2px solid var(--primary);
+            border-radius: 20px;
+            padding: 25px;
+        }
+
+        .calculator-section.profit {
+            background: linear-gradient(135deg, #fef3c7 0%, #fffbeb 100%);
+            border-color: #f59e0b;
+        }
+
+        .calc-title {
+            color: var(--secondary);
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            outline: none;
+        }
+
+        .calc-btn {
+            background: var(--secondary);
+            color: white;
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .calc-btn:hover {
+            background: #1e293b;
+        }
+
+        .results-box {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            border-top: 4px solid var(--primary);
+            display: none;
+        }
+
+        .results-box.profit-res {
+            border-top-color: #f59e0b;
+        }
+
+        .results-box h4 {
+            color: var(--secondary);
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 5px;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .result-item span.value {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* Footer Bar (MUUNDO WAKO WA ASILI - HAUJABADILIKA HATA KIDOGO) */
+        .main-footer {
+            background: #06741b;
+            padding: 35px;
+            text-align: center;
+            color: white;
+            margin-top: auto;
+        }
+
+        @media (max-width: 768px) {
+            .calculator-grid { grid-template-columns: 1fr; }
+            .article-card { padding: 20px; }
+            .main-title { font-size: 1.7rem; }
+            .nav-links { gap: 20px; flex-wrap: wrap; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header ya DAES -->
+    <header class="main-header">
+        <div class="logo-text">DAES<span>.org</span></div>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="mahindi.html">Masomo</a>
+            <a href="#">Services</a>
+            <a href="#" class="btn-signup">Sign Up</a>
+        </nav>
+    </header>
+
+    <!-- Sehemu Kuu ya Maudhui -->
+    <div class="container">
+        <div class="article-card">
+            
+            <h1 class="main-title">Mwongozo Kamili wa Kilimo Bora cha Papai Kitaalamu</h1>
+
+            <!-- PICHA KUU (IMEVUTWA MOJA KWA MOJA) -->
+            <div class="image-placeholder-box">
+                <img src="https://unsplash.com" alt="Mmea wa Papai wenye matunda mengi" onerror="this.src='https://unsplash.com'">
+            </div>
+
+            <!-- Idara ya 1 -->
+            <h2 class="section-title">1. Idara ya Maandalizi ya Kitalu na Udongo</h2>
+            <p>Papai ni zao linalohitaji uandaji makini wa miche kitaluni kwa muda wa siku **45 hadi 60** kabla ya kuhamishiwa shambani [1.1].</p>
+            <ul>
+                <li><strong>Uoteshaji Kitaluni:</strong> Mbegu zisandikwe kwenye mifuko midogo ya plastiki (*potting bags*) iliyojazwa udongo tifutifu uliochanganywa na samadi. Mwagilia kitalu mara mbili kwa siku asubuhi na jioni kwa kutumia watering can yenye matundu madogo.</li>
+                <li><strong>Udongo wa Shamba Kuu:</strong> Mapapai yanapenda udongo wa kichanga tifutifu wenye kina kirefu na mfumo mzuri mno wa kupitisha maji. **Zao hili halivumilii kabisa maji yaliyotuama**, mizizi yake hupata ugonjwa wa kuoza haraka sana na mmea kufa [1.3]. pH inayofaa ni 6.0 hadi 6.5.</li>
+                <li><strong>Mashimo ya Kupanda:</strong> Chimba mashimo ya vipimo vya cm 45 x cm 45 x cm 45. Udongo wa juu uchanganywe na ndoo 1 ya samadi iliyoiva vizuri na gramu 150 za mbolea ya fosfari (DAP) [1.3].</li>
+            </ul>
+
+            <!-- Idara ya 2 -->
+            <h2 class="section-title">2. Idara ya Upandaji na Jinsia za Mimea (YST Key Point)</h2>
+            <p>Kigezo kikubwa cha kisayansi kwa ajili ya YST [2.1]. Mmea wa papai unaweza kuwa wa jinsia tatu tofauti: Dume, Jike, au Hermaphrodite (Mwenye jinsia mbili) [1.3].</p>
+            <ul>
+                <li><strong>Hermaphrodite (Aina ya Biashara):</strong> Hii ndio aina inayopendwa zaidi na soko kwa sababu mmea unajitolea matunda yenyewe bila kuhitaji mchavushaji, na matunda yake yanakuwa ya umbo la mrefu (oval/cylindrical) yenye nyama nene na soko zuri.</li>
+                <li><strong>Miti Jike na Mume:</strong> Miti jike hutoa matunda ya duara yenye nafasi kubwa ya mbegu ndani. Miti dume haizai matunda (au hutoa madogo yasiyo na thamani). Katika mashamba ya mbegu za kawaida, wakulima hupanda miche 2-3 kwa kila shimo na kisha kung'oa miti dume iliyozidi baada ya maua kutoka, wakibakiza mti dume 1 kwa kila miti jike 10-20 kwa ajili ya uchavushaji [1.3].</li>
+            </ul>
+            
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Aina ya Mbegu</th>
+                            <th>Nafasi Kati ya Mistari</th>
+                            <th>Nafasi Kati ya Mmea na Mmea</th>
+                            <th>Miche kwa Ekari (Kadirio)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Mbeu Chotara za Kisasa (Solo / Malkia)</strong></td>
+                            <td>2.5 Mita (250 cm)</td>
+                            <td>2.0 Mita (200 cm)</td>
+                            <td>Takriban miche 800</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Aina za Kawaida (Nafasi Kubwa)</strong></td>
+                            <td>3.0 Mita (300 cm)</td>
+                            <td>3.0 Mita (300 cm)</td>
+                            <td>Takriban miche 450</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- PICHA YA SHAMBA LILILOPANGWA (IMEVUTWA MOJA KWA MOJA) -->
+            <div class="image-placeholder-box">
+                <img src="https://unsplash.com" alt="Safu za mimea ya papai shambani">
+            </div>
+
+
+            <!-- ============================================================== -->
+            <!-- SECTION YA VIKOKOTOO VYA PAPAI (YST SMART COMPONENT) -->
+            <!-- ============================================================== -->
+            <div class="calculator-grid">
+                
+                <!-- KIKOKOTOO CHA PEMBEJEO -->
+                <div class="calculator-section">
+                    <div class="calc-title">📊 Kikokotoo cha Pembejeo (Papai)</div>
+                    <div class="form-group">
+                        <label for="shambaSize">Ukubwa wa Shamba (Ekari):</label>
+                        <input type="number" id="shambaSize" min="0.1" step="0.1" placeholder="Mfano: 1">
+                    </div>
+                    <button class="calc-btn" onclick="pigaHesabuPapai()">Piga Hesabu</button>
+
+                    <div class="results-box" id="calcResults">
+                        <h4>📋 Ripoti ya Mahitaji (Mbeu za Kisasa)</h4>
+                        <div class="result-item"><span>Miche Inayohitajika Shambani:</span><span class="value" id="resMiche">0 Miche</span></div>
+                        <div class="result-item"><span>Mbolea ya Kupandia (DAP):</span><span class="value" id="resDap">0 Kilo</span></div>
+                        <div class="result-item"><span>Mbolea ya CAN (Kukuzia/Kila Mwaka):</span><span class="value" id="resCan">0 Kilo</span></div>
+                    </div>
+                </div>
+
+                <!-- KIKOKOTOO CHA FAIDA -->
+                <div class="calculator-section profit">
+                    <div class="calc-title">💰 Kikokotoo cha Faida (Msimu wa Kwanza)</div>
+                    <div class="form-group">
+                        <label for="ekariProfit">Ukubwa wa Shamba (Ekari):</label>
+                        <input type="number" id="ekariProfit" min="0.1" step="0.1" placeholder="Mfano: 1">
+                    </div>
+                    <button class="calc-btn" style="background: #f59e0b;" onclick="pigaHesabuFaidaPapai()">Kadiria Faida</button>
+
+                    <div class="results-box profit-res" id="profitResults">
+                        <h4>💵 Makadirio ya Kifedha ya Papai</h4>
+                        <div class="result-item"><span>Gharama za Uendeshaji/Mwaka:</span><span class="value" id="resGharama" style="color:#ef4444;">0 TZS</span></div>
+                        <div class="result-item"><span>Idadi ya Matunda kwa Mwaka:</span><span class="value" id="resMavuno" style="color:#10b981;">0 Matunda</span></div>
+                        <div class="result-item" style="border-top:1px dashed #cbd5e1; padding-top:5px;"><span>Makadirio ya Faida Safi:</span><span class="value" id="resFaida" style="color:#273c75;">0 TZS</span></div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- ============================================================== -->
+
+
+            <!-- Idara ya 3 -->
+            <h2 class="section-title">3. Idara ya Lishe na Uwekezaji wa Mbolea</h2>
+            <p>Papai ni zao linalokua kwa haraka na kubeba matunda mengi mfululizo, hivyo linahitaji urutubishaji thabiti wa mbolea [1.3].</p>
+            
+            <div class="info-card">
+                <h4>Mbolea ya Kupandia (Fosfari)</h4>
+                <p>Weka **gramu 50 hadi 100 za mbolea ya DAP kwa kila shimo** wakati wa kupandikiza miche [1.3]. Changanya vizuri na udongo na mbolea ya asili kabla ya kuweka mche ili kulinda mizizi laini [1.3].</p>
+            </div>
+
+            <div class="info-card" style="border-left-color: var(--primary); background: #f0fdf4;">
+                <h4>Mbolea ya Kukuzia (Nitrojeni & Potassium)</h4>
+                <p>Nyunyizia gramu 50 za mbolea ya **CAN** kwa kila mti kila baada ya miezi miwili kipindi cha ukuaji [1.3]. Wakati mmea unapoanza kutoa maua na matunda, weka mbolea zenye **Potassium (kama NPK au MOP)** ili kuongeza utamu wa matunda, unene wa nyama, na rangi nzuri ya ndani [1.3].</p>
+            </div>
+
+            <!-- Idara ya 4 -->
+            <h2 class="section-title">4. Idara ya Mbegu Bora: Nguvu ya Aina Chotara (Hybrids)</h2>
+            <p>Matumizi ya mbegu chotara za kisasa yanarahisisha usimamizi wa jinsia kwa sababu mbegu hizo hutoa asilimia 100 ya miti yenye jinsia mbili (*Hermaphrodite*) au jike pekee:</p>
+            <ul>
+                <li><strong>Malkia F1:</strong> Mbegu chotara maarufu sana Tanzania inayovumilia magonjwa ya virusi, miti inakuwa mifupi na inaanza kubeba matunda karibu na ardhi. Inatoa matunda makubwa na matamu sana yenye soko zuri.</li>
+                <li><strong>Red Lady F1 / Solo:</strong> Aina za kisasa zinazokomaa haraka, matunda yake yana uzito mkubwa na nyama ya ndani yenye rangi nyekundu au machungwa iliyokoza na sukari nyingi.</li>
+            </ul>
+
+            <!-- Idara ya 5 -->
+            <h2 class="section-title">5. Idara ya Ulinzi: Kudhibiti Magonjwa ya Virusi na Wadudu</h2>
+            <div class="danger-card">
+                <h4>Ugonjwa wa Madoa ya Pete ya Papai (Papaya Ringspot Virus - PRSV)</h4>
+                <p><strong>Uharibifu:</strong> Huu ndio ugonjwa hatari zaidi wa virusi unaoenezwa na wadudu wadogo (*aphids*). Majani yanakuwa na madoa ya njano, yanajikunja na kudumaa, na kwenye ngozi ya matunda yanatokea madoa ya duara kama pete [1.3]. 
+                <br><strong>Udhibiti:</strong> Hakuna tiba ya kemikali; ng'oa na choma moto mmea ulioathirika mara moja ili kuzuia kuenea kwa shamba zima, na kudhibiti aphids kwa kupiga viuatilifu [1.3].</p>
+            </div>
+
+            <p><strong>Wadudu Vidung'ata / Mafuta (Mealybugs):</strong> Wadudu wadogo meupe kama pamba wanaoshambulia upande wa chini wa majani na kwenye matunda na kunyonya utomvu. Wanadhibitiwa kwa usafi wa shamba na kupiga dawa za wadudu [1.3].</p>
+
+            <!-- PICHA YA MAVUNO (IMEVUTWA MOJA KWA MOJA) -->
+            <div class="image-placeholder-box">
+                <img src="https://unsplash.com" alt="Mapapai yaliyovunwa yakiwa safi">
+            </div>
+
+            <!-- Idara ya 6 -->
+            <h2 class="section-title">6. Idara ya Uvunaji na Uhifadhi Salama</h2>
+            <p>Njia ya uvunaji huamua ubora wa tunda na maisha yake kabla ya kuharibika ghalani.</p>
+            <ul>
+                <li><strong>Mbinu ya Kuvuna:</strong> Vuna papai pale linapoanza kuonyesha madoa au mistari ya rangi ya manjano kwenye ngozi ya chini ya tunda (turning stage). **Usisubiri tunda liive kabisa na kuwa laini likiwa juu ya mti**, kwani litashambuliwa na ndege na kuharibika wakati wa kusafirisha [1.3]. Kata kwa kisu kikali ukiacha kikonyo kifupi.</li>
+                <li><strong>Uhifadhi na Usafirishaji:</strong> Mapapai ni matunda laini yanayopata michubuko haraka. Panga kwa safu moja au mbili tu kwenye makasha ya plastiki yaliyowekwa magazeti au majani makavu ya mpunga ili kulinda ngozi ya tunda isichubuke na kutoa utomvu unaoshusha thamani sokoni [1.3].</li>
+            </ul>
+
+            <!-- PICHA YA USAFIRISHAJI (IMEVUTWA MOJA KWA MOJA) -->
+            <div class="image-placeholder-box">
+                <img src="https://unsplash.com" alt="Kupanga mapapai kwenye kasha la sokoni">
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Footer Bar ya DAES -->
+    <footer class="main-footer">
+        <h3>DAES Footer</h3>
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT LOGIC (YST ENGINE FOR PAPAYA) -->
+    <script>
+        function pigaHesabuPapai() {
+            let ekari = parseFloat(document.getElementById('shambaSize').value);
+            if (isNaN(ekari) || ekari <= 0) { alert("Tafadhali ingiza ekari sahihi!"); return; }
+            
+            // Kanuni za TARI kwa Ekari Moja ya Mapapai (Mfumo wa kisasa wa 2.5m x 2m):
+            // 1 Ekari = Takriban miche 800 ya kisasa
+            // Mbolea ya kupandia (DAP) = Gramu 60 kwa mche = 48 Kilo (Takriban mfuko 1 wa kg 50)
+            // Mbolea ya kukuzia (CAN) kwa mwaka = Gramu 100 kwa mche = 80 Kilo
+            
+            let miche = ekari * 800;
+            let dap = ekari * 48;
+            let can = ekari * 80;
+
+            document.getElementById('resMiche').innerText = Math.ceil(miche) + " Miche ya Papai (Malkia/Solo)";
+            document.getElementById('resDap').innerText = dap.toFixed(1) + " Kilo za DAP";
+            document.getElementById('resCan').innerText = can.toFixed(1) + " Kilo za CAN/NPK";
+            document.getElementById('calcResults').style.display = 'block';
+        }
+
+        function pigaHesabuFaidaPapai() {
+            let ekari = parseFloat(document.getElementById('ekariProfit').value);
+            if (isNaN(ekari) || ekari <= 0) { alert("Tafadhali ingiza ekari sahihi!"); return; }
+
+            // Gharama za kila mwaka kwa ekari 1 (mifuko ya miche, viuatilifu vya aphids/mealybugs, vibarua na umwagiliaji) = 700,000 TZS
+            // Mavuno ya wastani kitaalamu kwa kila mti wa kisasa uliotunzwa vizuri = Matunda 35 kwa mti kwa mwaka
+            // Jumla ya matunda kwa ekari moja = 800 * 35 = 28,000 Matunda
+            // Bei ya kuuzia tunda moja shambani kwa jumla = 300 TZS
+            
+            let gharamaJumla = ekari * 700000;
+            let matundaMavuno = ekari * 28000; 
+            let mauzoJumla = matundaMavuno * 300;
+            let faidaSafi = mauzoJumla - gharamaJumla;
+
+            document.getElementById('resGharama').innerText = gharamaJumla.toLocaleString() + " TZS";
+            document.getElementById('resMavuno').innerText = matundaMavuno.toLocaleString() + " Matunda";
+            document.getElementById('resFaida').innerText = faidaSafi.toLocaleString() + " TZS";
+            document.getElementById('profitResults').style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>

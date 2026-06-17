@@ -1,0 +1,92 @@
+/* Ongeza hii ili kadi ziweze kushuka chini zikizidi */
+.elimu-flex-row {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+    flex-wrap: wrap; /* Hii ni muhimu sana kwa kadi nyingi */
+}
+
+/* Rekebisha upana wa kadi kwa ukurasa wa mazao */
+.mazao-grid .elimu-card-bordered {
+    flex: 1 1 calc(33.333% - 30px); /* Inakaa kadi 3 kwa mstari */
+    min-width: 300px; /* Inazuia kadi kuwa ndogo sana */
+}
+
+/* Rangi ambazo hazikuwepo kwenye :root yako lakini umezitumia chini */
+:root {
+    --primary: #10b981;
+    --secondary: #273c75;
+    --bg-body: #f8fafc;
+    --text-dark: #1e293b;
+    --text-light: #64748b;
+    --primary-green: #10b981; /* Nimeongeza hizi */
+    --accent-green: #059669;
+}
+.search-box {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.search-box input {
+    width: 60%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+.elimu-card-bordered:hover {
+    transform: translateY(-10px); /* Kadi inanyanyuka kidogo */
+    border-color: #00ff44; /* Rangi ya kijani inayong'aa zaidi */
+    
+    /* Box shadow inayotengeneza mwanga (Glow effect) */
+    box-shadow: 0 0 20px rgba(40, 167, 69, 0.6), 
+                0 0 40px rgba(40, 167, 69, 0.4);
+}
+
+/* Hiari: Kuongeza mng'ao kidogo kwenye picha pindi unapo-hover */
+.elimu-card-bordered:hover .card-img-box img {
+    filter: brightness(1.1);
+    transform: scale(1.05);
+}
+/* Container ya buttons */
+.category-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+/* Button style */
+.category-buttons button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    background: linear-gradient(135deg, #4CAF50, #2e7d32);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+/* Hover effect */
+.category-buttons button:hover {
+    transform: translateY(-3px) scale(1.05);
+    background: linear-gradient(135deg, #66bb6a, #1b5e20);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+}
+
+/* Active button */
+.category-buttons button.active {
+    background: linear-gradient(135deg, #ff9800, #e65100);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+}
+
+/* Click animation */
+.category-buttons button:active {
+    transform: scale(0.95);
+}

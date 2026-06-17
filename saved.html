@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DAES Project</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome kwa ajili ya Icons -->
+    <link rel="stylesheet" href="https://cloudflare.com">
+</head>
+<body>
+
+<header class="main-header">
+    <div class="logo-section">
+        <div class="logo-icon"><i class="fas fa-leaf"></i></div>
+        <div class="logo-text">Digital Agricultural Enhancement System <span>(DAES)</span></div>
+    </div>
+    
+    <nav class="nav-links">
+        <a href="#">Elimu</a>
+        <a href="#">AI msaidizi</a>
+        <a href="#">Udongo</a>
+        <a href="#">Hali ya hewa</a>
+        <a href="#">Soko</a>
+        <a href="#" class="signup">Jisajili</a>
+    </nav>
+</header>
+
+<main class="container">
+    <!-- Sehemu ya Slider ya Picha -->
+    <section class="hero-slider">
+        <div class="slider-container">
+            <!-- Picha ya 1 -->
+            <div class="slide active">
+                <img src="https://unsplash.com" alt="Kilimo">
+                <div class="slide-content">
+                    <h2>Karibu DAES</h2>
+                    <p>Msaidizi wako wa kidijitali kwa kilimo chenye tija zaidi.</p>
+                </div>
+            </div>
+            <!-- Picha ya 2 -->
+            <div class="slide">
+                <img src="https://unsplash.com" alt="Udongo">
+                <div class="slide-content">
+                    <h2>Pima Udongo Wako</h2>
+                    <p>Jifunze afya ya udongo wako ili upate mavuno mengi.</p>
+                </div>
+            </div>
+            <!-- Picha ya 3 -->
+            <div class="slide">
+                <img src="https://unsplash.com" alt="AI">
+                <div class="slide-content">
+                    <h2>AI Msaidizi</h2>
+                    <p>Gundua magonjwa ya mazao kwa haraka ukitumia akili mnemba.</p>
+                </div>
+            </div>
+
+            <!-- Vitufe vya Next/Prev -->
+            <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+            <button class="next" onclick="changeSlide(1)">&#10095;</button>
+        </div>
+    </section>
+
+    <!-- Sehemu ya Chini (Hali ya Hewa n.k) -->
+    <section class="info-section">
+        <div class="card weather-card">
+            <h3><i class="fas fa-cloud-sun"></i> Hali ya Hewa</h3>
+            <div class="temp">29°C</div>
+            <p>Misungwi, Tanzania</p>
+            <small>Mvua inatarajiwa kesho</small>
+        </div>
+    </section>
+</main>
+
+<script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+
+    function changeSlide(direction) {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + direction + slides.length) % slides.length;
+        slides[currentSlide].classList.add('active');
+    }
+</script>
+
+</body>
+</html>

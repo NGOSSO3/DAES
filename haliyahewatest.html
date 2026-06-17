@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hali ya Hewa & Kilimo - DAES</title>
+    <!-- Font Awesome & Chart.js -->
+    <link rel="stylesheet" href="https://cloudflare.com">
+    <script src="https://jsdelivr.net"></script>
+    <style>
+        /* CSS Yako ya asili */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 20px;
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 0 15px;
+        }
+        .mkulima-info-card {
+            background: white; padding: 20px; border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05); border: 1px solid #eef2f6;
+        }
+        .profile-header { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; }
+        .avatar { font-size: 3rem; color: #10b981; }
+        .user-meta h3 { color: #273c75; font-size: 1.1rem; margin: 0; }
+        .quick-alerts { background: #fffbeb; padding: 15px; border-radius: 12px; border-left: 4px solid #f59e0b; margin-top: 15px; }
+        
+        .weather-compact-card {
+            background: linear-gradient(135deg, #064e3b, #10b981);
+            color: white; padding: 25px; border-radius: 20px;
+        }
+        .search-mini { display: flex; gap: 8px; margin-bottom: 20px; }
+        .search-mini input { flex: 1; padding: 10px; border-radius: 10px; border: none; background: rgba(255,255,255,0.2); color: white; }
+        .search-mini button { padding: 10px 15px; border-radius: 10px; border: none; background: white; color: #064e3b; cursor: pointer; }
+        
+        .temp-small { font-size: 3.5rem; font-weight: bold; }
+        .forecast-mini-grid { display: flex; justify-content: space-between; margin-top: 20px; background: rgba(0,0,0,0.1); padding: 15px; border-radius: 12px; }
+        .day-item { text-align: center; }
+
+        /* Sehemu ya Grafu */
+        .chart-container {
+            background: white; margin-top: 20px; padding: 20px; border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        canvas { width: 100% !important; height: 250px !important; }
+        
+        @media (max-width: 768px) { .dashboard-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+    <header class="main-header" style="padding: 20px; text-align: center; background: #fff;">
+        <h1 class="logo-text">DAES <span>SYSTEM</span></h1>
+    </header>
+
+    <main class="dashboard-grid">
+        <section>
+            <div class="mkulima-info-card">
+                <div class="profile-header">
+                    <div class="avatar"><i class="fas fa-user-circle"></i></div>
+                    <div class="user-meta">
+                        <h3>Mkulima Hodari</h3>
+                        <p id="userLocation"><i class="fas fa-map-marker-alt"></i> Inatafuta...</p>
+                    </div>
+                </div>
+                <div class="quick-alerts">
+                    <h4>Ushauri wa Kilimo:</h4>
+                    <p id="agriAdvice">Inapakia taarifa za kitaalamu...</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="weather-compact-card">
+                <div class="search-mini">
+                    <input type="text" id="cityInput" placeholder="Tafuta mji...">
+                    <button onclick="fetchAllWeather()"><i class="fas fa-search"></i></button>
+                </div>
+                <h2 id="cityName">Inapakia...</h2>
+                <div class="temp-small" id="mainTemp">--°C</div>
+                <p id="weatherStatus">--</p>
+                <div class="text-details">
+                    <p id="txtUnyevu">Unyevunyevu: --</p>
+                    <p id="txtUdongo">Unyevu wa udongo: --</p>
+                </div>
+                <div class="forecast-mini-grid" id="forecastGrid"></div>
+            </div>
+
+            <div class="chart-container">
+                <h4 style="color: #273c75; margin-bottom: 10px;">Mwelekeo wa Joto (Siku 7)</h4>
+                <canvas id="tempChart"></canvas>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        let myChart;
+
+        // Inaanza hapa
+        window.onload = function() {
+            // Kama ipo kwenye browser inayoruhusu GPS ya haraka
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    p => updateWeatherUI(p.coords.latitude, p.coords.longitude, "Eneo Lako"), 
+                    () => fetchByCityName("Mwanza") // Iking'aka inafungua Mwanza moja kwa moja
+                );
+            } else { 
+                fetchByCityName("Mwanza"); 
+            }
+        };
+
+        async function fetchAllWeather() {
+            const city = document.getElementById('cityInput').value;
+            if (city) fetchByCityName(city);
+        }
+
+        async function fetchByCityName(city) {
+            try {
+                const res = await fetch(`https://open-meteo.com{encodeURIComponent(city)}&count=1&format=json`);
+                const data = await res.json();
+                if (data.results && data.results.length > 0) {
+                    const { latitude, longitude, name } = data.results[0];
+                    updateWeatherUI(latitude, longitude, name);
+                } else {
+                    alert("Mji haujapatikana! Angalia herufi vizuri.");
+                }
+            } catch (e) {
+                console.error(e);
+                alert("Hitilafu imetokea kwenye kutafuta mji.");
+            }
+        }
+
+        async function updateWeatherUI(lat, lon, name) {
+            try {
+                const url = `https://open-meteo.com{lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,rain&daily=temperature_2m_max,time&hourly=soil_moisture_0_to_7cm&timezone=auto`;
+                const res = await fetch(url);
+                const data = await res.json();
+
+                if (!data || !data.current) {
+                    alert("Imeshindwa kupata data kutoka kwa seva.");
+                    return;
+                }
+
+                // Sasisha UI Maandishi
+                document.getElementById('cityName').innerText = name;
+                document.getElementById('userLocation').innerHTML = `<i class="fas fa-map-marker-alt"></i> ${name}, Tanzania`;
+                document.getElementById('mainTemp').innerText = Math.round(data.current.temperature_2m) + "°C";
+                document.getElementById('txtUnyevu').innerText = "Unyevunyevu: " + data.current.relative_humidity_2m + "%";
+                
+                // Udongo
+                let sm = 0;
+                if (data.hourly && data.hourly.soil_moisture_0_to_7cm) {
+                    sm = data.hourly.soil_moisture_0_to_7cm[0] || 0;
+                }
+                document.getElementById('txtUdongo').innerText = "Unyevu wa Udongo: " + (sm * 100).toFixed(0) + "%";
+
+                // Ushauri wa Kilimo
+                let advice = "Hali ya hewa ni nzuri kwa kazi za shambani.";
+                let statusText = "Hali Shwari";
+                
+                if (data.current.rain > 0) {
+                    advice = "Mvua inanyesha! Ahirisha kupiga dawa ya wadudu leo.";
+                    statusText = "Mvua";
+                } else if (sm < 0.2 && sm > 0) {
+                    advice = "Udongo ni mkavu sana. Mimea inahitaji umwagiliaji haraka.";
+                    statusText = "Udongo Mkavu";
+                } else if (data.current.temperature_2m > 30) {
+                    advice = "Jua ni kali sana leo. Mwaga maji asubuhi na jioni.";
+                    statusText = "Jua Kali";
+                }
+                
+                document.getElementById('agriAdvice').innerText = advice;
+                document.getElementById('weatherStatus').innerText = statusText;
+
+                // Forecast Grid
+                const grid = document.getElementById('forecastGrid');
+                grid.innerHTML = "";
+                data.daily.time.slice(0, 5).forEach((time, i) => {
+                    const day = new Date(time).toLocaleDateString('sw', {weekday: 'short'});
+                    grid.innerHTML += `<div class="day-item"><span>${day}</span><br><strong>${Math.round(data.daily.temperature_2m_max[i])}°</strong></div>`;
+                });
+
+                // Chora Grafu (Chart.js)
+                const ctx = document.getElementById('tempChart').getContext('2d');
+                if (myChart) myChart.destroy();
+
+                myChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: data.daily.time.map(t => new Date(t).toLocaleDateString('sw', {weekday: 'short'})),
+                        datasets: [{
+                            label: 'Joto la Juu (°C)',
+                            data: data.daily.temperature_2m_max,
+                            borderColor: '#10b981',
+                            backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                            fill: true,
+                            tension: 0.4
+                        }]
+                    },
+                    options: { responsive: true, maintainAspectRatio: false }
+                });
+
+            } catch (e) { 
+                console.error("Error UI:", e); 
+            }
+        }
+    </script>
+</body>
+</html>

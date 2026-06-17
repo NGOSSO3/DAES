@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ufugaji Bora wa Bata Kitaalamu | DAES</title>
+    <style>
+        :root {
+            --primary: #10b981;        /* Kijani ya Kisasa */
+            --secondary: #273c75;      /* Bluu ya DAES */
+            --bg-body: #f8fafc;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-dark);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header (MUUNDO WAKO WA ASILI) */
+        .main-header {
+            background: linear-gradient(135deg, #064e3b 0%, #84cc16 100%);
+            padding: 20px 20px;
+            text-align: center;
+            color: white;
+            margin-bottom: 0px;
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--text-dark);
+        }
+
+        .logo-text span {
+            color: var(--secondary);
+            font-style: arial;
+        }
+
+        .nav-links {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-weight: 1000;
+            transition: 0.3s;
+            font-size: x-large;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .btn-signup {
+            background: var(--primary);
+            color: white !important;
+            padding: 8px 20px;
+            border-radius: 50px;
+        }
+
+        /* Container Section */
+        .container {
+            flex: 1; 
+            padding: 40px 20px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Mitindo ya Makala */
+        .article-card {
+            background: white;
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border: 2px solid var(--primary);
+            line-height: 1.7;
+        }
+
+        .main-title {
+            color: var(--secondary);
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .section-title {
+            color: var(--secondary);
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--primary);
+            padding-left: 10px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        ul {
+            margin-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .image-placeholder-box {
+            background: #f1f5f9;
+            border: 2px solid var(--primary);
+            border-radius: 15px;
+            padding: 0;
+            margin: 25px 0;
+            text-align: center;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .image-placeholder-box img {
+            width: 100%;
+            max-height: 420px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        th {
+            background-color: #f1f5f9;
+            color: var(--secondary);
+        }
+
+        .info-card {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding: 15px;
+            border-radius: 0 10px 10px 0;
+            margin: 20px 0;
+        }
+
+        .danger-card {
+            background: #fef2f2;
+            border-left: 4px solid #ef4444;
+            padding: 15px;
+            border-radius: 0 10px 10px 0;
+            margin: 20px 0;
+        }
+
+        /* STYLE YA VIKOKOTOO */
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 35px 0;
+        }
+
+        .calculator-section {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border: 2px solid var(--primary);
+            border-radius: 20px;
+            padding: 25px;
+        }
+
+        .calculator-section.profit {
+            background: linear-gradient(135deg, #fef3c7 0%, #fffbeb 100%);
+            border-color: #f59e0b;
+        }
+
+        .calc-title {
+            color: var(--secondary);
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            outline: none;
+        }
+
+        .calc-btn {
+            background: var(--secondary);
+            color: white;
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .calc-btn:hover {
+            background: #1e293b;
+        }
+
+        .results-box {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            border-top: 4px solid var(--primary);
+            display: none;
+        }
+
+        .results-box.profit-res {
+            border-top-color: #f59e0b;
+        }
+
+        .results-box h4 {
+            color: var(--secondary);
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 5px;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .result-item span.value {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* Footer Bar */
+        .main-footer {
+            background: #06741b;
+            padding: 35px;
+            text-align: center;
+            color: white;
+            margin-top: auto;
+        }
+
+        @media (max-width: 768px) {
+            .calculator-grid { grid-template-columns: 1fr; }
+            .article-card { padding: 20px; }
+            .main-title { font-size: 1.7rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header ya DAES -->
+    <header class="main-header">
+        <div class="logo-text">DAES<span>.org</span></div>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="mahindi.html">Masomo</a>
+            <a href="#">Services</a>
+            <a href="#" class="btn-signup">Sign Up</a>
+        </nav>
+    </header>
+
+    <!-- Sehemu Kuu ya Maudhui -->
+    <div class="container">
+        <div class="article-card">
+            
+            <h1 class="main-title">Mwongozo Kamili wa Ufugaji Bora wa Bata Kitaalamu</h1>
+
+            <!-- PICHA KUU -->
+            <div class="image-placeholder-box">
+                <img src="duck.jpg" alt="Ufugaji wa Bata Kisasa" onerror="this.src='https://unsplash.com'">
+            </div>
+
+            <!-- Idara ya 1 -->
+            <h2 class="section-title">1. Idara ya Ujenzi wa Banda na Mifumo ya Maji</h2>
+            <p>Bata ni ndege wa majini lakini hawahitaji bwawa kubwa ili kukua; wanaweza kufugwa vizuri kabisa kwenye mfumo wa ndani kwa kutumia mabwawa madogo ya bandia au vyombo vikubwa vya maji.</p>
+            <ul>
+                <li><strong>Vipimo vya Banda:</strong> Banda liwe na mzunguko mzuri wa hewa na nafasi ya kutosha. **Nafasi ya kitaalamu:** Bata 3 hadi 4 waliokomaa kwa kila mita moja ya mraba (1 m²).</li>
+                <li><strong>Sakafu na Matandazo:</strong> Sakafu ya zege inashauriwa kwa sababu bata hupenda kuchezea maji na kumwaga chini. Weka matandazo mazito ya randa au makapi ya mpunga (nchi 3-4). Matandazo yawekwe mbali kidogo na vyombo vya maji ili kuzuia banda lisilowane lote haraka.</li>
+                <li><strong>Eneo la Nje / Bwawa:</strong> Jenga uwanja mdogo wa wazi nje uliopingwa wavu. Weka tangi au bwawa dogo la zege lenye kina cha cm 20-30 ambapo bata wanaweza kuchovya vichwa vyao kusafisha macho na pua zao (*dipping & preeningbehavior*).</li>
+            </ul>
+
+            <!-- Idara ya 2 -->
+            <h2 class="section-title">2. Idara ya Kulelea Vifaranga vya Bata (Brooding Phase)</h2>
+            <div class="info-card">
+                <h4>Ufundi wa Malezi ya Siku 1 - 21</h4>
+                <p>Vifaranga vya bata (ducklings) vinakua haraka sana kuliko vya kuku lakini havina mafuta ya kutosha kulinda miili yao dhidi ya baridi katika wiki mbili za kwanza [1.3].</p>
+                <p>1. **Joto la Brooder:** Weka joto la nyuzi 30°C hadi 32°C wiki ya kwanza, kisha punguza kidogo kila wiki inayofuata.</p>
+                <p>2. **Tahadhari Kubwa ya Maji:** **Ni marufuku kabisa kuruhusu vifaranga vya bata kuogelea kwenye bwawa kabla ya kufikisha umri wa wiki 3-4** [1.3]. Manyoya yao ya kianzio hayana tezi ya mafuta (*preen gland*) ya kuzuia maji kuloa ngozi, wakilowa wanaweza kupata dhoruba ya baridi kali (*hypothermia*) na kufa haraka sana [1.3].</p>
+            </div>
+
+            <!-- Idara ya 3 -->
+            <h2 class="section-title">3. Idara ya Lishe na Aina za Chakula</h2>
+            <p>Bata wana uwezo mkubwa wa kumeng'enya vyakula vya aina mbalimbali ikijumuisha mabaki ya jikoni, majani, na wadudu. Hata hivyo, kwa ukuaji wa kibiashara, wanahitaji fomula maalum yenye madini ya **Niacin (Vitamin B3)** kwa wingi ili kuzuia ulemavu wa miguu [1.3].</p>
+            
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Aina ya Chakula</th>
+                            <th>Umri wa Bata</th>
+                            <th>Kiwango cha Protini</th>
+                            <th>Lengo Kuu la Lishe</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Duck Starter</strong></td>
+                            <td>Wiki 1 hadi 3</td>
+                            <td>20% - 22%</td>
+                            <td>Kuhakikisha ukuaji wa haraka wa mifupa na viungo</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Duck Grower/Finisher</strong></td>
+                            <td>Wiki 4 hadi soko (Nyama)</td>
+                            <td>15% - 16%</td>
+                            <td>Kujenga nyama nene na uzito wa soko wa kibiashara</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Duck Layer Mash</strong></td>
+                            <td>Kipindi cha utagaji (Wiki 20+)</td>
+                            <td>17% - 18%</td>
+                            <td>Kuchochea utagaji na kuimarisha ukubwa wa mayai [1.3]</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- PICHA YA BATA WAKILA -->
+            <div class="image-placeholder-box">
+                <img src="https://unsplash.com" alt="Bata wa Kibiashara Wakila Bandani">
+            </div>
+
+
+            <!-- ============================================================== -->
+            <!-- SECTION YA VIKOKOTOO VYA BATA (YST SMART COMPONENT) -->
+            <!-- ============================================================== -->
+            <div class="calculator-grid">
+                
+                <!-- KIKOKOTOO CHA PEMBEJEO -->
+                <div class="calculator-section">
+                    <div class="calc-title">📊 Kikokotoo cha Mahitaji (Bata)</div>
+                    <div class="form-group">
+                        <label for="ducksCount">Idadi ya Bata:</label>
+                        <input type="number" id="ducksCount" min="5" placeholder="Mfano: 200">
+                    </div>
+                    <button class="calc-btn" onclick="pigaHesabuBata()">Piga Hesabu</button>
+
+                    <div class="results-box" id="calcResults">
+                        <h4>📋 Ripoti ya Mahitaji</h4>
+                        <div class="result-item"><span>Ukubwa wa Banda Unaohitajika:</span><span class="value" id="resBanda">0 m²</span></div>
+                        <div class="result-item"><span>Chakula cha Nyama (Mifuko kg 50):</span><span class="value" id="resMifuko">0 Mifuko</span></div>
+                        <div class="result-item"><span>Uhitaji wa Maji ya Kunywa/Siku:</span><span class="value" id="resMaji">0 Lita</span></div>
+                    </div>
+                </div>
+
+                <!-- KIKOKOTOO CHA FAIDA -->
+                <div class="calculator-section profit">
+                    <div class="calc-title">💰 Kikokotoo cha Faida (Agribusiness)</div>
+                    <div class="form-group">
+                        <label for="ducksProfit">Idadi ya Bata wa Kuuza (Nyama):</label>
+                        <input type="number" id="ducksProfit" min="5" placeholder="Mfano: 200">
+                    </div>
+                    <button class="calc-btn" style="background: #f59e0b;" onclick="pigaHesabuFaidaBata()">Kadiria Faida</button>
+
+                    <div class="results-box profit-res" id="profitResults">
+                        <h4>💵 Makadirio ya Kifedha (Bata wa Nyama)</h4>
+                        <div class="result-item"><span>Gharama za Chakula + Tiba:</span><span class="value" id="resGharama" style="color:#ef4444;">0 TZS</span></div>
+                        <div class="result-item"><span>Makadirio ya Mauzo Sokoni:</span><span class="value" id="resMauzo" style="color:#10b981;">0 TZS</span></div>
+                        <div class="result-item" style="border-top:1px dashed #cbd5e1; padding-top:5px;"><span>Kadirio la Faida Safi:</span><span class="value" id="resFaida" style="color:#273c75;">0 TZS</span></div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- ============================================================== -->
+
+
+            <!-- Idara ya 4 -->
+            <h2 class="section-title">4. Idara ya Kinga na Udhibiti wa Magonjwa</h2>
+            <p>Bata wana kinga imara sana asilia dhidi ya magonjwa mengi ya kuku, lakini wanaweza kushambuliwa vibaya na magonjwa maalum ya ndege wa majini usafi usipozingatiwa.</p>
+            <div class="danger-card">
+                <h4>Homa ya Bata: Duck Plague (Duck Virus Enteritis)</h4>
+                <p><strong>Uharibifu:</strong> Ugonjwa hatari wa virusi unaoenea haraka kwenye mabwawa machafu ya maji. Dalili: Bata wanakuwa wanyonge, macho yanatoa machozi ghafla, wanaharisha kinyesi cha kijani kibichi au kijivu, na wanashindwa kutembea.</p>
+                <p><strong>Udhibiti:</strong> Ugonjwa huu hauna tiba; zuia kwa chanjo mapema na udumishe usafi wa hali ya juu kwa kubadilisha maji ya bwawa au vyombo kila siku [1.3]. Kuzuia ndege wa porini wasishaji maji ya bata wako [1.3].</p>
+            </div>
+
+            <!-- Idara ya 5 -->
+            <h2 class="section-title">5. Idara ya Uvunaji na Soko la Kibiashara</h2>
+            <p>Uvunaji wa bata wa nyama una soko zuri sana kwenye mahoteli makubwa na migahawa kutokana na nyama yao kuwa na ladha ya kipekee na nene.</p>
+            <ul>
+                <li><strong>Aina Maarufu za Soko:</strong> **Pekin Duck** (ndio bora kwa nyama, wanakua haraka na kufikia soko ndani ya wiki 7-8), na **Muscovy (Bata Bukini/Mzinga)** ambao wanachelewa kidogo lakini wanatoa uzito mkubwa wa nyama ya daraja la kwanza.</li>
+                <li><strong>Umri wa Soko (Nyama):</strong> Bata wa nyama (Pekin) wanakuwa tayari kuuzwa kati ya wiki **7 hadi 9** (Siku 50-60) wakiwa na uzito wa kilo **2.5 hadi 3.0** hai, kabla ya manyoya yao magumu ya kuanza kukua upya jambo linalofanya unyonyaji uwe mgumu.</li>
+                <li><strong>Soko la Mayai:</strong> Bata wa mayai wanaanza kutaga kati ya wiki ya **20 hadi 24**. Mayai ya bata ni makubwa, yana kiwango kikubwa cha protini, na ganda lake ni nene, jambo linalofanya yakae ghalani kwa muda mrefu bila kuharibika ukilinganisha na mayai ya kuku [1.3].</li>
+            </ul>
+
+        </div>
+    </div>
+
+    <!-- Footer Bar ya DAES -->
+    <footer class="main-footer">
+        <h3>DAES Footer</h3>
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT LOGIC -->
+    <script>
+        function pigaHesabuBata() {
+            let bata = parseFloat(document.getElementById('ducksCount').value);
+            if (isNaN(bata) || bata <= 0) { alert("Tafadhali ingiza idadi sahihi!"); return; }
+            
+            // Kanuni za kitaalamu za bata wa nyama (Hadi wiki 8):
+            // Banda = mita ya mraba 1 kwa kila bata 3.5 (Waliokomaa)
+            // Chakula = Kilo 8 za chakula jumla kwa kila bata hadi wiki ya 8 (Mifuko ya kg 50)
+            // Maji = Lita 0.5 hadi 1 kwa kila bata kwa siku
+            
+            let banda = bata / 3.5;
+            let chakulaKilo = bata * 8;
+            let mifuko = chakulaKilo / 50;
+            let maji = bata * 0.7;
+
+            document.getElementById('resBanda').innerText = banda.toFixed(1) + " m²";
+            document.getElementById('resMifuko').innerText = Math.ceil(mifuko) + " Mifuko (kg 50)";
+            document.getElementById('resMaji').innerText = maji.toFixed(0) + " Lita/Siku";
+            document.getElementById('calcResults').style.display = 'block';
+        }
+
+        function pigaHesabuFaidaBata() {
+            let bata = parseFloat(document.getElementById('ducksProfit').value);
+            if (isNaN(bata) || bata <= 0) { alert("Tafadhali ingiza idadi sahihi!"); return; }
+
+            // Gharama za mzunguko wa wiki 8 kwa bata 1 (Kifaranga = 2,500, Chakula kg 8 = 11,000, Chanjo/Dawa = 1,500) = 15,000 TZS
+            // Bei ya kumuuza bata hai wa nyama (Pekin) sokoni au hotelini kwa sasa = 22,000 TZS
+            
+            let gharamaJumla = bata * 15000;
+            let mauzoJumla = bata * 22000;
+            let faidaSafi = mauzoJumla - gharamaJumla;
+
+            document.getElementById('resGharama').innerText = gharamaJumla.toLocaleString() + " TZS";
+            document.getElementById('resMauzo').innerText = mauzoJumla.toLocaleString() + " TZS";
+            document.getElementById('resFaida').innerText = faidaSafi.toLocaleString() + " TZS";
+            document.getElementById('profitResults').style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>

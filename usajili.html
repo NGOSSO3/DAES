@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jisajili - DAES Project</title>
+    <link rel="stylesheet" href="elimu.css">
+    <link rel="stylesheet" href="usajili.css">
+    <link rel="stylesheet" href="https://cloudflare.com">
+</head>
+<body>
+
+    <!-- Header ya DAES -->
+    <header class="main-header">
+        <div class="logo-section">
+            <div class="logo-icon"><i class="fas fa-leaf"></i></div>
+            <h1 class="logo-text">DIGITAL AGRICULTURE ENHANCEMENT SYSTEM <span>(DAES)</span></h1>
+        </div>
+        <nav class="nav-links">
+            <a href="test-1.html">Nyumbani</a>
+            <a href="elimu.html">Elimu</a>
+            <a href="hali-ya-hewa.html">Hali ya hewa</a>
+            <a href="ai.html">AI Msaidizi</a>
+            <a href="udongo.html">Udongo</a>
+            <a href="usajili.html" class="btn-signup active">Jisajili</a>
+        </nav>
+    </header>
+
+    <main class="form-wrapper">
+        <div class="registration-card">
+            <div class="form-header">
+                <h2><i class="fas fa-user-plus"></i> Usajili wa Mkulima</h2>
+                <p>Jaza fomu hii kisha utapelekwa WhatsApp kuthibitisha usajili wako.</p>
+            </div>
+
+            <!-- Fomu ya Usajili -->
+            <form id="registrationForm" onsubmit="tumaKwendaWhatsApp(event)">
+                <div class="form-grid">
+                    <div class="input-group">
+                        <label>Jina Kamili</label>
+                        <input type="text" id="jina" placeholder="Mfn: Juma Hamis" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Namba yako ya WhatsApp</label>
+                        <input type="tel" id="simu" placeholder="Mfn: 07xxxxxxxx" required>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Mkoa</label>
+                        <select id="mkoa" required>
+                            <option value="">Chagua Mkoa</option>
+                            <option value="Mwanza">Mwanza</option>
+                            <option value="Arusha">Arusha</option>
+                            <option value="Dodoma">Dodoma</option>
+                            <option value="Dar es Salaam">Dar es Salaam</option>
+                            <option value="Mbeya">Mbeya</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>Aina ya Kilimo</label>
+                        <select id="kilimo" required>
+                            <option value="Mazao">Kilimo cha Mazao</option>
+                            <option value="Mifugo">Ufugaji wa Mifugo</option>
+                            <option value="Yote">Yote (Mazao & Mifugo)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-submit">Kamilisha Usajili & Tuma WhatsApp</button>
+            </form>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2026 DAES Project. Haki zote zimehifadhiwa.</p>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        function tumaKwendaWhatsApp(event) {
+            event.preventDefault(); // Inazuia fomu isijisafishe (refresh)
+
+            // Chukua data kutoka kwenye fomu
+            const jina = document.getElementById('jina').value;
+            const simu = document.getElementById('simu').value;
+            const mkoa = document.getElementById('mkoa').value;
+            const kilimo = document.getElementById('kilimo').value;
+
+            // Namba ya DAES (Namba yako ambapo ujumbe utaenda)
+            // Iandike bila kuanza na '0', weka '255'
+            const nambaYaDAES = "2557XXXXXXXX"; // WEKA NAMBA YAKO HAPA
+
+            // Tengeneza Ujumbe
+            const ujumbe = `*USAJILI MPYA - DAES*\n\n` +
+                           `*Jina:* ${jina}\n` +
+                           `*Simu:* ${simu}\n` +
+                           `*Mkoa:* ${mkoa}\n` +
+                           `*Sekta:* ${kilimo}\n\n` +
+                           `Habari DAES, nimejisajili kupitia tovuti. Naomba nianze kupata huduma.`;
+
+            // Tengeneza Link ya WhatsApp
+            const whatsappLink = `https://wa.me{nambaYaDAES}?text=${encodeURIComponent(ujumbe)}`;
+
+            // Fungua WhatsApp
+            window.open(whatsappLink, '_blank');
+        }
+    </script>
+</body>
+</html>

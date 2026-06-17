@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elimu ya Mazao - DAES</title>
+    <link rel="stylesheet" href="elimu.css">
+    <!-- Font Awesome kwa ajili ya icons -->
+    <link rel="stylesheet" href="mazao.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="logo-section">
+            <div class="logo-icon"><i class="fas fa-leaf"></i></div>
+            <h1 class="logo-text">DIGITAL AGRICULTURE ENHANCEMENT SYSTEM <span>(DAES)</span></h1>
+        </div>
+        <nav class="nav-links">
+            <a href="test-1.html">Nyumbani</a>
+            <a href="elimu.html" class="active">Elimu</a>
+            <a href="#">Hali ya hewa</a>
+            <a href="ai.html">AI Msaidizi</a>
+            <a href="#">Udongo</a>
+            <a href="#">Soko</a>
+            <a href="#" class="btn-signup">Jisajili</a>
+        </nav>
+    </header>
+
+    <main class="container elimu-page">
+        <div class="elimu-header">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Tafuta zao... mfano: mahindi, mpunga, kahawa">
+            </div>
+            <div class="category-buttons">
+                <button onclick="filterCategory('all')">Mazao Yote</button>
+                <button onclick="filterCategory('chakula')">🌽 Mazao ya Chakula</button>
+                <button onclick="filterCategory('biashara')">☕ Mazao ya Biashara</button>
+                <button onclick="filterCategory('matunda')">🍅 Matunda</button>
+            </div>
+            <h2>Chagua Zao la Kujifunza</h2>
+            <p>Bofya jina la zao kupata mwongozo kamili wa kilimo bora.</p>
+        </div>
+
+        <!-- Grid ya Mazao -->
+        <section class="elimu-flex-row mazao-grid">
+            
+            
+
+                <!-- ====== MAZAO YA CHAKULA ====== -->
+                
+                <div class="elimu-card-bordered" data-category="chakula">
+                    <div class="card-img-box"><img src="maize.webp"></div>
+                    <div class="card-body"><h3><a href=maize.html>Mahindi</a></h3>
+                        <p>jifunze mbinu bora za kilimo cha mahindi</p></div>
+                </div>
+                
+                <div class="elimu-card-bordered" data-category="chakula">
+                    <div class="card-img-box"><img src="rice.jpg"></div>
+                    <div class="card-body"><h3><a href=mpunga.html>Mpunga</a></h3></div>
+                </div>
+                
+                <div class="elimu-card-bordered" data-category="chakula">
+                    <div class="card-img-box"><img src="Groundnuts.webp"></div>
+                    <div class="card-body"><h3><a href="karanga.html">Karanga</a></h3></div>
+                </div>
+                
+                <div class="elimu-card-bordered" data-category="chakula">
+                    <div class="card-img-box"><img src="cassava.jpg"></div>
+                    <div class="card-body"><h3><a href=mihogo.html>Mihogo</a></h3></div>
+                </div>
+                
+                <div class="elimu-card-bordered" data-category="chakula">
+                    <div class="card-img-box"><img src="potato.jpg"></div>
+                    <div class="card-body"><h3><a href=viazivitamu.html>Viazi Vitamu</a></h3></div>
+                </div>
+                
+                <div class="elimu-card-bordered" data-category="chakula">
+                    <div class="card-img-box"><img src="beans.jpg"></div>
+                    <div class="card-body"><h3><a href=maharage.html>Maharage</a></h3></div>
+                </div>
+                
+                <div class="elimu-card-bordered" data-category="chakula">
+                    <div class="card-img-box"><img src="millet.jpg"></div>
+                    <div class="card-body"><h3><a href=mtama.html>Mtama</a></h3></div>
+                </div>
+                
+                <div class="elimu-card-bordered" data-category="chakula">
+                    <div class="card-img-box"><img src="uwele.jpg"></div>
+                    <div class="card-body"><h3><a href=uwele.html>Uwele</a>
+                    </h3></div>
+                </div>
+                
+                <div class="elimu-card-bordered" data-category="chakula">
+                    <div class="card-img-box"><img src="kunde.jpg"></div>
+                    <div class="card-body"><h3><a href=kunde.html>Kunde</a></h3></div>
+                </div>
+                
+                <div class="elimu-card-bordered" data-category="chakula">
+                    <div class="card-img-box"><img src="dengu.jpg"></div>
+                    <div class="card-body"><h3><a href=dengu.html>Dengu</a></h3></div>
+                </div>
+                
+                <div class="elimu-card-bordered" data-category="chakula">
+                    <div class="card-img-box"><img src="choroko.jpg"></div>
+                    <div class="card-body"><h3><a href=choroko.html>Choroko</a></h3></div>
+                </div>
+                
+                <div class="elimu-card-bordered" data-category="chakula">
+                    <div class="card-img-box"><img src="cabbage.jpg"></div>
+                    <div class="card-body"><h3><a href=cabbage.html>Kabichi</a></h3></div>
+                </div>
+                
+                <div class="elimu-card-bordered" data-category="chakula">
+                    <div class="card-img-box"><img src="tomato.jpg"></div>
+                    <div class="card-body"><h3><a href=tomato.html>Nyanya</a></h3></div>
+                </div>
+                
+                <div class="elimu-card-bordered" data-category="chakula">
+                    <div class="card-img-box"><img src="onion.jpg"></div>
+                    <div class="card-body"><h3><a href=onion.html>Vitunguu</a></h3></div>
+                </div>
+                
+                <div class="elimu-card-bordered" data-category="chakula">
+                    <div class="card-img-box"><img src="maboga.jpg"></div>
+                    <div class="card-body"><h3><a href=maboga.html>Maboga</a></h3></div>
+                </div>
+                
+                
+                <!-- ====== MAZAO YA BIASHARA ====== -->
+                
+                <div class="elimu-card-bordered" data-category="biashara">
+                    <div class="card-img-box"><img src="coffee.jpg"></div>
+                    <div class="card-body"><h3><a href=coffee.html>Kahawa</a></h3></div>
+                </div>
+                
+                <div class="elimu-card-bordered" data-category="biashara">
+                    <div class="card-img-box"><img src="tea.jpg"></div>
+                    <div class="card-body"><h3><a href=tea.html>Chai</a></h3></div>
+                </div>
+                
+                <div class="elimu-card-bordered" data-category="biashara">
+                    <div class="card-img-box"><img src="cotton.jpg"></div>
+                    <div class="card-body"><h3><a href=cotton.html>Pamba</a></h3></div>
+                </div>
+                
+                <div class="elimu-card-bordered" data-category="biashara">
+                    <div class="card-img-box"><img src="tobacco.jpg"></div>
+                    <div class="card-body"><h3><a href=tobacco.html>Tumbaku</a></h3></div>
+                </div>
+                
+                <div class="elimu-card-bordered" data-category="biashara">
+                    <div class="card-img-box"><img src="cashewnuts.jpg"></div>
+                    <div class="card-body"><h3><a href=cashewnuts.html>Korosho</a></h3></div>
+                </div>
+                
+                <div class="elimu-card-bordered" data-category="biashara">
+                    <div class="card-img-box"><img src="sugarcane.jpg"></div>
+                    <div class="card-body"><h3><a href=sugarcane.html>Miwa</a></h3></div>
+                </div>
+                
+                <div class="elimu-card-bordered" data-category="biashara">
+                    <div class="card-img-box"><img src="ufuta.jpg"></div>
+                    <div class="card-body"><h3><a href=ufuta.html>Ufuta</a></h3></div>
+                </div>
+                
+                
+                <!-- ====== MATUNDA ====== -->
+                
+                <div class="elimu-card-bordered" data-category="matunda">
+                    <div class="card-img-box"><img src="mango.jpg"></div>
+                    <div class="card-body"><h3><a href=mango.html>Maembe</a></h3></div>
+                </div>
+                
+                <div class="elimu-card-bordered" data-category="matunda">
+                    <div class="card-img-box"><img src="avocado.jpg"></div>
+                    <div class="card-body"><h3><a href=avocado.html>Avocado</a></h3></div>
+                </div>
+                
+                <div class="elimu-card-bordered" data-category="matunda">
+                    <div class="card-img-box"><img src="banana.jpg"></div>
+                    <div class="card-body"><h3><a href=banana.html>Ndizi</a></h3></div>
+                </div>
+                
+                <div class="elimu-card-bordered" data-category="matunda">
+                    <div class="card-img-box"><img src="pawpaw.jpg"></div>
+                    <div class="card-body"><h3><a href=pawpaw.html>Papai</a></h3></div>
+                </div>
+                
+                <div class="elimu-card-bordered" data-category="matunda">
+                    <div class="card-img-box"><img src="nanasi.jpg"></div>
+                    <div class="card-body"><h3><a href=nanasi.html>Mananasi</a></h3></div>
+                </div>
+                
+                <div class="elimu-card-bordered" data-category="matunda">
+                    <div class="card-img-box"><img src="tikiti.jpg"></div>
+                    <div class="card-body"><h3><a href=tikiti.html>Tikiti Maji</a></h3></div>
+                </div>
+                
+                <div class="elimu-card-bordered" data-category="matunda">
+                    <div class="card-img-box"><img src="grapes.jpg"></div>
+                    <div class="card-body"><h3><a href=grapes.html>Zabibu</a></h3></div>
+                </div>
+                
+                <div class="elimu-card-bordered" data-category="matunda">
+                    <div class="card-img-box"><img src="orange.jpg"></div>
+                    <div class="card-body"><h3><a href=orange.html>Machungwa</a></h3></div>
+                </div>
+                
+                
+
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2026 DAES Project. Haki zote zimehifadhiwa.</p>
+    </footer>
+
+    <script>
+        const searchInput = document.getElementById("searchInput");
+        const cards = document.querySelectorAll(".elimu-card-bordered");
+        
+        searchInput.addEventListener("keyup", function () {
+            const filter = searchInput.value.toLowerCase();
+        
+            cards.forEach(card => {
+                const title = card.querySelector("h3").innerText.toLowerCase();
+        
+                if (title.includes(filter)) {
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        });
+        
+        
+            function filterCategory(category) {
+                const cards = document.querySelectorAll(".elimu-card-bordered");
+            
+                cards.forEach(card => {
+                    if (category === "all") {
+                        card.style.display = "block";
+                    } else {
+                        if (card.getAttribute("data-category") === category) {
+                            card.style.display = "block";
+                        } else {
+                            card.style.display = "none";
+                        }
+                    }
+                });
+            }
+            function filterCategory(category) {
+    const cards = document.querySelectorAll(".elimu-card-bordered");
+    const buttons = document.querySelectorAll(".category-buttons button");
+
+    // Ondoa active kwa zote
+    buttons.forEach(btn => btn.classList.remove("active"));
+
+    // Weka active kwenye iliyobonyezwa
+    event.target.classList.add("active");
+
+    cards.forEach(card => {
+        if (category === "all") {
+            card.style.display = "block";
+        } else {
+            if (card.getAttribute("data-category") === category) {
+                card.style.display = "block";
+            } else {
+                card.style.display = "none";
+            }
+        }
+    });
+}
+            </script>
+</body>
+</html>

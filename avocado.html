@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kilimo Bora cha Parachichi | DAES</title>
+    <style>
+        :root {
+            --primary: #10b981;        /* Kijani ya Kisasa */
+            --secondary: #273c75;      /* Bluu ya DAES */
+            --bg-body: #f8fafc;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-dark);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header (MUUNDO WAKO WA ASILI - HAUJABADILIKA HATA KIDOGO) */
+        .main-header {
+            background:linear-gradient(135deg, #064e3b 0%, #84cc16 100%);
+            padding: 20px 20px;
+            text-align: center;
+            color: var(--white);
+            margin-bottom: -19px;
+        }
+
+        .logo-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--text-dark);
+        }
+
+        .logo-text span {
+            color: var(--secondary);
+            font-style: arial;
+        }
+
+        .nav-links {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            border: #1e293b;
+            border-radius: 2px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color:white;
+            font-weight: 1000;
+            transition: 0.3s;
+            font-size: x-large;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .btn-signup {
+            background: var(--primary);
+            color: white !important;
+            padding: 8px 20px;
+            border-radius: 50px;
+        }
+
+        /* Container Section */
+        .container {
+            flex: 1; 
+            padding: 40px 20px;
+            margin-top: 0px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Mitindo ya Makala Ndani ya Container */
+        .article-card {
+            background: white;
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border: 2px solid var(--primary);
+            line-height: 1.7;
+        }
+
+        .main-title {
+            color: var(--secondary);
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .section-title {
+            color: var(--secondary);
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--primary);
+            padding-left: 10px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        ul {
+            margin-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .image-placeholder-box {
+            background: #f1f5f9;
+            border: 2px solid var(--primary);
+            border-radius: 15px;
+            padding: 0;
+            margin: 25px 0;
+            text-align: center;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .image-placeholder-box img {
+            width: 100%;
+            max-height: 420px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        th {
+            background-color: #f1f5f9;
+            color: var(--secondary);
+        }
+
+        .info-card {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding: 15px;
+            border-radius: 0 10px 10px 0;
+            margin: 20px 0;
+        }
+
+        .danger-card {
+            background: #fef2f2;
+            border-left: 4px solid #ef4444;
+            padding: 15px;
+            border-radius: 0 10px 10px 0;
+            margin: 20px 0;
+        }
+
+        /* STYLE YA VIKOKOTOO (YST EXCLUSIVE) */
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 35px 0;
+        }
+
+        .calculator-section {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border: 2px solid var(--primary);
+            border-radius: 20px;
+            padding: 25px;
+        }
+
+        .calculator-section.profit {
+            background: linear-gradient(135deg, #fef3c7 0%, #fffbeb 100%);
+            border-color: #f59e0b;
+        }
+
+        .calc-title {
+            color: var(--secondary);
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            outline: none;
+        }
+
+        .calc-btn {
+            background: var(--secondary);
+            color: white;
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .calc-btn:hover {
+            background: #1e293b;
+        }
+
+        .results-box {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            border-top: 4px solid var(--primary);
+            display: none;
+        }
+
+        .results-box.profit-res {
+            border-top-color: #f59e0b;
+        }
+
+        .results-box h4 {
+            color: var(--secondary);
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 5px;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .result-item span.value {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* Footer Bar (MUUNDO WAKO WA ASILI - HAUJABADILIKA HATA KIDOGO) */
+        .main-footer {
+            background: #06741b;
+            padding: 35px;
+            text-align: center;
+            color: white;
+            margin-top: auto;
+        }
+
+        @media (max-width: 768px) {
+            .calculator-grid { grid-template-columns: 1fr; }
+            .article-card { padding: 20px; }
+            .main-title { font-size: 1.7rem; }
+            .nav-links { gap: 20px; flex-wrap: wrap; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header ya DAES -->
+    <header class="main-header">
+        <div class="logo-text">DAES<span>.org</span></div>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="mahindi.html">Masomo</a>
+            <a href="#">Services</a>
+            <a href="#" class="btn-signup">Sign Up</a>
+        </nav>
+    </header>
+
+    <!-- Sehemu Kuu ya Maudhui -->
+    <div class="container">
+        <div class="article-card">
+            
+            <h1 class="main-title">Mwongozo Kamili wa Kilimo Bora cha Parachichi Kitaalamu</h1>
+
+            <!-- PICHA KUU (IMEVUTWA MOJA KWA MOJA) -->
+            <div class="image-placeholder-box">
+                <img src="avocado.jpg" alt="Matunda ya Parachichi Halisi Kwenye Mti" onerror="this.src='https://unsplash.com'">
+            </div>
+
+            <!-- Idara ya 1 -->
+            <h2 class="section-title">1. Idara ya Maandalizi ya Shamba na Udongo</h2>
+            <p>Mparachichi ni mti wa kudumu unaohitaji maandalizi ya kina kwani mfumo wake wa mizizi una uwezo wa kunyonya chakula na maji kwa miongo kadhaa [1.1].</p>
+            <ul>
+                <li><strong>Hali ya Udongo:</strong> Parachichi hupenda udongo tifutifu mwekundu wa volkano au wa kichanga (sandy loam) wenye mifereji mizuri mno ya kupitisha maji. **Zao hili halivumilii kabisa maji yaliyotuama hata kwa siku mbili**, mizizi yake hupata ugonjwa wa kuoza (Root Rot) na mti unakufa haraka sana [1.3]. pH bora ni 5.5 hadi 6.5.</li>
+                <li><strong>Uchimbo wa Mashimo:</strong> Chimba mashimo makubwa ya upana wa cm 60, urefu wa cm 60 na kina cha cm 60. Udongo wa juu uliotolewa uchanganywe na ndoo 2 za samadi au mboji iliyoiva vizuri pamoja na gramu 200-300 za mbolea ya fosfari (TSP/Minjingu) kabla ya kurudishwa ghorofani kwenye shimo [1.3].</li>
+            </ul>
+
+            <!-- Idara ya 2 -->
+            <h2 class="section-title">2. Idara ya Upandaji na Vipimo vya Nafasi</h2>
+            <p>Nafasi ya upandaji inategemea kama shamba limewekewa mifumo ya upogoleaji wa kisasa wa kudhibiti urefu wa mti [1.3].</p>
+            
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Mfumo wa Nafasi</th>
+                            <th>Umbali Kati ya Mstari na Mstari</th>
+                            <th>Umbali Kati ya Mti na Mti</th>
+                            <th>Idadi ya Miti kwa Ekari (Kadirio)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Mfumo wa Kawaida (Nafasi Kubwa)</strong></td>
+                            <td>9 Mita (9 m)</td>
+                            <td>9 Mita (9 m)</td>
+                            <td>Takriban miti 50</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Mfumo wa Kisasa (Msongamano wa Kati)</strong></td>
+                            <td>7 Mita (7 m)</td>
+                            <td>7 Mita (7 m)</td>
+                            <td>Takriban miti 80</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- PICHA YA UPANDAJI (IMEVUTWA MOJA KWA MOJA) -->
+            <div class="image-placeholder-box">
+                <img src="https://unsplash.com" alt="Miche ya Kisasa ya Parachichi Shambani">
+            </div>
+
+
+            <!-- ============================================================== -->
+            <!-- SECTION YA VIKOKOTOO VYA PARACHICHI (YST SMART COMPONENT) -->
+            <!-- ============================================================== -->
+            <div class="calculator-grid">
+                
+                <!-- KIKOKOTOO CHA PEMBEJEO -->
+                <div class="calculator-section">
+                    <div class="calc-title">📊 Kikokotoo cha Pembejeo (Parachichi)</div>
+                    <div class="form-group">
+                        <label for="shambaSize">Ukubwa wa Shamba (Ekari):</label>
+                        <input type="number" id="shambaSize" min="0.1" step="0.1" placeholder="Mfano: 1">
+                    </div>
+                    <button class="calc-btn" onclick="pigaHesabuAvocado()">Piga Hesabu</button>
+
+                    <div class="results-box" id="calcResults">
+                        <h4>📋 Ripoti ya Mahitaji (Mfumo wa Kisasa)</h4>
+                        <div class="result-item"><span>Miche ya Vikonyo Inayohitajika:</span><span class="value" id="resMiche">0 Miche</span></div>
+                        <div class="result-item"><span>Mbolea ya Kupandia (TSP/Minjingu):</span><span class="value" id="resDap">0 Kilo</span></div>
+                        <div class="result-item"><span>Kadirio la Ndoo za Samadi:</span><span class="value" id="resSamadi">0 Ndoo</span></div>
+                    </div>
+                </div>
+
+                <!-- KIKOKOTOO CHA FAIDA -->
+                <div class="calculator-section profit">
+                    <div class="calc-title">💰 Kikokotoo cha Faida (Kuanzia Mwaka wa 4)</div>
+                    <div class="form-group">
+                        <label for="ekariProfit">Ukubwa wa Shamba (Ekari):</label>
+                        <input type="number" id="ekariProfit" min="0.1" step="0.1" placeholder="Mfano: 1">
+                    </div>
+                    <button class="calc-btn" style="background: #f59e0b;" onclick="pigaHesabuFaidaAvocado()">Kadiria Faida</button>
+
+                    <div class="results-box profit-res" id="profitResults">
+                        <h4>💵 Makadirio ya Kifedha ya Parachichi</h4>
+                        <div class="result-item"><span>Gharama za Kila Mwaka:</span><span class="value" id="resGharama" style="color:#ef4444;">0 TZS</span></div>
+                        <div class="result-item"><span>Mavuno ya Kilo za Matunda/Mwaka:</span><span class="value" id="resMavuno" style="color:#10b981;">0 Kilo</span></div>
+                        <div class="result-item" style="border-top:1px dashed #cbd5e1; padding-top:5px;"><span>Makadirio ya Faida Safi:</span><span class="value" id="resFaida" style="color:#273c75;">0 TZS</span></div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- ============================================================== -->
+
+
+            <!-- Idara ya 3 -->
+            <h2 class="section-title">3. Idara ya Mbegu, Grafting na Upogoleaji (Pruning)</h2>
+            <p>Soko la kimataifa lina vigezo vikali sana kuhusu aina ya parachichi inayoruhusiwa kuuzwa nje [1.1].</p>
+            <ul>
+                <li><strong>Miche ya Vikonyo (Grafted Seedlings):</strong> Ni lazima kutumia miche iliyofanyiwa grafting kwa kutumia mashina imara ya asili (*rootstock*) na kuwekwa vikonyo (*scion*) vya aina ya biashara [1.3]. Miche hii inazaa mapema (mwaka wa 3) na inahakikisha ubora sawa wa matunda [1.3].</li>
+                <li><strong>Aina Kuu za Biashara:</strong> 
+                    <br>1. **Hass:** Ndio mbegu namba moja ya export duniani [1.1]. Matunda yake yana ngozi ya mabaka mabaka inayogeuka kuwa rangi ya zambarau/nyeusi yakiiva [1.1]. Inavumilia usafirishaji wa masafa marefu [1.1].
+                    <br>2. **Fuerte:** Ngozi yake ni laini ya kijani hata ikiiva [1.1]. Inatumika sana kama mchavushaji (*pollinator*) katikati ya mashamba ya Hass [1.1].
+                </li>
+                <li><strong>Upogoleaji (Pruning):</strong> Ni hatua muhimu ya kuondoa matawi ya chini yanayogusa ardhi, matawi ya katikati yaliyosongana, na kudhibiti urefu wa taji ili kuruhusu jua kufika kwenye matawi yote na kurahisisha uvunaji [1.3].</li>
+            </ul>
+
+            <!-- Idara ya 4 -->
+            <h2 class="section-title">4. Idara ya Ulinzi: Kudhibiti Ugonjwa wa Mizizi na Wadudu</h2>
+            <div class="danger-card">
+                <h4>Ugonjwa Hatari wa Kuoza Mizizi (Phytophthora Cinnamon Root Rot)</h4>
+                <p><strong>Uharibifu:</strong> Huu ndio ugonjwa hatari zaidi wa mparachichi unaosababishwa na fangasi wa udongo pale maji yanapotuama chini ya mmea [1.3]. Majani yanakuwa madogo, yanageuka njano, na mti unakauka kuanzia juu kuelekea chini [1.3]. 
+                <br><strong>Udhibiti:</strong> Epuka kupanda kwenye udongo unaotuamisha maji, weka matandazo ya kutosha kulinda afya ya udongo, na nyunyizia viuatilifu vya fangasi vilivyopendekezwa kitaalamu [1.3].</p>
+            </div>
+
+            <p><strong>Wadudu Sugu wa Matunda (Thrips & False Codling Moth):</strong> Wanatoboa au kukwangua ngozi ya parachichi changa na kuacha makovu yanayofanya tunda likataliwe kwenye soko la export [1.3]. Udhibiti unafanyika kwa usafi wa shamba na kupiga viuatilifu salama mapema [1.3].</p>
+
+            <!-- PICHA YA MAVUNO (IMEVUTWA MOJA KWA MOJA) -->
+            <div class="image-placeholder-box">
+                <img src="https://unsplash.com" alt="Parachichi za Hass Zilizovunwa Tayari kwa Box">
+            </div>
+
+            <!-- Idara = ya 5 -->
+            <h2 class="section-title">5. Idara ya Uvunaji na Kigezo cha Uhakiki wa Mafuta (Dry Matter)</h2>
+            <p>Parachichi huwa haziiivi zikiwa juu ya mti, zinaanza kuiva tu baada ya kuchumwa. Hiki ni kigezo kikubwa cha kisayansi kwa ajili ya YST [1.3].</p>
+            <ul>
+                <li><strong>Kipimo cha Dry Matter (Aflatoxin equivalent in horticulture):</strong> Kabla ya kuvuna kwa ajili ya soko la nje, maabara hupima kiwango cha ukaushaji wa tunda (*dry matter content*) ambacho lazima kifike **kiwango cha chini cha 21% hadi 23%** [1.3]. Ukivuna kabla ya kiwango hiki, parachichi zitasinyaa, hazitawahi kuiva vizuri, na zitakuwa na ladha mbaya ya maji, jambo linalofanya kontena zima likataliwe sokoni.</li>
+                <li><strong>Mbinu ya Kuvuna:</strong> Kata matunda kwa kutumia fruit pickers ukiacha kikonyo cha urefu wa cm 1-2. **Usivute tunda kwa mkono** kwani utang'oa kikonyo na kutengeneza njia ya bakteria kuingia na kuoza tunda [1.3]. Panga matunda kwenye kasha la plastiki kwa upole ili kuzuia michubuko [1.3].</li>
+            </ul>
+
+            <!-- PICHA YA USAFIRISHAJI (IMEVUTWA MOJA KWA MOJA) -->
+            <div class="image-placeholder-box">
+                <img src="https://unsplash.com" alt="Kupanga Parachichi Kwenye Makasha ya Plastiki">
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Footer Bar ya DAES -->
+    <footer class="main-footer">
+        <h3>DAES Footer</h3>
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT LOGIC (YST ENGINE FOR AVOCADO) -->
+    <script>
+        function pigaHesabuAvocado() {
+            let ekari = parseFloat(document.getElementById('shambaSize').value);
+            if (isNaN(ekari) || ekari <= 0) { alert("Tafadhali ingiza ekari sahihi!"); return; }
+            
+            // Kanuni za TARI kwa Ekari Moja ya Parachichi (Mfumo wa mita 7x7 kwa miche ya kisasa):
+            // 1 Ekari = Takriban miche 80 ya kisasa
+            // Mbolea ya kupandia = kilo 40 (Grama 500 ya TSP/Minjingu kwa kila shimo)
+            // Ndoo za samadi = Ndoo 2 kwa kila shimo = 80 * 2 = 160 Ndoo
+            
+            let miche = ekari * 80;
+            let mbolea = ekari * 40;
+            let samadi = miche * 2;
+
+            document.getElementById('resMiche').innerText = Math.ceil(miche) + " Miche ya Vikonyo (Hass/Fuerte)";
+            document.getElementById('resDap').innerText = mbolea.toFixed(1) + " Kilo za TSP/Minjingu";
+            document.getElementById('resSamadi').innerText = samadi.toLocaleString() + " Ndoo za Samadi";
+            document.getElementById('calcResults').style.display = 'block';
+        }
+
+        function pigaHesabuFaidaAvocado() {
+            let ekari = parseFloat(document.getElementById('ekariProfit').value);
+            if (isNaN(ekari) || ekari <= 0) { alert("Tafadhali ingiza ekari sahihi!"); return; }
+
+            // Gharama za kila mwaka kwa ekari 1 baada ya mwaka wa 4 (Upogoleaji, mbolea, viuatilifu vya thrips, ulinzi) = 600,000 TZS
+            // Mavuno ya wastani ya kitaalamu kwa kila mti uliotunzwa vizuri baada ya mwaka wa 5 = Kilo 50 za parachichi
+            // Jumla ya kilo kwa ekari moja = 80 * 50 = 4,000 Kilo za matunda
+            // Bei ya kuuzia kwa kilo moja ya matunda ya daraja la kwanza (export grade) = 1,200 TZS
+            
+            let gharamaJumla = ekari * 600000;
+            let kiloMavuno = ekari * 4000; 
+            let mauzoJumla = kiloMavuno * 1200;
+            let faidaSafi = mauzoJumla - gharamaJumla;
+
+            document.getElementById('resGharama').innerText = gharamaJumla.toLocaleString() + " TZS";
+            document.getElementById('resMavuno').innerText = kiloMavuno.toLocaleString() + " Kilo za Matunda";
+            document.getElementById('resFaida').innerText = faidaSafi.toLocaleString() + " TZS";
+            document.getElementById('profitResults').style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>

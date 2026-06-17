@@ -1,0 +1,147 @@
+/* Google Fonts */
+@import url('https://googleapis.com');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: #f8fafc;
+    color: #1e293b;
+}
+
+/* Header yenye Linear Gradient uliyoomba */
+.main-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 1rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    /* Kijani Kibichi kwenda Kijani cha Matunda */
+    background: linear-gradient(135deg, #064e3b 0%, #84cc16 100%);
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-icon {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+    padding: 10px;
+    border-radius: 12px;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.logo-text {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: white;
+    letter-spacing: -1px;
+}
+
+.logo-text span {
+    color: #fde047; /* Rangi ya njano kwa neno Smart */
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0 15px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #fde047;
+}
+
+.btn-login {
+    background: white;
+    color: #064e3b;
+    padding: 10px 24px;
+    border-radius: 50px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-login:hover {
+    transform: scale(1.05);
+    background: #fde047;
+}
+
+/* Container ya Dashboard */
+.container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 30px;
+}
+
+/* Kadi za Dashboard */
+.card {
+    background: white;
+    border-radius: 24px;
+    padding: 30px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.weather-card {
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    color: white;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #475569;
+}
+
+input, select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #f1f5f9;
+    border-radius: 12px;
+    outline: none;
+    transition: 0.3s;
+}
+
+input:focus {
+    border-color: #84cc16;
+}
+
+.btn-submit {
+    width: 100%;
+    background: #1e293b;
+    color: white;
+    padding: 15px;
+    border-radius: 12px;
+    border: none;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.btn-submit:hover {
+    background: #064e3b;
+}

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hali ya Hewa & Profaili - DAES</title>
+    <link rel="stylesheet" href="elimu.css">
+    <link rel="stylesheet" href="style-weather.css">
+    <link rel="stylesheet" href="haliyahewa.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="logo-section">
+            <div class="logo-icon"><i class="fas fa-leaf"></i></div>
+            <h1 class="logo-text">DAES <span>SYSTEM</span></h1>
+        </div>
+        <nav class="nav-links">
+            <a href="test-1.html">Nyumbani</a>
+            <a href="#" class="active">Hali ya hewa</a>
+            <a href="ai.html">AI Msaidizi</a>
+            <a href="soko.html">Soko</a>
+        </nav>
+    </header>
+
+    <main class="dashboard-grid">
+        <!-- SEHEMU YA TAARIFA ZA MKULIMA (Mpya) -->
+        <section class="mkulima-info-card">
+            <div class="profile-header">
+                <div class="avatar"><i class="fas fa-user-circle"></i></div>
+                <div class="user-meta">
+                    <h3>Mkulima Hodari</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Mwanza, Tanzania</p>
+                </div>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-item"><span>Mazao</span><strong>06</strong></div>
+                <div class="stat-item"><span>Mifugo</span><strong>12</strong></div>
+            </div>
+            <div class="quick-alerts">
+                <h4>Ujumbe wa Leo:</h4>
+                <p><i class="fas fa-bell"></i> Kumbuka kupiga chanjo ya kideri wiki hii.</p>
+            </div>
+        </section>
+
+        <!-- SEHEMU YA HALI YA HEWA (Container Imepunguzwa) -->
+        <section class="weather-compact-card">
+            <div class="search-mini">
+                <input type="text" id="cityInput" placeholder="Tafuta mji...">
+                <button onclick="fetchAllWeather()"><i class="fas fa-search"></i></button>
+            </div>
+            
+            <div class="weather-main-info">
+                <h2 id="cityName">Dodoma, TZ</h2>
+                <div class="temp-small" id="mainTemp">28°C</div>
+                <p id="weatherStatus">Mawingu Kidogo</p>
+            </div>
+
+            <div class="text-details">
+                <p id="txtJoto">Hali ya joto ni: --</p>
+                <p id="txtUnyevu">Unyevunyevu ni: --</p>
+            </div>
+
+            <div class="forecast-mini-grid" id="forecastGrid">
+                <!-- Data ya siku 5 kwa ufupi -->
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2026 DAES Project.</p>
+    </footer>
+
+    <script>
+        const apiKey = "6f9479b4ed187f54c9354924c5689728";
+
+        async function fetchAllWeather() {
+            const city = document.getElementById('cityInput').value;
+            if (!city) return;
+            try {
+                const currentRes = await fetch(`https://openweathermap.org{city}&appid=${apiKey}&units=metric`).then(r => r.json());
+                const forecastRes = await fetch(`https://openweathermap.org{city}&appid=${apiKey}&units=metric`).then(r => r.json());
+
+                document.getElementById('cityName').innerText = currentRes.name;
+                document.getElementById('mainTemp').innerText = Math.round(currentRes.main.temp) + "°C";
+                document.getElementById('txtJoto').innerText = "Hali ya joto ni: " + Math.round(currentRes.main.temp) + "°C";
+                document.getElementById('txtUnyevu').innerText = "Unyevunyevu ni: " + currentRes.main.humidity + "%";
+
+                const grid = document.getElementById('forecastGrid');
+                grid.innerHTML = "";
+                forecastRes.list.filter(i => i.dt_txt.includes("12:00:00")).slice(0, 5).forEach(day => {
+                    const date = new Date(day.dt * 1000).toLocaleDateString('sw', {weekday: 'short'});
+                    grid.innerHTML += `<div class="day-item"><span>${date}</span><strong>${Math.round(day.main.temp)}°</strong></div>`;
+                });
+            } catch (e) { alert("Jaribu mji mwingine"); }
+        }
+    </script>
+</body>
+</html>

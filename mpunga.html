@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kilimo Bora cha Mpunga | DAES</title>
+    <style>
+        :root {
+            --primary: #10b981;        /* Kijani ya Kisasa */
+            --secondary: #273c75;      /* Bluu ya DAES */
+            --bg-body: #f8fafc;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-dark);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header (MUUNDO WAKO WA ASILI - HAUJABADILIKA HATA KIDOGO) */
+        .main-header {
+            background:linear-gradient(135deg, #064e3b 0%, #84cc16 100%);
+            padding: 20px 20px;
+            text-align: center;
+            color: var(--white);
+            margin-bottom: -19px;
+        }
+
+        .logo-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--text-dark);
+        }
+
+        .logo-text span {
+            color: var(--secondary);
+            font-style: arial;
+        }
+
+        .nav-links {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            border: #1e293b;
+            border-radius: 2px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color:white;
+            font-weight: 1000;
+            transition: 0.3s;
+            font-size: x-large;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .btn-signup {
+            background: var(--primary);
+            color: white !important;
+            padding: 8px 20px;
+            border-radius: 50px;
+        }
+
+        /* Container Section */
+        .container {
+            flex: 1; 
+            padding: 40px 20px;
+            margin-top: 0px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Mitindo ya Makala Ndani ya Container */
+        .article-card {
+            background: white;
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border: 2px solid var(--primary);
+            line-height: 1.7;
+        }
+
+        .main-title {
+            color: var(--secondary);
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .section-title {
+            color: var(--secondary);
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--primary);
+            padding-left: 10px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        ul {
+            margin-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .image-placeholder-box {
+            background: #f1f5f9;
+            border: 2px dashed #cbd5e1;
+            border-radius: 15px;
+            padding: 30px 15px;
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .image-instruction {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .image-instruction span {
+            display: block;
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        th {
+            background-color: #f1f5f9;
+            color: var(--secondary);
+        }
+
+        .info-card {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding: 15px;
+            border-radius: 0 10px 10px 0;
+            margin: 20px 0;
+        }
+
+        .danger-card {
+            background: #fef2f2;
+            border-left: 4px solid #ef4444;
+            padding: 15px;
+            border-radius: 0 10px 10px 0;
+            margin: 20px 0;
+        }
+
+        /* STYLE YA VIKOKOTOO (YST EXCLUSIVE) */
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 35px 0;
+        }
+
+        .calculator-section {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border: 2px solid var(--primary);
+            border-radius: 20px;
+            padding: 25px;
+        }
+
+        .calculator-section.profit {
+            background: linear-gradient(135deg, #fef3c7 0%, #fffbeb 100%);
+            border-color: #f59e0b;
+        }
+
+        .calc-title {
+            color: var(--secondary);
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            outline: none;
+        }
+
+        .calc-btn {
+            background: var(--secondary);
+            color: white;
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .calc-btn:hover {
+            background: #1e293b;
+        }
+
+        .results-box {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            border-top: 4px solid var(--primary);
+            display: none;
+        }
+
+        .results-box.profit-res {
+            border-top-color: #f59e0b;
+        }
+
+        .results-box h4 {
+            color: var(--secondary);
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 5px;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .result-item span.value {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* Footer Bar (MUUNDO WAKO WA ASILI - HAUJABADILIKA HATA KIDOGO) */
+        .main-footer {
+            background: #06741b;
+            padding: 35px;
+            text-align: center;
+            color: white;
+            margin-top: auto;
+        }
+
+        @media (max-width: 768px) {
+            .calculator-grid { grid-template-columns: 1fr; }
+            .article-card { padding: 20px; }
+            .main-title { font-size: 1.7rem; }
+            .nav-links { gap: 20px; flex-wrap: wrap; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header ya DAES -->
+    <header class="main-header">
+        <div class="logo-text">DAES<span>.org</span></div>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="mahindi.html">Masomo</a>
+            <a href="#">Services</a>
+            <a href="#" class="btn-signup">Sign Up</a>
+        </nav>
+    </header>
+
+    <!-- Sehemu Kuu ya Maudhui -->
+    <div class="container">
+        <div class="article-card">
+            
+            <h1 class="main-title">Mwongozo Kamili wa Kilimo Bora cha Mpunga Kitaalamu</h1>
+
+            <!-- PICHA KUU -->
+           <div class="image-placeholder-box" style="padding: 0; overflow: hidden;">
+    <img src="rice.jpg" alt="Shamba la Mpunga Lililokomaa Tanzania" style="width:100%; max-height:400px; object-fit:cover; display:block;">
+</div>
+
+
+            <!-- Idara ya 1 -->
+            <h2 class="section-title">1. Idara ya Maandalizi ya Shamba na Majaruba</h2>
+            <p>Tofauti na mazao mengine, mpunga unahitaji maandalizi maalum ya ardhi ili kuruhusu uhifadhi mzuri wa maji na mtawanyiko sawa wa virutubisho.</p>
+            <ul>
+                <li><strong>Kutengeneza Majaruba:</strong> Shamba lazima ligawanywe katika majaruba yenye kingo imara ili kuzuia maji kuingia na kutoka kiholela.</li>
+                <li><strong>Kuvuruga Udongo (Puddling):</strong> Baada ya kulima, shamba huwekwa maji na kuvurugwa kwa trekta au ng'ombe ili udongo uwe tope laini. Hii inasaidia mizizi kushika kirahisi na kuzuia maji yasizame chini haraka.</li>
+                <li><strong>Kusawazisha Shamba:</strong> Shamba lisawazishwe (leveling) ili kuhakikisha maji yanasambaa kwa kina kilekile kote shambani, jambo linalosaidia mpunga kukomaa kwa pamoja.</li>
+            </ul>
+
+            <!-- Idara ya 2 -->
+            <h2 class="section-title">2. Idara ya Upandaji na Vipimo (Mbinu ya Kupandikiza)</h2>
+            <p>Mbinu inayopendekezwa zaidi kitaalamu kwa maeneo ya mabondeni na umwagiliaji ni kukuza miche kitaluni kwanza kisha kuhamishia shambani.</p>
+            
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Mfumo wa Upandaji</th>
+                            <th>Nafasi ya Upandaji</th>
+                            <th>Umri wa Miche ya Kuhamisha</th>
+                            <th>Idadi ya Miche kwa Shimo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Upandaji wa Kawaida</strong></td>
+                            <td>20 cm x 10 cm au 20 cm x 20 cm</td>
+                            <td>Siku 21 hadi 30 kitaluni</td>
+                            <td>Miche 2 hadi 3</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Mfumo Shadidi (SRI)</strong></td>
+                            <td>25 cm x 25 cm</td>
+                            <td>Siku 8 hadi 15 tu (Michanga)</td>
+                            <td>Mche 1 tu wenye afya</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- PICHA YA NAFASI -->
+           <div class="image-placeholder-box" style="padding: 0; overflow: hidden;">
+    <img src="nafasi.mpunga.jpg" alt="Kielelezo cha Nafasi ya Upandaji Mpunga" style="width:100%; max-height:350px; object-fit:cover; display:block;">
+    <span style="display:block; font-size:0.85rem; color:#64748b; padding:10px; font-style:italic; background:#f8fafc; border-top:1px solid #e2e8f0;">Kielelezo 1: Nafasi sahihi ya sentimita 20 kwa 20 kati ya miche ya mpunga.</span>
+</div>
+
+
+
+            <!-- ============================================================== -->
+            <!-- SECTION YA VIKOKOTOO VYA MPUNGA (YST SMART COMPONENT) -->
+            <!-- ============================================================== -->
+            <div class="calculator-grid">
+                
+                <!-- KIKOKOTOO CHA PEMBEJEO -->
+                <div class="calculator-section">
+                    <div class="calc-title">📊 Kikokotoo cha Pembejeo (Mpunga)</div>
+                    <div class="form-group">
+                        <label for="shambaSize">Ukubwa wa Shamba (Ekari):</label>
+                        <input type="number" id="shambaSize" min="0.1" step="0.1" placeholder="Mfano: 1">
+                    </div>
+                    <button class="calc-btn" onclick="pigaHesabuMpunga()">Piga Hesabu</button>
+
+                    <div class="results-box" id="calcResults">
+                        <h4>📋 Ripoti ya Mahitaji (Mbinu ya Kitalu)</h4>
+                        <div class="result-item"><span>Mbegu za Kitaluni:</span><span class="value" id="resMbegu">0 Kilo</span></div>
+                        <div class="result-item"><span>Mbolea ya DAP (Kupandia):</span><span class="value" id="resDap">0 Kilo</span></div>
+                        <div class="result-item"><span>Mbolea ya UREA (Kukuzia):</span><span class="value" id="resUrea">0 Kilo</span></div>
+                    </div>
+                </div>
+
+                <!-- KIKOKOTOO CHA FAIDA -->
+                <div class="calculator-section profit">
+                    <div class="calc-title">💰 Kikokotoo cha Faida (Agribusiness)</div>
+                    <div class="form-group">
+                        <label for="ekariProfit">Ukubwa wa Shamba (Ekari):</label>
+                        <input type="number" id="ekariProfit" min="0.1" step="0.1" placeholder="Mfano: 1">
+                    </div>
+                    <button class="calc-btn" style="background: #f59e0b;" onclick="pigaHesabuFaidaMpunga()">Kadiria Faida</button>
+
+                    <div class="results-box profit-res" id="profitResults">
+                        <h4>💵 Makadirio ya Kifedha ya Mpunga</h4>
+                        <div class="result-item"><span>Gharama za Kilimo:</span><span class="value" id="resGharama" style="color:#ef4444;">0 TZS</span></div>
+                        <div class="result-item"><span>Mavuno (Magunia ya Mpunga):</span><span class="value" id="resMavuno" style="color:#10b981;">0 Gunia</span></div>
+                        <div class="result-item" style="border-top:1px dashed #cbd5e1; padding-top:5px;"><span>Faida Safi:</span><span class="value" id="resFaida" style="color:#273c75;">0 TZS</span></div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- ============================================================== -->
+
+
+            <!-- Idara ya 3 -->
+            <h2 class="section-title">3. Idara ya Lishe na Uwekezaji wa Mbolea</h2>
+            <p>Zao la mpunga linahitaji madini ya Fosfari (P) kukuza mizizi mapema na Nitrojeni (N) kwa ajili ya kutoa machipukizi (tillers) mengi.</p>
+            
+            <div class="info-card">
+                <h4>Awamu ya Kwanza: Mbolea ya Kupandia (Fosfari - DAP)</h4>
+                <p>Weka **kilo 50 za DAP kwa ekari moja**. Inamwagiwa na kusambazwa sawia kwenye jaruba wakati wa kuvuruga tope (*puddling*), kabla ya kupandikiza miche ili ichanganyike vizuri na udongo.</p>
+            </div>
+
+            <!-- PICHA YA MBOLEA -->
+            <div class="image-placeholder-box" style="padding: 0; overflow: hidden;">
+    <img src="mbolea.mpunga.jpg" alt="Mkulima akiweka mbolea ya UREA kwenye jaruba" style="width:100%; max-height:350px; object-fit:cover; display:block;">
+</div>
+
+
+            <div class="info-card" style="border-left-color: var(--primary); background: #f0fdf4;">
+                <h4>Awamu ya Pili: Mbolea ya Kukuzia (Nitrojeni - UREA/SA)</h4>
+                <p>Inahitajika **kilo 100 za UREA kwa ekari moja**. 
+                Awamu ya kwanza (Kilo 50) iwekwe wiki 2 hadi 3 baada ya kupandikiza miche ili kuchochea utoaji wa machipukizi. Awamu ya pili (Kilo 50) iwekwe wiki 6 hadi 7 wakati mpunga unapoanza kufunga mimba. 
+                *Zingatia:* Hakikisha palizi imefanyika kabla ya kuweka mbolea.</p>
+            </div>
+
+            <!-- Idara ya 4 -->
+            <h2 class="section-title">4. Idara ya Mbegu: Aina za Mbegu Bora Tanzania</h2>
+            <p>Taasisi ya TARI imeshapitisha aina mbalimbali za mbegu bora zinazotoa mazao mengi na zinazostahimili magonjwa:</p>
+            <ul>
+                <li><strong>Saro 5 (TXD 306):</strong> Inapendwa sana mabondeni. Inatoa harufu nzuri na mchele wake hauvunjiki kirahisi. Inachukua siku 120-130 kukomaa.</li>
+                <li><strong>Komboka:</strong> Mbegu ya kisasa inayovumilia magonjwa na kutoa hadi magunia 25-30 kwa ekari ikitunzwa vizuri.</li>
+                <li><strong>NERICA (Aina mbalimbali):</strong> Zinafaa zaidi kwa maeneo ya miinuko yasiyokuwa na maji mengi ya kutuama.</li>
+            </ul>
+
+            <!-- Idara ya 5 -->
+            <h2 class="section-title">5. Idara ya Ulinzi: Kudhibiti Magugu, Wadudu na Magonjwa</h2>
+            <p>Magugu yanaweza kupunguza mavuno ya mpunga kwa asilimia 60 hadi 100 yasipodhibitiwa mapema.</p>
+            
+            <h4>Kudhibiti Magugu</h4>
+            <p>Palizi ya kwanza ifanyike siku 14 hadi 21 baada ya kupandikiza. Unaweza kutumia mikono au dawa za magugu (herbicides) zilizosajiliwa (kama *2,4-D* au zenye kiambata cha *Pretilachlor*) zikipigwa mapema kuzuia magugu kuota.</p>
+
+            <div class="danger-card">
+                <h4>Wadudu na Magonjwa Hatari</h4>
+                <p><strong>Mnyauko wa Bakteria (Bacterial Leaf Blight - BLB):</strong> Unasababisha majani kukauka kama yameungua moto. 
+                <strong>Mdudu Mtoboa Shina (Stem Borer):</strong> Kiwavi anayeingia ndani ya shina na kukausha masuke (yanakuwa meupe yasiyo na chembe). Kudhibiti, nyunyizia viuatilifu vilivyopendekezwa mapema.</p>
+            </div>
+
+            <!-- Idara ya 6 -->
+            <h2 class="section-title">6. Idara ya Uvunaji na Uhifadhi</h2>
+            <p>Vuna pale ambapo asilimia 80% ya masuke yamebadilika na kuwa rangi ya dhahabu/manjano.</p>
+            <ul>
+                <li><strong>Kupura na Kukausha:</strong> Pura mpunga mara baada ya kuvuna ili kuzuia kuharibika kwa ubora. Kausha juu ya maturubai hadi unyevu ufikie **13%**.</li>
+                <li><strong>Uhifadhi:</strong> Hifadhi kwenye magunia safi au mifuko ya hermetic (PICS) mahali pakavu ili kuzuia wadudu wa ghalani na panya.</li>
+            </ul>
+
+            <!-- PICHA YA UHIFADHI -->
+          <div class="image-placeholder-box" style="padding: 0; overflow: hidden;">
+    <img src="vuna.mpunga.jpg" alt="Mkulima akikausha mpunga juu ya turubai safi" style="width:100%; max-height:350px; object-fit:cover; display:block;">
+</div>
+ 
+
+        </div>
+    </div>
+
+    <!-- Footer Bar ya DAES -->
+    <footer class="main-footer">
+        <h3>DAES Footer</h3>
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT LOGIC (YST ENGINE FOR RICE) -->
+    <script>
+        function pigaHesabuMpunga() {
+            let ekari = parseFloat(document.getElementById('shambaSize').value);
+            if (isNaN(ekari) || ekari <= 0) { alert("Ingiza ekari sahihi!"); return; }
+            
+            // Viwango vya Mpunga kwa Ekari Moja:
+            // Mbegu za kitaluni = 15 Kilo
+            // DAP = 50 Kilo
+            // UREA = 100 Kilo
+            document.getElementById('resMbegu').innerText = (ekari * 15).toFixed(1) + " Kilo";
+            document.getElementById('resDap').innerText = (ekari * 50).toFixed(1) + " Kilo";
+            document.getElementById('resUrea').innerText = (ekari * 100).toFixed(1) + " Kilo";
+            document.getElementById('calcResults').style.display = 'block';
+        }
+
+        function pigaHesabuFaidaMpunga() {
+            let ekari = parseFloat(document.getElementById('ekariProfit').value);
+            if (isNaN(ekari) || ekari <= 0) { alert("Ingiza ekari sahihi!"); return; }
+
+            // Gharama za uendeshaji mpunga kwa ekari 1 (vibarua wa kupandikiza, kuvuruga tope, pembejeo, kuvuna) = 700,000 TZS
+            // Mavuno ya wastani kitaalamu kwa ekari 1 = Magunia 22 ya mpunga ghafi
+            // Bei ya soko kwa gunia la mpunga ghafi = 90,000 TZS
+            
+            let gharamaJumla = ekari * 700000;
+            let maguniaMavuno = ekari * 22; 
+            let mauzoJumla = maguniaMavuno * 90000;
+            let faidaSafi = mauzoJumla - gharamaJumla;
+
+            document.getElementById('resGharama').innerText = gharamaJumla.toLocaleString() + " TZS";
+            document.getElementById('resMavuno').innerText = maguniaMavuno.toFixed(0) + " Magunia";
+            document.getElementById('resFaida').innerText = faidaSafi.toLocaleString() + " TZS";
+            document.getElementById('profitResults').style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>

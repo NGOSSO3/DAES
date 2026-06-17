@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kilimo Bora cha Mihogo | DAES</title>
+    <style>
+        :root {
+            --primary: #10b981;        /* Kijani ya Kisasa */
+            --secondary: #273c75;      /* Bluu ya DAES */
+            --bg-body: #f8fafc;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-dark);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header (MUUNDO WAKO WA ASILI - HAUJABADILIKA HATA KIDOGO) */
+        .main-header {
+            background:linear-gradient(135deg, #064e3b 0%, #84cc16 100%);
+            padding: 20px 20px;
+            text-align: center;
+            color: var(--white);
+            margin-bottom: -19px;
+        }
+
+        .logo-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--text-dark);
+        }
+
+        .logo-text span {
+            color: var(--secondary);
+            font-style: arial;
+        }
+
+        .nav-links {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            border: #1e293b;
+            border-radius: 2px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color:white;
+            font-weight: 1000;
+            transition: 0.3s;
+            font-size: x-large;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .btn-signup {
+            background: var(--primary);
+            color: white !important;
+            padding: 8px 20px;
+            border-radius: 50px;
+        }
+
+        /* Container Section */
+        .container {
+            flex: 1; 
+            padding: 40px 20px;
+            margin-top: 0px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Mitindo ya Makala Ndani ya Container */
+        .article-card {
+            background: white;
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border: 2px solid var(--primary);
+            line-height: 1.7;
+        }
+
+        .main-title {
+            color: var(--secondary);
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .section-title {
+            color: var(--secondary);
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--primary);
+            padding-left: 10px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        ul {
+            margin-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .image-placeholder-box {
+            background: #f1f5f9;
+            border: 2px solid var(--primary);
+            border-radius: 15px;
+            padding: 0;
+            margin: 25px 0;
+            text-align: center;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .image-placeholder-box img {
+            width: 100%;
+            max-height: 420px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        th {
+            background-color: #f1f5f9;
+            color: var(--secondary);
+        }
+
+        .info-card {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding: 15px;
+            border-radius: 0 10px 10px 0;
+            margin: 20px 0;
+        }
+
+        .danger-card {
+            background: #fef2f2;
+            border-left: 4px solid #ef4444;
+            padding: 15px;
+            border-radius: 0 10px 10px 0;
+            margin: 20px 0;
+        }
+
+        /* STYLE YA VIKOKOTOO (YST EXCLUSIVE) */
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 35px 0;
+        }
+
+        .calculator-section {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border: 2px solid var(--primary);
+            border-radius: 20px;
+            padding: 25px;
+        }
+
+        .calculator-section.profit {
+            background: linear-gradient(135deg, #fef3c7 0%, #fffbeb 100%);
+            border-color: #f59e0b;
+        }
+
+        .calc-title {
+            color: var(--secondary);
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            outline: none;
+        }
+
+        .calc-btn {
+            background: var(--secondary);
+            color: white;
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .calc-btn:hover {
+            background: #1e293b;
+        }
+
+        .results-box {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            border-top: 4px solid var(--primary);
+            display: none;
+        }
+
+        .results-box.profit-res {
+            border-top-color: #f59e0b;
+        }
+
+        .results-box h4 {
+            color: var(--secondary);
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 5px;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .result-item span.value {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* Footer Bar (MUUNDO WAKO WA ASILI - HAUJABADILIKA HATA KIDOGO) */
+        .main-footer {
+            background: #06741b;
+            padding: 35px;
+            text-align: center;
+            color: white;
+            margin-top: auto;
+        }
+
+        @media (max-width: 768px) {
+            .calculator-grid { grid-template-columns: 1fr; }
+            .article-card { padding: 20px; }
+            .main-title { font-size: 1.7rem; }
+            .nav-links { gap: 20px; flex-wrap: wrap; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header ya DAES -->
+    <header class="main-header">
+        <div class="logo-text">DAES<span>.org</span></div>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="mahindi.html">Masomo</a>
+            <a href="#">Services</a>
+            <a href="#" class="btn-signup">Sign Up</a>
+        </nav>
+    </header>
+
+    <!-- Sehemu Kuu ya Maudhui -->
+    <div class="container">
+        <div class="article-card">
+            
+            <h1 class="main-title">Mwongozo Kamili wa Kilimo Bora cha Mihogo Kitaalamu</h1>
+
+            <!-- PICHA KUU (IMEVUTWA MOJA KWA MOJA) -->
+            <div class="image-placeholder-box">
+                <img src="cassava.jpg" alt="Mavuno ya Mihogo Bora" onerror="this.src='https://unsplash.com'">
+            </div>
+
+            <!-- Idara ya 1 -->
+            <h2 class="section-title">1. Idara ya Maandalizi ya Shamba</h2>
+            <p>Mihogo inahitaji ardhi iliyotayarishwa vizuri ili kuruhusu mizizi yake (ambayo hugeuka kuwa mihogo) kupenya chini kwa urahisi bila kukutana na ugumu wa udongo [1.1].</p>
+            <ul>
+                <li><strong>Ulimaji wa Matuta makubwa (Ridges):</strong> Hii ndio mbinu bora zaidi ya kitaalamu. Matuta yanazuia mshikamano mkubwa wa udongo na yanarahisisha uvunaji pamoja na kuzuia mizizi kuoza kipindi cha mvua nyingi.</li>
+                <li><strong>Hali ya Udongo:</strong> Mihogo inastawi vizuri zaidi kwenye udongo tifutifu usiotuamisha maji. Udongo ukiwemo mgumu sana, mihogo inakuwa midogo na mifupi.</li>
+            </ul>
+
+            <!-- Idara ya 2 -->
+            <h2 class="section-title">2. Idara ya Upandaji na Vipimo vya Nafasi</h2>
+            <p>Kutumia vipimo sahihi wakati wa kupanda kunaongeza wingi wa mavuno kwa sababu mimea inapata nafasi sawa ya kulisha mizizi yake chini ya ardhi.</p>
+            
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Aina ya Upandaji</th>
+                            <th>Nafasi Kati ya Mstari na Mstari</th>
+                            <th>Nafasi Kati ya Shina na Shina</th>
+                            <th>Urefu wa Kipandikizi (Kijiti)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Kilimo cha Kawaida</strong></td>
+                            <td>1 m (Sentimita 100)</td>
+                            <td>1 m (Sentimita 100)</td>
+                            <td>25 cm hadi 30 cm (Yenye macho 4-6)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Kilimo Mseto (Intercropping)</strong></td>
+                            <td>2 m (Sentimita 200)</td>
+                            <td>1 m (Sentimita 100)</td>
+                            <td>25 cm hadi 30 cm</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- PICHA YA UPANDAJI (IMEVUTWA MOJA KWA MOJA) -->
+            <div class="image-placeholder-box">
+                <img src="nafasi.mihogo.jpg" alt="Shamba la Mihogo Lililopandwa Kitaalamu">
+            </div>
+
+
+            <!-- ============================================================== -->
+            <!-- SECTION YA VIKOKOTOO VYA MIHOGO (YST SMART COMPONENT) -->
+            <!-- ============================================================== -->
+            <div class="calculator-grid">
+                
+                <!-- KIKOKOTOO CHA PEMBEJEO -->
+                <div class="calculator-section">
+                    <div class="calc-title">📊 Kikokotoo cha Pembejeo (Mihogo)</div>
+                    <div class="form-group">
+                        <label for="shambaSize">Ukubwa wa Shamba (Ekari):</label>
+                        <input type="number" id="shambaSize" min="0.1" step="0.1" placeholder="Mfano: 1">
+                    </div>
+                    <button class="calc-btn" onclick="pigaHesabuMihogo()">Piga Hesabu</button>
+
+                    <div class="results-box" id="calcResults">
+                        <h4>📋 Ripoti ya Mahitaji</h4>
+                        <div class="result-item"><span>Idadi ya Vipandikizi (Vijiti):</span><span class="value" id="resVijiti">0 Vijiti</span></div>
+                        <div class="result-item"><span>Makadirio ya Marundo (Bundles):</span><span class="value" id="resMarundo">0 Marundo</span></div>
+                        <div class="result-item"><span>Mbolea ya NPK (Ikihitajika):</span><span class="value" id="resNpk">0 Kilo</span></div>
+                    </div>
+                </div>
+
+                <!-- KIKOKOTOO CHA FAIDA -->
+                <div class="calculator-section profit">
+                    <div class="calc-title">💰 Kikokotoo cha Faida (Agribusiness)</div>
+                    <div class="form-group">
+                        <label for="ekariProfit">Ukubwa wa Shamba (Ekari):</label>
+                        <input type="number" id="ekariProfit" min="0.1" step="0.1" placeholder="Mfano: 1">
+                    </div>
+                    <button class="calc-btn" style="background: #f59e0b;" onclick="pigaHesabuFaidaMihogo()">Kadiria Faida</button>
+
+                    <div class="results-box profit-res" id="profitResults">
+                        <h4>💵 Makadirio ya Kifedha ya Mihogo</h4>
+                        <div class="result-item"><span>Gharama za Uendeshaji:</span><span class="value" id="resGharama" style="color:#ef4444;">0 TZS</span></div>
+                        <div class="result-item"><span>Mavuno Yanayokadiriwa:</span><span class="value" id="resMavuno" style="color:#10b981;">0 Tani</span></div>
+                        <div class="result-item" style="border-top:1px dashed #cbd5e1; padding-top:5px;"><span>Faida Safi:</span><span class="value" id="resFaida" style="color:#273c75;">0 TZS</span></div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- ============================================================== -->
+
+
+            <!-- Idara ya 3 -->
+            <h2 class="section-title">3. Idara ya Mbegu na Uchaguzi wa Vipandikizi</h2>
+            <p>Mihogo haipandwi kwa mbegu za punje, bali kwa kutumia vipandikizi vya mashina ya mimea iliyokomaa [1.1].</p>
+            <ul>
+                <li><strong>Sifa za Kijiti Bora:</strong> Chagua shina lililokomaa vizuri (lenye umri wa miezi 8-18). Kijiti kiwe na urefu wa cm 25-30 kikiwa na macho yasiyopungua 4 hadi 6 [1.1]. Usitumie sehemu ya juu laini ya mmea kwani inaoza kirahisi.</li>
+                <li><strong>Aina Bora Tanzania (TARI):</strong> Mkombozi, Mkumba, Kiroba, na Taricass 1. Mbegu hizi zinastahimili magonjwa hatari ya virusi na zinatoa mihogo mingi yenye wanga mwingi [1.1].</li>
+            </ul>
+
+            <!-- Idara ya 4 -->
+            <h2 class="section-title">4. Idara ya Lishe na Mbolea</h2>
+            <p>Ingawa mihogo ina uwezo mkubwa wa kustawi kwenye udongo duni ukilinganisha na mahindi, matumizi ya mbolea yanaongeza uzalishaji kwa asilimia 50 zaidi.</p>
+            <div class="info-card">
+                <h4>Matumizi ya Mbolea ya NPK</h4>
+                <p>Kwenye udongo uliochoka sana, kuweka **kilo 50 za mbolea ya NPK kwa ekari moja** (mchanganyiko wa Nitrojeni, Fosfari, na Kali/Potassium) katika mwezi wa pili baada ya kupanda inasaidia sana kuongeza unene na urefu wa mihogo chini ya ardhi.</p>
+            </div>
+
+            <!-- Idara ya 5 -->
+            <h2 class="section-title">5. Idara ya Ulinzi: Kudhibiti Magonjwa Makubwa ya Mihogo</h2>
+            <div class="danger-card">
+                <h4>Tahadhari: Ugonjwa wa Batobato (Cassava Mosaic Disease - CMD)</h4>
+                <p><strong>Dalili:</strong> Majani yanajikunja, yanakuwa na madoa ya njano na mmea unadumaa kabisa [1.1]. Ugonjwa huu unaenezwa na wadudu Inzi Weupe (Whiteflies) [1.1]. 
+                <strong>Udhibiti:</strong> Panda mbegu zinazovumilia ugonjwa huu (kama Kiroba au Mkombozi) na ng'oa mara moja mmea unaoonyesha dalili kisha uchome moto [1.1].</p>
+            </div>
+
+            <!-- PICHA YA UGONJWA WA BATOBATO (IMEVUTWA MOJA KWA MOJA) -->
+            <div class="image-placeholder-box">
+                <img src="ugonjwa.mihogo.jpg" alt="Ugonjwa wa Batobato kwenye Majani ya Mihogo" onerror="this.src='https://unsplash.com'">
+            </div>
+
+            <!-- Idara ya 6 -->
+            <h2 class="section-title">6. Idara ya Uvunaji na Uhifadhi</h2>
+            <p>Mihogo hukomaa kati ya miezi **9 hadi 12** ikitegemea aina ya mbegu uliyopanda [1.1].</p>
+            <ul>
+                <li><strong>Uvunaji Salama:</strong> Kata mashina na uache sentimita 15-20 juu ya ardhi ili kukusaidia kuvuta mmea wakati wa kung'oa. Hakikisha huvunji mihogo ikiwa chini kwani itaoza haraka ardhini.</li>
+                <li><strong>Changamoto ya Uhifadhi:</strong> Mihogo mibichi inaharibika ndani ya masaa **48 hadi 72** baada ya kuvunwa [1.1]. Ili kuihifadhi kwa muda mrefu, inabidi ichunwe maganda, ikatwe vipande vidogo (makopa) na kukaushwa vizuri juani hadi unyevu uishe kabisa [1.1].</li>
+            </ul>
+
+            <!-- PICHA YA MAVUNO (IMEVUTWA MOJA KWA MOJA) -->
+            <div class="image-placeholder-box">
+                <img src="uvunaji.mihogo.jpg" alt="Mihogo Iliyochunwa na Kukaushwa">
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Footer Bar ya DAES -->
+    <footer class="main-footer">
+        <h3>DAES Footer</h3>
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT LOGIC (YST ENGINE FOR CASSAVA) -->
+    <script>
+        function pigaHesabuMihogo() {
+            let ekari = parseFloat(document.getElementById('shambaSize').value);
+            if (isNaN(ekari) || ekari <= 0) { alert("Ingiza ekari sahihi!"); return; }
+            
+            // Kanuni za TARI kwa Ekari Moja ya Mihogo (Vipimo vya 1m x 1m):
+            // 1 Ekari = Vijiti (Vipandikizi) 4,000
+            // Rundo moja (Bundle) lina vijiti 30 vya kawaida ardhini, hivyo takriban marundo 133
+            // Mbolea ya NPK = 50 Kilo (Ikitumika kurekebisha ardhi duni)
+            
+            let vijiti = ekari * 4000;
+            let marundo = vijiti / 30;
+            let npk = ekari * 50;
+
+            document.getElementById('resVijiti').innerText = vijiti.toLocaleString() + " Vijiti";
+            document.getElementById('resMarundo').innerText = Math.ceil(marundo) + " Marundo";
+            document.getElementById('resNpk').innerText = npk.toFixed(1) + " Kilo";
+            document.getElementById('calcResults').style.display = 'block';
+        }
+
+        function pigaHesabuFaidaMihogo() {
+            let ekari = parseFloat(document.getElementById('ekariProfit').value);
+            if (isNaN(ekari) || ekari <= 0) { alert("Ingiza ekari sahihi!"); return; }
+
+            // Gharama za uendeshaji mihogo kwa ekari 1 (Kununua marundo, kukata matuta, kuvuna) = 450,000 TZS
+            // Mavuno ya wastani ya kitaalamu kwa ekari 1 ya mbegu bora = Tani 10 za mihogo mibichi
+            // Bei ya kuuzia tani moja shambani kwa viwanda = 150,000 TZS
+            
+            let gharamaJumla = ekari * 450000;
+            let taniMavuno = ekari * 10; 
+            let mauzoJumla = taniMavuno * 150000;
+            let faidaSafi = mauzoJumla - gharamaJumla;
+
+            document.getElementById('resGharama').innerText = gharamaJumla.toLocaleString() + " TZS";
+            document.getElementById('resMavuno').innerText = taniMavuno.toFixed(1) + " Tani";
+            document.getElementById('resFaida').innerText = faidaSafi.toLocaleString() + " TZS";
+            document.getElementById('profitResults').style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>

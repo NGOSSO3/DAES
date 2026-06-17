@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kilimo Bora cha Tikiti Maji | DAES</title>
+    <style>
+        :root {
+            --primary: #10b981;        /* Kijani ya Kisasa */
+            --secondary: #273c75;      /* Bluu ya DAES */
+            --bg-body: #f8fafc;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-dark);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header (MUUNDO WAKO WA ASILI - HAUJABADILIKA HATA KIDOGO) */
+        .main-header {
+            background:linear-gradient(135deg, #064e3b 0%, #84cc16 100%);
+            padding: 20px 20px;
+            text-align: center;
+            color: var(--white);
+            margin-bottom: -19px;
+        }
+
+        .logo-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--text-dark);
+        }
+
+        .logo-text span {
+            color: var(--secondary);
+            font-style: arial;
+        }
+
+        .nav-links {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            border: #1e293b;
+            border-radius: 2px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color:white;
+            font-weight: 1000;
+            transition: 0.3s;
+            font-size: x-large;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .btn-signup {
+            background: var(--primary);
+            color: white !important;
+            padding: 8px 20px;
+            border-radius: 50px;
+        }
+
+        /* Container Section */
+        .container {
+            flex: 1; 
+            padding: 40px 20px;
+            margin-top: 0px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Mitindo ya Makala Ndani ya Container */
+        .article-card {
+            background: white;
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border: 2px solid var(--primary);
+            line-height: 1.7;
+        }
+
+        .main-title {
+            color: var(--secondary);
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .section-title {
+            color: var(--secondary);
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--primary);
+            padding-left: 10px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        ul {
+            margin-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .image-placeholder-box {
+            background: #f1f5f9;
+            border: 2px solid var(--primary);
+            border-radius: 15px;
+            padding: 0;
+            margin: 25px 0;
+            text-align: center;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .image-placeholder-box img {
+            width: 100%;
+            max-height: 420px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        th {
+            background-color: #f1f5f9;
+            color: var(--secondary);
+        }
+
+        .info-card {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding: 15px;
+            border-radius: 0 10px 10px 0;
+            margin: 20px 0;
+        }
+
+        .danger-card {
+            background: #fef2f2;
+            border-left: 4px solid #ef4444;
+            padding: 15px;
+            border-radius: 0 10px 10px 0;
+            margin: 20px 0;
+        }
+
+        /* STYLE YA VIKOKOTOO (YST EXCLUSIVE) */
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 35px 0;
+        }
+
+        .calculator-section {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border: 2px solid var(--primary);
+            border-radius: 20px;
+            padding: 25px;
+        }
+
+        .calculator-section.profit {
+            background: linear-gradient(135deg, #fef3c7 0%, #fffbeb 100%);
+            border-color: #f59e0b;
+        }
+
+        .calc-title {
+            color: var(--secondary);
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            outline: none;
+        }
+
+        .calc-btn {
+            background: var(--secondary);
+            color: white;
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .calc-btn:hover {
+            background: #1e293b;
+        }
+
+        .results-box {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            border-top: 4px solid var(--primary);
+            display: none;
+        }
+
+        .results-box.profit-res {
+            border-top-color: #f59e0b;
+        }
+
+        .results-box h4 {
+            color: var(--secondary);
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 5px;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .result-item span.value {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* Footer Bar (MUUNDO WAKO WA ASILI - HAUJABADILIKA HATA KIDOGO) */
+        .main-footer {
+            background: #06741b;
+            padding: 35px;
+            text-align: center;
+            color: white;
+            margin-top: auto;
+        }
+
+        @media (max-width: 768px) {
+            .calculator-grid { grid-template-columns: 1fr; }
+            .article-card { padding: 20px; }
+            .main-title { font-size: 1.7rem; }
+            .nav-links { gap: 20px; flex-wrap: wrap; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header ya DAES -->
+    <header class="main-header">
+        <div class="logo-text">DAES<span>.org</span></div>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="mahindi.html">Masomo</a>
+            <a href="#">Services</a>
+            <a href="#" class="btn-signup">Sign Up</a>
+        </nav>
+    </header>
+
+    <!-- Sehemu Kuu ya Maudhui -->
+    <div class="container">
+        <div class="article-card">
+            
+            <h1 class="main-title">Mwongozo Kamili wa Kilimo Bora cha Tikiti Maji Kitaalamu</h1>
+
+            <!-- PICHA KUU (IMEVUTWA MOJA KWA MOJA) -->
+            <div class="image-placeholder-box">
+                <img src="https://unsplash.com" alt="Matunda ya Tikiti Maji Shambani" onerror="this.src='https://unsplash.com'">
+            </div>
+
+            <!-- Idara ya 1 -->
+            <h2 class="section-title">1. Idara ya Maandalizi ya Shamba na Udongo</h2>
+            <p>Tikiti maji ni mmea unaotambaa chini ya ardhi na unaozaa matunda yenye ujazo mkubwa wa maji (zaidi ya 92%), hivyo ulegezaji mzuri wa udongo na urutubishaji ni jambo la msingi [1.1].</p>
+            <ul>
+                <li><strong>Hali ya Udongo:</strong> Tikiti maji hupenda udongo mwepesi wa kichanga tifutifu (*sandy loam*) unaopitisha maji vizuri sana na wenye joto la wastani. Udongo ukiwa mzito wa mfinyanzi unaotuamisha maji, matunda hupasuka na mizizi inaoza. pH bora ni 6.0 hadi 6.8.</li>
+                <li><strong>Ulimaji wa Matuta:</strong> Inashauriwa kupanda tikiti maji juu ya matuta mapana yaliyoinuliwa (width 1m) ili kulinda mmea dhidi ya magonjwa ya unyevu wa chini na kurahisisha mtawanyiko wa mashina.</li>
+            </ul>
+
+            <!-- Idara ya 2 -->
+            <h2 class="section-title">2. Idara ya Upandaji na Vipimo vya Nafasi</h2>
+            <p>Kwa sababu mmea huu unatambaa sana, nafasi kubwa lazima iachwe kati ya mistari ili kuruhusu mimea kutanuka bila kusongana [1.3].</p>
+            
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nafasi Kati ya Mstari na Mstari</th>
+                            <th>Nafasi Kati ya Shimo na Shimo</th>
+                            <th>Kina cha Kupanda Mbegu</th>
+                            <th>Idadi ya Mbegu kwa Shimo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1.5 Mita hadi 2.0 Mita</td>
+                            <td>1.0 Mita (100 cm)</td>
+                            <td>2 Sentimita (2 cm)</td>
+                            <td>Mbegu 1 hadi 2 (Kisha weka mmea 1 wenye afya)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- PICHA YA UPANDAJI (IMEVUTWA MOJA KWA MOJA) -->
+            <div class="image-placeholder-box">
+                <img src="https://unsplash.com" alt="Mimea ya Tikiti Ikitambaa Juu ya Matuta">
+            </div>
+
+
+            <!-- ============================================================== -->
+            <!-- SECTION YA VIKOKOTOO VYA TIKITI (YST SMART COMPONENT) -->
+            <!-- ============================================================== -->
+            <div class="calculator-grid">
+                
+                <!-- KIKOKOTOO CHA PEMBEJEO -->
+                <div class="calculator-section">
+                    <div class="calc-title">📊 Kikokotoo cha Pembejeo (Tikiti)</div>
+                    <div class="form-group">
+                        <label for="shambaSize">Ukubwa wa Shamba (Ekari):</label>
+                        <input type="number" id="shambaSize" min="0.1" step="0.1" placeholder="Mfano: 1">
+                    </div>
+                    <button class="calc-btn" onclick="pigaHesabuTikiti()">Piga Hesabu</button>
+
+                    <div class="results-box" id="calcResults">
+                        <h4>📋 Ripoti ya Mahitaji</h4>
+                        <div class="result-item"><span>Mbegu Chotara (F1):</span><span class="value" id="resMbegu">0 Gramu</span></div>
+                        <div class="result-item"><span>Mbolea ya DAP (Kupandia):</span><span class="value" id="resDap">0 Kilo</span></div>
+                        <div class="result-item"><span>Mbolea ya NPK (Kunenepesha):</span><span class="value" id="resNpk">0 Kilo</span></div>
+                    </div>
+                </div>
+
+                <!-- KIKOKOTOO CHA FAIDA -->
+                <div class="calculator-section profit">
+                    <div class="calc-title">💰 Kikokotoo cha Faida (Mzunguko wa Miezi 3)</div>
+                    <div class="form-group">
+                        <label for="ekariProfit">Ukubwa wa Shamba (Ekari):</label>
+                        <input type="number" id="ekariProfit" min="0.1" step="0.1" placeholder="Mfano: 1">
+                    </div>
+                    <button class="calc-btn" style="background: #f59e0b;" onclick="pigaHesabuFaidaTikiti()">Kadiria Faida</button>
+
+                    <div class="results-box profit-res" id="profitResults">
+                        <h4>💵 Makadirio ya Kifedha ya Tikiti</h4>
+                        <div class="result-item"><span>Gharama za Kilimo (Msimu):</span><span class="value" id="resGharama" style="color:#ef4444;">0 TZS</span></div>
+                        <div class="result-item"><span>Mavuno Yanayokadiriwa:</span><span class="value" id="resMavuno" style="color:#10b981;">0 Matunda</span></div>
+                        <div class="result-item" style="border-top:1px dashed #cbd5e1; padding-top:5px;"><span>Makadirio ya Faida Safi:</span><span class="value" id="resFaida" style="color:#273c75;">0 TZS</span></div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- ============================================================== -->
+
+
+            <!-- Idara ya 3 -->
+            <h2 class="section-title">3. Idara ya Lishe na Uwekezaji wa Mbolea</h2>
+            <p>Tikiti maji hukua kwa kasi kubwa mno na yanahitaji mbolea sahihi ili kuleta utamu wa sukari (*brix content*) na ganda gumu [1.3].</p>
+            
+            <div class="info-card">
+                <h4>Mbolea ya Kupandia (Fosfari)</h4>
+                <p>Weka **kilo 50 za mbolea ya DAP kwa ekari moja** (au gramu 10-15 kwa kila shimo) wakati wa kupanda ili kusaidia mizizi kwenda chini haraka kutafuta unyevu [1.3].</p>
+            </div>
+
+            <div class="info-card" style="border-left-color: var(--primary); background: #f0fdf4;">
+                <h4>Mbolea ya Kunenepesha na Kutatua Ukali (NPK & Potassium)</h4>
+                <p>Mwezi mmoja baada ya kuota (wakati wa kutoa maua), weka mbolea ya Nitrojeni ya wastani kuchochea matawi. **Kigezo kikuu cha YST:** Wakati matunda yanapofikia saizi ya yai la kuku, weka **kilo 50 hadi 100 za mbolea ya NPK (yenye Potassium kwa wingi kama Potassium Sulphate)** [1.3]. Potassium husafirisha sukari asilia kwenda kwenye tunda na kuongeza unene wa nyama nyekundu [1.3].</p>
+            </div>
+
+            <!-- Idara ya 4 -->
+            <h2 class="section-title">4. Idara ya Mbegu bora na Hatua ya Kupunza Matunda (Fruit Pruning)</h2>
+            <p>Usimamizi wa idadi ya matunda kwa mmea mmoja huamua kama utavuna matikiti makubwa ya daraja la kwanza au madogo yasiyo na soko.</p>
+            <ul>
+                <li><strong>Mbegu Bora Chotara (F1 Hybrids):</strong> Inashauriwa kutumia mbegu chotara zilizosajiliwa kama **Sukari F1** au **Zebra F1**. Zina kiwango kikubwa cha sukari, maganda magumu yanayovumilia usafirishaji, na zinazaa kwa wingi [1.3].</li>
+                <li><strong>Kupunza Matunda (Fruit Pruning):</strong> Mmea mmoja una uwezo wa kutoa matikiti 4 hadi 6, lakini yote yakibaki yatakuwa madogo. Kitaalamu, **bakiza matunda 2 hadi 3 tu yenye afya na umbo zuri kwa kila mmea**, na ukate yaliyosalia yakiwa bado machanga [1.3]. Hatua hii inalazimisha chakula chote kileleshe matunda hayo machache ili yawe makubwa sana (kg 8-12) [1.3].</li>
+                <li><strong>Kugeuza Matunda:</strong> Geuza tikiti kwa upole mara moja kwa wiki ili sehemu ya chini inayogusa ardhi ipate mwanga na kuzuia madoa meupe au kushambuliwa na wadudu wa udongo.</li>
+            </ul>
+
+            <!-- Idara ya 5 -->
+            <h2 class="section-title">5. Idara ya Ulinzi: Kudhibiti Ukungu na Kulinda Nyuki</h2>
+            <p>Tikiti maji linashambuliwa sana na magonjwa ya ukungu (fangasi) kutokana na majani yake kulala chini ardhini.</p>
+            <div class="danger-card">
+                <h4>Magonjwa Makubwa ya Ukungu</h4>
+                <p><strong>Ubwiri Poda & Downy Mildew:</strong> Ukungu unaoacha baka la kikafiri au unga mweupe juu ya majani na kukausha shamba zima ndani ya wiki moja. **Udhibiti:** Nyunyizia dawa za fangasi (*fungicides*) kila baada ya siku 7 hadi 14, hasa vipindi vya unyevu mwingi au mvua [1.3].</p>
+            </div>
+
+            <p><strong>Tahadhari ya Uchavushaji (YST Key Point):</strong> Tikiti maji lina maua dume na jike tofauti na linahitaji **Nyuki** kwa 100% ili kubeba chavua [1.3]. Ukipiga dawa za wadudu kali asubuhi, utaua nyuki na mmea utatoa maua yanayonyauka na kudondoka bila kutoa matunda [1.3]. **Piga dawa za wadudu jioni tu** wakati nyuki wakiwa wamerudi kwenye mizinga yao [1.3].</p>
+
+            <!-- PICHA YA MATUNDA (IMEVUTWA MOJA KWA MOJA) -->
+            <div class="image-placeholder-box">
+                <img src="https://unsplash.com" alt="Mavuno ya Tikiti Maji Safi">
+            </div>
+
+            <!-- Idara ya 6 -->
+            <h2 class="section-title">6. Idara ya Uvunaji na Uhakiki wa Kukomaa</h2>
+            <p>Tikiti maji haliongezi utamu likishatolewa kwenye mmea, hivyo ukivuna likiwa bichi litabaki kuwa changa na halina soko.</p>
+            <ul>
+                <li><strong>Alama tatu za Uhakiki wa Kukomaa (Kisayansi):</strong> 
+                    <br>1. **Kikonyo cha Mtandao (Tendril):** Kile kijiti kilichopo nyuma ya kikonyo cha tikiti kinapaswa kukauka kabisa na kuwa rangi ya kahawia.
+                    <br>2. **Baka la Chini (Ground Spot):** Sehemu ya chini ya tikiti inayogusa ardhi inapaswa kubadilika rangi kutoka nyeupe/kijani hafifu na kuwa **manjano dhabiti**.
+                    <br>3. **Sauti ya Tunda:** Ukipiga tikiti kwa kiganja cha mkono, linatakiwa kutoa sauti nzito na butu (*dull hollow sound*). Sauti ikiwa nyepesi kama metali, tikiti bado ni bichi.
+                </li>
+                <li><strong>Uhifadhi:** Tikiti lina ngozi laini inayoweza kupasuka. Panga kwa upole kwenye safu zisizozidi 3 juu ya gari zikiwekwa nyasi kavu katikati ili kuzuia mivurugo njiani [1.3].</strong></li>
+            </ul>
+
+            <!-- PICHA YA SOKONI (IMEVUTWA MOJA KWA MOJA) -->
+            <div class="image-placeholder-box">
+                <img src="https://unsplash.com" alt="Kupanga matikiti makubwa sokoni">
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Footer Bar ya DAES -->
+    <footer class="main-footer">
+        <h3>DAES Footer</h3>
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT LOGIC (YST ENGINE FOR WATERMELON) -->
+    <script>
+        function pigaHesabuTikiti() {
+            let ekari = parseFloat(document.getElementById('shambaSize').value);
+            if (isNaN(ekari) || ekari <= 0) { alert("Tafadhali ingiza ekari sahihi!"); return; }
+            
+            // Kanuni za TARI kwa Ekari Moja ya Tikiti Maji (Nafasi ya 1.5m x 1m):
+            // 1 Ekari = Gramu 350 za mbegu chotara
+            // 1 Ekari = Kilo 50 za DAP
+            // 1 Ekari = Kilo 50 za NPK (Kunenepesha)
+            
+            let mbegu = ekari * 350;
+            let dap = ekari * 50;
+            let npk = ekari * 50;
+
+            document.getElementById('resMbegu').innerText = mbegu.toFixed(0) + " Gramu chotara (F1)";
+            document.getElementById('resDap').innerText = dap.toFixed(1) + " Kilo za DAP";
+            document.getElementById('resNpk').innerText = npk.toFixed(1) + " Kilo za NPK/Potassium";
+            document.getElementById('calcResults').style.display = 'block';
+        }
+
+        function pigaHesabuFaidaTikiti() {
+            let ekari = parseFloat(document.getElementById('ekariProfit').value);
+            if (isNaN(ekari) || ekari <= 0) { alert("Tafadhali ingiza ekari sahihi!"); return; }
+
+            // Gharama za uendeshaji kila msimu kwa ekari 1 (mbegu chotara, dawa nyingi za ukungu/fangasi, vibarua na usafirishaji) = 900,000 TZS
+            // Mavuno ya wastani kitaalamu kwa ekari moja (miche 2,500 yenye matunda 2 makubwa) = matunda 5,000
+            // Bei ya kuuzia tikiti moja la wastani shambani kwa jumla = 800 TZS
+            
+            let gharamaJumla = ekari * 900000;
+            let matundaMavuno = ekari * 5000; 
+            let mauzoJumla = matundaMavuno * 800;
+            let faidaSafi = mauzoJumla - gharamaJumla;
+
+            document.getElementById('resGharama').innerText = gharamaJumla.toLocaleString() + " TZS";
+            document.getElementById('resMavuno').innerText = matundaMavuno.toLocaleString() + " Matunda ya Tikiti";
+            document.getElementById('resFaida').innerText = faidaSafi.toLocaleString() + " TZS";
+            document.getElementById('profitResults').style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>
