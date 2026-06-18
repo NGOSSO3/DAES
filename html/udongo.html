@@ -29,14 +29,14 @@
             <h1 class="logo-text">DIGITAL AGRICULTURE ENHANCEMENT SYSTEM <span>(DAES)</span></h1>
         </div>
         <nav class="nav-links">
-            <a href="test-1.html">Nyumbani</a>
-            <a href="elimu.html">Elimu</a>
-            <a href="hali-ya-hewa.html">Hali ya hewa</a>
-            <a href="ai.html">AI Msaidizi</a>
-            <a href="#" class="active">Udongo</a>
-            <a href="#">Soko</a>
-            <a href="#" class="btn-signup">Jisajili</a>
-        </nav>
+        <a href="index.html" class="active">Nyumbani</a>
+        <a href="elimu.html">Elimu </a>
+        <a href="haliyahewa.html">Hali ya hewa</a>
+        <a href="ai.html">AI Msaidizi</a>
+        <a href="udongo.html">Udongo</a>
+        <a href="soko.html">Soko</a>
+        <a href="usajili.html" class="btn-signup">Jisajili</a>
+    </nav>
     </header>
 
     <main class="soil-container">
@@ -48,18 +48,24 @@
             <div class="form-group">
                 <label>Rangi ya Udongo:</label>
                 <select id="soilColor">
-                    <option value="mweusi">Mweusi / Kahawia</option>
-                    <option value="mwekundu">Mwekundu / Manjano</option>
-                    <option value="mweupe">Mweupe / Kijivu</option>
+                    <option value="mweusi-kahawia">Mweusi / Kahawia (Nene kwa Mbolea)</option>
+                    <option value="mwekundu-manjano">Mwekundu / Manjano (Msingi wa Viazi)</option>
+                    <option value="mweupe-kijivu">Mweupe / Kijivu (Nyingi ya Mafasi)</option>
+                    <option value="nyeupe-mwekundu">Nyeupe Mwekundu (Mchanganyiko wa Tifutifu na Mfinyanzi)</option>
+                    <option value="giza">Giza Sana (Matope Nene kwa Sana)</option>
+                    <option value="njano">Njano Tupu (Udongo wa Chemchemi)</option>
                 </select>
             </div>
 
             <div class="form-group">
                 <label>Aina ya Udongo:</label>
                 <select id="soilType">
-                    <option value="tifutifu">Udongo wa Tifutifu</option>
-                    <option value="mfinyanzi">Udongo wa Mfinyanzi</option>
-                    <option value="kichanga">Udongo wa Kichanga</option>
+                    <option value="tifutifu">Udongo wa Tifutifu (Clay) - Nene na Mnene</option>
+                    <option value="mfinyanzi">Udongo wa Mfinyanzi (Loam) - Mchanganyiko Mzuri</option>
+                    <option value="kichanga">Udongo wa Kichanga (Sand) - Nyepesi na Kavu</option>
+                    <option value="tifutifu-kichanga">Udongo Kati (Clay-Sand Mix)</option>
+                    <option value="matope-nene">Matope Nene (Heavy Clay)</option>
+                    <option value="udongo-pevu">Udongo Pevu (Organic Rich)</option>
                 </select>
             </div>
 
@@ -92,26 +98,167 @@
             let ph = 7.0;
             let msg = "";
             let stat = "";
+            let borderColor = "#10b981";
 
-            if (color === "mwekundu") {
-                ph = type === "kichanga" ? "4.5 - 5.5" : "5.5 - 6.0";
-                stat = "Tindikali (Acidic)";
-                msg = "Udongo huu una asili ya tindikali. Inashauriwa kutumia mbolea za asili (samadi) au chokaa kidogo ili kupunguza ukali. Mazao yanayoweza kuhimili ni kama mananasi na viazi mviringo.";
-                phCircle.style.borderColor = "#ef4444";
-            } 
-            else if (color === "mweusi") {
-                ph = type === "tifutifu" ? "6.5 - 7.5" : "6.0 - 7.0";
+            // Mchanganyiko wa Rangi na Aina za Udongo
+            const soilData = {
+                // MWEUSI / KAHAWIA
+                "mweusi-kahawia-tifutifu": {
+                    ph: "6.5 - 7.5",
+                    status: "Kawaida (Neutral)",
+                    advice: "Udongo huu ni bora zaidi! Una nene na mbolea nyingi. Inafaa kwa mahindi, maharage, mbogamboga, pamoja na matunda. Jalieza kwa kawaida lakini kuepuka kupinga kwa wingi.",
+                    color: "#10b981"
+                },
+                "mweusi-kahawia-mfinyanzi": {
+                    ph: "7.0 - 8.0",
+                    status: "Kawaida (Neutral)",
+                    advice: "Udongo mzuri sana kwa kupanda. Mchanganyiko sahihi wa udongo mnene na udongo nyepesi. Inafaa kwa kila aina ya mazao. Jalieza mara 2-3 kwa msimu.",
+                    color: "#10b981"
+                },
+                "mweusi-kahawia-kichanga": {
+                    ph: "6.0 - 7.0",
+                    status: "Karibu Kawaida",
+                    advice: "Udongo nyepesi lakini lenye nene kidogo. Njaa ya maji haraka kwa hiyo jalieza mara nyingi. Inafaa kwa ndani ya mchungwa, nanasi, na chakula cha joto.",
+                    color: "#10b981"
+                },
+
+                // MWEKUNDU / MANJANO
+                "mwekundu-manjano-tifutifu": {
+                    ph: "5.0 - 6.0",
+                    status: "Tindikali (Acidic)",
+                    advice: "Udongo unene na tindikali. Inashauriwa kuongeza chokaa au mbolea za asili kupunguza ukali. Inafaa kwa viazi mviringo, samaki, mananasi, na mbuzi.",
+                    color: "#ef4444"
+                },
+                "mwekundu-manjano-mfinyanzi": {
+                    ph: "5.5 - 6.5",
+                    status: "Karibu Tindikali",
+                    advice: "Udongo wenye asili ya tindikali lakini mchanganyiko mzuri. Ongeza samadi au chokaa. Inafaa kwa mahindi, maharage, na matunda.",
+                    color: "#f97316"
+                },
+                "mwekundu-manjano-kichanga": {
+                    ph: "4.8 - 5.8",
+                    status: "Tindikali Sana",
+                    advice: "Udongo nyepesi na tindikali kwa sana. Taka kuongeza chokaa au mafuta ya samadi. Mazao yanayohusika: nanasi, mananasi, samaki, pamoja na chakula cha joto.",
+                    color: "#dc2626"
+                },
+
+                // MWEUPE / KIJIVU
+                "mweupe-kijivu-tifutifu": {
+                    ph: "7.8 - 9.0",
+                    status: "Nyongo (Alkaline)",
+                    advice: "Udongo na asili ya chumvi au nyongo sana. Ongeza mbolea ya asili na kuepuka kemikali. Inafaa kwa pamba, ngano, na chakula cha baridi.",
+                    color: "#3b82f6"
+                },
+                "mweupe-kijivu-mfinyanzi": {
+                    ph: "7.5 - 8.5",
+                    status: "Nyongo (Alkaline)",
+                    advice: "Udongo wenye asili ya nyongo lakini mchanganyiko sahihi. Ongeza asidi ili kupunguza chumvi. Inafaa kwa ngano, mahindi, pamba.",
+                    color: "#3b82f6"
+                },
+                "mweupe-kijivu-kichanga": {
+                    ph: "7.2 - 8.2",
+                    status: "Karibu Nyongo",
+                    advice: "Udongo nyepesi wenye taka kidogo. Jalieza kwa wingi zaidi. Inafaa kwa chakula cha baridi kama mahindi, ngano.",
+                    color: "#0ea5e9"
+                },
+
+                // NYEUPE MWEKUNDU - Mchanganyiko
+                "nyeupe-mwekundu-tifutifu": {
+                    ph: "6.2 - 7.2",
+                    status: "Kawaida (Neutral)",
+                    advice: "Mchanganyiko vizuri! Udongo wenye rutuba ya kutosha. Inafaa karibu kwa mazao yote. Jalieza kwa kawaida.",
+                    color: "#10b981"
+                },
+                "nyeupe-mwekundu-mfinyanzi": {
+                    ph: "6.5 - 7.5",
+                    status: "Kawaida (Neutral)",
+                    advice: "Mchanganyiko bora kwa kupanda! Inafaa kwa mahindi, maharage, mbogamboga, matunda. Pata mavuno mazuri.",
+                    color: "#10b981"
+                },
+                "nyeupe-mwekundu-kichanga": {
+                    ph: "5.8 - 7.0",
+                    status: "Karibu Kawaida",
+                    advice: "Udongo nyepesi lakini wenye jalieza. Jalieza mara nyingi. Inafaa kwa chakula kote.",
+                    color: "#10b981"
+                },
+
+                // GIZA SANA - Matope Nene
+                "giza-tifutifu": {
+                    ph: "6.0 - 7.0",
+                    status: "Kawaida",
+                    advice: "Matope nene sana kwa mbolea nyingi. Inashauriwa kukamatia ili kuhitaji maji kidogo. Inafaa kwa mahindi, maharage, mbogamboga.",
+                    color: "#10b981"
+                },
+                "giza-mfinyanzi": {
+                    ph: "6.5 - 7.5",
+                    status: "Kawaida",
+                    advice: "Matope nzuri kwa jalieza na mbolea. Mchanganyiko mzuri. Inafaa kwa yote yote.",
+                    color: "#10b981"
+                },
+                "giza-kichanga": {
+                    ph: "5.5 - 6.5",
+                    status: "Karibu Kawaida",
+                    advice: "Matope lakini nyepesi kidogo. Jalieza haraka. Ongeza mbolea ya asili.",
+                    color: "#10b981"
+                },
+                "giza-tifutifu-kichanga": {
+                    ph: "6.2 - 7.2",
+                    status: "Kawaida",
+                    advice: "Mchanganyiko vizuri! Matope nene lakini una urefu. Inafaa mazao yote.",
+                    color: "#10b981"
+                },
+                "giza-matope-nene": {
+                    ph: "6.8 - 7.8",
+                    status: "Kawaida",
+                    advice: "Matope sana! Kunyongwa maji haraka. Jalieza kwa ujinga. Inafaa kwa mahindi, maharage nne.",
+                    color: "#10b981"
+                },
+                "giza-udongo-pevu": {
+                    ph: "6.5 - 7.5",
+                    status: "Kawaida Bora",
+                    advice: "Kuzuri sana! Matope lenye mbolea nyingi. Inafaa kwa yote yote. Jalieza kwa kawaida.",
+                    color: "#059669"
+                },
+
+                // NJANO TUPU - Udongo wa Chemchemi
+                "njano-tifutifu": {
+                    ph: "5.2 - 6.2",
+                    status: "Tindikali",
+                    advice: "Udongo wenye historia ya maji ya mvua. Tindikali na njaa ya mbolea. Ongeza samadi nyingi. Inafaa kwa samaki, viazi mviringo.",
+                    color: "#ef4444"
+                },
+                "njano-mfinyanzi": {
+                    ph: "5.8 - 6.8",
+                    status: "Karibu Kawaida",
+                    advice: "Udongo wa maji ya mvua. Ongeza samadi. Inafaa kwa mahindi na other crops.",
+                    color: "#f97316"
+                },
+                "njano-kichanga": {
+                    ph: "5.0 - 6.0",
+                    status: "Tindikali",
+                    advice: "Udongo nyepesi na tindikali. Jalieza mara nyingi. Ongeza samadi. Inafaa chakula cha joto.",
+                    color: "#dc2626"
+                }
+            };
+
+            // Kupata data
+            const key = `${color}-${type}`;
+            const data = soilData[key];
+
+            if (data) {
+                ph = data.ph;
+                stat = data.status;
+                msg = data.advice;
+                borderColor = data.color;
+            } else {
+                // Default kama hakuna match
+                ph = "6.5 - 7.5";
                 stat = "Kawaida (Neutral)";
-                msg = "Hongera! Udongo huu ni bora zaidi kwa kilimo. Una rutuba ya kutosha na pH iliyotulia. Unaweza kupanda mazao karibu yote kama mahindi, maharage, na mbogamboga.";
-                phCircle.style.borderColor = "#10b981";
-            } 
-            else if (color === "mweupe") {
-                ph = type === "mfinyanzi" ? "8.0 - 9.0" : "7.5 - 8.5";
-                stat = "Nyongo (Alkaline)";
-                msg = "Udongo huu una asili ya chumvi au nyongo. Inashauriwa kuongeza mbolea ya kijani na kuepuka mbolea zenye kemikali zinazozidisha chumvi. Mazao kama pamba au ngano yanaweza kufanya vizuri.";
-                phCircle.style.borderColor = "#3b82f6";
+                msg = "Tafadhali jaribu mchanganyiko tofauti wa rangi na aina.";
+                borderColor = "#10b981";
             }
 
+            phCircle.style.borderColor = borderColor;
             phCircle.innerText = ph;
             status.innerText = stat;
             advice.innerText = msg;
